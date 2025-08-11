@@ -1,0 +1,66 @@
+W031 { #GtkWindow
+  title varchar(256);
+  popup_summary varchar(256);
+  popup_body varchar(256);
+  popup_icon varchar(256);
+  popup_timeout int;
+  fixed10 { #GtkFixed
+    B01 { #GtkButton
+      state int;
+    };
+    NEN { #GtkPandaEntry
+      textdata varchar(10);
+    };
+    B02 { #GtkButton
+      state int;
+    };
+    B06 { #GtkButton
+      state int;
+    };
+    B12 { #GtkButton
+      state int;
+    };
+    B07 { #GtkButton
+      state int;
+    };
+    MSG01 { #GtkLabel
+      textdata varchar(20);
+    };
+    RITU01 { #GtkNumberEntry
+      numdata number(3);
+    };
+    RITU02 { #GtkNumberEntry
+      numdata number(3);
+    };
+    RITU03 { #GtkNumberEntry
+      numdata number(3);
+    };
+    RITU04 { #GtkNumberEntry
+      numdata number(3);
+    };
+    RITU05 { #GtkNumberEntry
+      numdata number(3);
+    };
+    RITU06 { #GtkNumberEntry
+      numdata number(3);
+    };
+    RITU07 { #GtkNumberEntry
+      numdata number(3);
+    };
+    RITU08 { #GtkNumberEntry
+      numdata number(3);
+    };
+    RITU09 { #GtkNumberEntry
+      numdata number(3);
+    };
+    RITU10 { #GtkNumberEntry
+      numdata number(3);
+    };
+    RITU11 { #GtkNumberEntry
+      numdata number(3);
+    };
+    RITU12 { #GtkNumberEntry
+      numdata number(3);
+    };
+  };
+};

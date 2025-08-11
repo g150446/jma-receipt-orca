@@ -1,0 +1,633 @@
+tbl_onshi_kaku {
+	HOSPNUM				number(2,0);
+	TBL_UUID     			varchar(36);
+	AITE_UUID     			varchar(36);
+	OYA_UUID     			varchar(36);
+	KOUHI_UUID     			varchar(36);
+	FUJYO_UUID     			varchar(36);
+	FUJYO_UUID1				varchar(36);
+	FUJYO_HEIYO				varchar(01);
+#---> 一括同意識別(2024/12)
+	PROCESS_CLASS			varchar(01);
+	ORCA_ERR_CODE    		varchar(02);
+	SET_PTID     			varchar(01);
+	ORCA_SIKAKU_YUKO  		varchar(01);
+#---> 画像ファイル名(2022/7)
+	HKNOCR_FILENAME  		varchar(100);
+	KAKU_RENUMBER			number(2);
+	KAKU_ENDFLG			varchar(2);
+	KAKU_KAKUNINYMD			varchar(8);
+	KAKU_KAKUNINHMS			varchar(6);
+	SHOU_RENUMBER			number(2);
+	SHOU_ENDFLG			varchar(2);
+	YAKUZAI_RENUMBER	 	number(2);
+	YAKUZAI_ENDFLG			varchar(2);
+	KENSHIN_RENUMBER		number(2);
+	KENSHIN_ENDFLG			varchar(2);
+	PTID				number(10);
+	FUKUSU_GAITO			varchar(1);
+	SHORI_TIME			varchar(14);
+	KAKUNINYMD			varchar(8);
+	HOSPCD				varchar(10);
+	FILE_SIKIBETU			varchar(50);
+	SHOKAI_KBN			varchar(1);
+	ORCA_SHOKAI_KBN		varchar(1);
+	ONSHINRYO_KBN		varchar(1);
+	RESULT_KBN			varchar(1);
+	ERR_CODE			varchar(9);
+	ERR_MSG 			varchar(120);
+	CODE_TYPE 			varchar(1);
+	SHO_HKNJANUM			varchar(8);
+	SHO_KIGO     			varchar(80);
+	SHO_NUM     			varchar(80);
+	SHO_EDABAN    			varchar(2);
+	SHO_BIRTHDAY    		varchar(8);
+	SHO_DOUIFLG	    		varchar(1);
+#---> 処方箋発行形態(2022/7)
+	SHO_SHOHO_KEITAI    		varchar(1);
+	RESULT		    		varchar(1);
+	RESULT_CODE	    		varchar(9);
+	RESULT_MSG  	    		varchar(120);
+	SIKAKU_YUKO 	    		varchar(1);
+	CARD_CLASS 	    		varchar(2);
+	RES_HKNJANUM			varchar(8);
+	RES_KIGO     			varchar(80);
+	RES_NUM     			varchar(80);
+	RES_EDABAN    			varchar(2);
+	RES_HONKZKKBN	    		varchar(1);
+	RES_HIHKNJANAME    		varchar(100);
+	RES_NAME 	    		varchar(100);
+	RES_NAME_ETC 	    		varchar(100);
+	RES_KANANAME 	    		varchar(100);
+	RES_KANANAME_ETC 	 	varchar(100);
+	RES_SEX1	    		varchar(1);
+	RES_SEX2	    		varchar(1);
+	RES_BIRTHDAY    		varchar(8);
+	RES_ADRS	    		varchar(250);
+	RES_POST	    		varchar(8);
+#--> 資格取得年月日(2024/7)
+	JOIN_SKKGETYMD	    	varchar(8);
+	SKKGETYMD	    		varchar(8);
+	TEKSTYMD	    		varchar(8);
+	TEKEDYMD	    		varchar(8);
+	FTNRATE	    			varchar(3);
+	MISYUGAKU	    		varchar(1);
+	LOSS_JIYU	    		varchar(2);
+	HKNJANUM_NAME	    		varchar(128);
+	ELDER_SKKGETYMD	    		varchar(8);
+	ELDER_TEKSTYMD	    		varchar(8);
+	ELDER_TEKEDYMD	    		varchar(8);
+	ELDER_FTNRATE	    		varchar(3);
+	KOH_TEKSTYMD1				varchar(8);
+	KOH_TEKEDYMD1				varchar(8);
+	KOH_FTNRATE1				number(3);
+	KOH_JGNGAK1					number(6);
+	KOH_TEKSTYMD2				varchar(8);
+	KOH_TEKEDYMD2				varchar(8);
+	KOH_FTNRATE2				number(3);
+	KOH_JGNGAK2					number(6);
+	GENDO_DOUIFLG 	    		varchar(1);
+	GENDO_TIME 	    		varchar(14);
+	GENDO_SHOKBN 	    		varchar(2);
+	GENDO_TEKKBN 	    		varchar(3);
+	GENDO_SKKGETYMD	    		varchar(8);
+	GENDO_TEKSTYMD	    		varchar(8);
+	GENDO_TEKEDYMD	    		varchar(8);
+	GENDO_SKJGNSTYMD    		varchar(8);
+	SIKKAN_DOUIFLG 	    		varchar(1);
+	SIKKAN_TIME	    		varchar(14);
+	SIKKAN_SIPKBN1	    		varchar(1);
+	SIKKAN_SKJGNSTYMD1	    	varchar(8);
+	SIKKAN_TEKSTYMD1	    	varchar(8);
+	SIKKAN_TEKEDYMD1	    	varchar(8);
+	SIKKAN_FTNMONEY1	    	varchar(6);
+	SIKKAN_SIPKBN2	    		varchar(1);
+	SIKKAN_SKJGNSTYMD2	    	varchar(8);
+	SIKKAN_TEKSTYMD2	    	varchar(8);
+	SIKKAN_TEKEDYMD2	    	varchar(8);
+	SIKKAN_FTNMONEY2	    	varchar(6);
+	SIKKAN_SIPKBN3	    		varchar(1);
+	SIKKAN_SKJGNSTYMD3	    	varchar(8);
+	SIKKAN_TEKSTYMD3	    	varchar(8);
+	SIKKAN_TEKEDYMD3	    	varchar(8);
+	SIKKAN_FTNMONEY3	    	varchar(6);
+	KENSHIN_DOUIFLG  	  	varchar(1);
+	KENSHIN_TIME  		  	varchar(14);
+	KENSHIN_KIGENYMD   	  	varchar(14);
+	YAKUZAI_DOUIFLG   	  	varchar(1);
+	YAKUZAI_TIME  		  	varchar(14);
+	YAKUZAI_KIGEN  		  	varchar(14);
+#---> 診療同意情報(2022/7)
+	SHINRYO_DOUIFLG   	  	varchar(1);
+	SHINRYO_TIME  		  	varchar(14);
+	SHINRYO_KIGEN  		  	varchar(14);
+#---> 手術情報(2022/12)
+	OPE_DOUIFLG   	  	varchar(1);
+	OPE_TIME  		  	varchar(14);
+	OPE_KIGEN  		  	varchar(14);
+#---> 傷病名情報(2025/01)
+	SHOBYO_DOUIFLG		varchar(1);
+	SHOBYO_TIME			varchar(14);
+	SHOBYO_KIGEN		varchar(14);
+#---> 感染症情報(2025/01)
+	KANSENSYO_DOUIFLG	varchar(1);
+	KANSENSYO_TIME		varchar(14);
+	KANSENSYO_KIGEN		varchar(14);
+#---> その他アレルギー情報(2025/01)
+	ETC_ALLERGY_DOUIFLG	varchar(1);
+	ETC_ALLERGY_TIME	varchar(14);
+	ETC_ALLERGY_KIGEN	varchar(14);
+#---> 薬剤アレルギー情報(2025/01)
+	YKZ_ALLERGY_DOUIFLG	varchar(1);
+	YKZ_ALLERGY_TIME	varchar(14);
+	YKZ_ALLERGY_KIGEN	varchar(14);
+#---> 検査情報(2025/01)
+	KENSA_DOUIFLG		varchar(1);
+	KENSA_TIME			varchar(14);
+	KENSA_KIGEN			varchar(14);
+#---> 処方情報(2025/01)
+	SHOHO_DOUIFLG		varchar(1);
+	SHOHO_TIME			varchar(14);
+	SHOHO_KIGEN			varchar(14);
+#---> オン資登録（更新）日時(2024/12)
+	ONSHI_UPYMD			 varchar(14);
+#---> 資格確認キー(2024/12)
+	SIKAKU_KAKUNIN_KEY	 varchar(64);
+#---> 資格情報変更確認フラグ(2024/12)
+	SIKAKU_UPDATE_FLG	varchar(1);
+	SIKIBETU 		  	varchar(50);
+	SHOKAI_NUM  		  	varchar(50);
+	MOD_FLG 		  	varchar(1);
+	LOCK_KBN		  	varchar(1);
+	SCR_DLTFLG		  	varchar(1);
+	TERMID   			varchar(64);
+	OPID     			varchar(16);
+	CREYMD   			char(8);
+	CREHMS				char(6);
+	UPYMD    			char(8);
+	UPHMS				char(6);
+#-----> 検索用項目
+	SELLIMIT			number(8),virtual;
+	SELOFFSET			number(8),virtual;
+};
+
+primary	{
+	HOSPNUM,TBL_UUID;
+};
+
+path	key 	{
+	DBSELECT	{
+		DECLARE tbl_onshi_kaku_key_csr CURSOR FOR
+		SELECT *
+		FROM tbl_onshi_kaku
+			WHERE   HOSPNUM    =   :HOSPNUM
+			AND   TBL_UUID        =   :TBL_UUID
+			AND		SCR_DLTFLG	=	:SCR_DLTFLG
+		;
+	};
+};
+
+path	all 	{
+	DBSELECT	{
+		DECLARE tbl_onshi_kaku_all_csr CURSOR FOR
+		SELECT *
+		FROM tbl_onshi_kaku
+			WHERE   HOSPNUM    =   :HOSPNUM
+ 		;
+	};
+};
+
+path	key2 	{
+	DBSELECT	{
+		DECLARE tbl_onshi_kaku_key2_csr CURSOR FOR
+		SELECT *
+		FROM tbl_onshi_kaku
+			WHERE   HOSPNUM    =   :HOSPNUM
+			AND    KAKUNINYMD  =   :KAKUNINYMD
+			AND    SHOKAI_KBN  =   :SHOKAI_KBN
+			AND		ORCA_SHOKAI_KBN	<>	:ORCA_SHOKAI_KBN
+			AND		SCR_DLTFLG	=	:SCR_DLTFLG
+			ORDER   BY        SHORI_TIME,
+							  FUJYO_UUID,
+							  CARD_CLASS,
+                                          OYA_UUID  DESC,
+                                          TBL_UUID  DESC
+		;
+	};
+};
+
+path	key3 	{
+	DBSELECT	{
+		DECLARE tbl_onshi_kaku_key3_csr CURSOR FOR
+		SELECT *
+		FROM tbl_onshi_kaku
+			WHERE	HOSPNUM	=	:HOSPNUM
+			AND		PTID	=	:PTID
+			AND		ORCA_SHOKAI_KBN	=	:ORCA_SHOKAI_KBN
+			AND		SCR_DLTFLG	=	:SCR_DLTFLG
+			ORDER	BY	KAKU_KAKUNINYMD DESC,KAKU_KAKUNINHMS DESC
+		;
+	};
+};
+
+path	key5 	{
+	DBSELECT	{
+		DECLARE tbl_onshi_kaku_key5_csr CURSOR FOR
+		SELECT *
+		FROM tbl_onshi_kaku
+			WHERE	HOSPNUM	=	:HOSPNUM
+			AND		PTID	=	:PTID
+			AND		ORCA_SHOKAI_KBN	=	:ORCA_SHOKAI_KBN
+			AND		SCR_DLTFLG	=	:SCR_DLTFLG
+			ORDER	BY	KAKUNINYMD DESC,SHORI_TIME DESC,SHOKAI_KBN
+		;
+	};
+};
+
+path	key6 	{
+	DBSELECT	{
+		DECLARE tbl_onshi_kaku_key6_csr CURSOR FOR
+		SELECT *
+		FROM tbl_onshi_kaku
+			WHERE   HOSPNUM    =   :HOSPNUM
+			AND    KAKUNINYMD  =   :KAKUNINYMD
+			AND		ORCA_SHOKAI_KBN	<>	:ORCA_SHOKAI_KBN
+			AND		SCR_DLTFLG	=	:SCR_DLTFLG
+			ORDER   BY        SHORI_TIME,
+			                  SHOKAI_KBN,
+							  FUJYO_UUID,
+							  CARD_CLASS,
+                              OYA_UUID  DESC,
+                              TBL_UUID  DESC
+		;
+	};
+};
+
+path	key7	{
+	DBSELECT	{
+		DECLARE tbl_onshi_kaku_key7_csr CURSOR FOR
+		SELECT *
+		FROM tbl_onshi_kaku
+			WHERE   HOSPNUM    =   :HOSPNUM
+			AND     OYA_UUID     =   :OYA_UUID
+			AND		SCR_DLTFLG	=	:SCR_DLTFLG
+		;
+	};
+};
+
+path	key8 	{
+	DBSELECT	{
+		DECLARE tbl_onshi_kaku_key8_csr CURSOR FOR
+		SELECT *
+		FROM tbl_onshi_kaku
+			WHERE	HOSPNUM	=	:HOSPNUM
+			AND		ORCA_SHOKAI_KBN	=	:ORCA_SHOKAI_KBN
+			AND		KAKU_KAKUNINYMD	=	:KAKU_KAKUNINYMD
+			AND		SCR_DLTFLG	=	:SCR_DLTFLG
+			ORDER	BY	KAKUNINYMD DESC,SHORI_TIME DESC
+		;
+	};
+};
+
+path	del1 	{
+	DBDELETE	{
+		DELETE
+		FROM tbl_onshi_kaku
+			WHERE   HOSPNUM    	=   	:HOSPNUM
+			AND	PTID		=	:PTID
+		;
+	};
+};
+
+path	key9 	{
+	DBSELECT	{
+		DECLARE tbl_onshi_kaku_key9_csr CURSOR FOR
+		SELECT *
+		FROM tbl_onshi_kaku
+			WHERE	HOSPNUM	=	:HOSPNUM
+			AND		PTID	=	:PTID
+			AND	    KAKUNINYMD = :KAKUNINYMD
+			AND		SCR_DLTFLG	=	:SCR_DLTFLG
+			ORDER	BY	KAKUNINYMD DESC,SHORI_TIME DESC
+		;
+	};
+};
+
+path	key10 	{
+	DBSELECT	{
+		DECLARE tbl_onshi_kaku_key10_csr CURSOR FOR
+		SELECT *
+		FROM tbl_onshi_kaku
+			WHERE	HOSPNUM			=	:HOSPNUM
+			AND		SHOKAI_KBN		=	:SHOKAI_KBN
+			AND		RES_HKNJANUM	=	:RES_HKNJANUM
+			AND		RES_KIGO		=	:RES_KIGO
+			AND		RES_NUM			=	:RES_NUM
+			AND		RES_EDABAN		=	:RES_EDABAN
+			AND		ORCA_SHOKAI_KBN	=	:ORCA_SHOKAI_KBN
+			AND		SCR_DLTFLG		=	:SCR_DLTFLG
+			ORDER	BY	KAKUNINYMD DESC,SHORI_TIME DESC
+		;
+	};
+};
+
+path	key11 	{
+	DBSELECT	{
+		DECLARE tbl_onshi_kaku_key11_csr CURSOR FOR
+		SELECT *
+		FROM tbl_onshi_kaku
+			WHERE	HOSPNUM			=	:HOSPNUM
+			AND		SHOKAI_KBN		=	:SHOKAI_KBN
+			AND		SHO_HKNJANUM	=	:SHO_HKNJANUM
+			AND		SHO_KIGO		=	:SHO_KIGO
+			AND		SHO_NUM			=	:SHO_NUM
+			AND		SHO_EDABAN		=	:SHO_EDABAN
+			AND		SCR_DLTFLG		=	:SCR_DLTFLG
+			ORDER	BY	SHORI_TIME DESC
+		;
+	};
+};
+
+path	key12	{
+	DBSELECT	{
+		DECLARE tbl_onshi_kaku_key12_csr CURSOR FOR
+		SELECT *
+		FROM tbl_onshi_kaku
+			WHERE   HOSPNUM    =   :HOSPNUM
+			AND     KOUHI_UUID =   :KOUHI_UUID
+			AND     SHOKAI_KBN =   :SHOKAI_KBN
+			AND		SCR_DLTFLG	=	:SCR_DLTFLG
+			ORDER   BY  SHORI_TIME DESC,
+			            TBL_UUID
+		;
+	};
+};
+
+path	key13 	{
+	DBSELECT	{
+		DECLARE tbl_onshi_kaku_key13_csr CURSOR FOR
+		SELECT *
+		FROM tbl_onshi_kaku
+			WHERE	HOSPNUM		=	:HOSPNUM
+			AND		KOUHI_UUID	=	:KOUHI_UUID
+			AND		SCR_DLTFLG	=	:SCR_DLTFLG
+			ORDER   BY        TBL_UUID
+		;
+	};
+};
+
+path	key14 	{
+	DBSELECT	{
+		DECLARE tbl_onshi_kaku_key14_csr CURSOR FOR
+		SELECT *
+		FROM tbl_onshi_kaku
+			WHERE	HOSPNUM		=	:HOSPNUM
+			AND		TBL_UUID	=	:TBL_UUID
+		;
+	};
+};
+
+path	key15 	{
+	DBSELECT	{
+		DECLARE tbl_onshi_kaku_key15_csr CURSOR FOR
+		SELECT *
+		FROM tbl_onshi_kaku
+			WHERE	HOSPNUM	=	:HOSPNUM
+			AND		PTID	=	:PTID
+			AND		ORCA_SHOKAI_KBN	<>	:ORCA_SHOKAI_KBN
+			ORDER	BY	KAKUNINYMD DESC,SHORI_TIME DESC,SHOKAI_KBN,
+							  FUJYO_UUID,
+							  CARD_CLASS
+		;
+	};
+};
+
+path	key16 	{
+	DBSELECT	{
+		DECLARE tbl_onshi_kaku_key16_csr CURSOR FOR
+		SELECT *
+		FROM tbl_onshi_kaku
+			WHERE   HOSPNUM    =   :HOSPNUM
+			AND    KAKUNINYMD  =   :KAKUNINYMD
+			AND		ORCA_SHOKAI_KBN	<>	:ORCA_SHOKAI_KBN
+			ORDER   BY        SHORI_TIME,
+			                  SHOKAI_KBN,
+							  FUJYO_UUID,
+							  CARD_CLASS,
+                              OYA_UUID  DESC,
+                              TBL_UUID  DESC
+		;
+	};
+};
+
+path	key17 	{
+	DBSELECT	{
+		DECLARE tbl_onshi_kaku_key17_csr CURSOR FOR
+		SELECT *
+		FROM tbl_onshi_kaku
+			WHERE	HOSPNUM	=	:HOSPNUM
+			AND		PTID	=	:PTID
+			AND		ORCA_SHOKAI_KBN	<>	:ORCA_SHOKAI_KBN
+			AND		SCR_DLTFLG	=	:SCR_DLTFLG
+			ORDER	BY	KAKUNINYMD DESC,SHORI_TIME DESC,SHOKAI_KBN,
+							  FUJYO_UUID,
+							  CARD_CLASS
+		;
+	};
+};
+
+path	key18 	{
+	DBSELECT	{
+		DECLARE tbl_onshi_kaku_key18_csr CURSOR FOR
+		SELECT *
+		FROM tbl_onshi_kaku
+			WHERE   HOSPNUM    =   :HOSPNUM
+			AND    KAKUNINYMD  =   :KAKUNINYMD
+			AND   (SHOKAI_KBN  =   '9'   OR
+			       SHOKAI_KBN  =   '8'   )
+			AND		ORCA_SHOKAI_KBN	<>	:ORCA_SHOKAI_KBN
+			AND		SCR_DLTFLG	=	:SCR_DLTFLG
+			ORDER   BY        SHORI_TIME,
+                                          OYA_UUID  DESC,
+                                          TBL_UUID  DESC
+		;
+	};
+};
+
+path	key19 	{
+	DBSELECT	{
+		DECLARE tbl_onshi_kaku_key19_csr CURSOR FOR
+		SELECT *
+		FROM tbl_onshi_kaku
+			WHERE	HOSPNUM			=	:HOSPNUM
+			AND		PTID			=	:PTID
+			AND		ORCA_SHOKAI_KBN	=	:ORCA_SHOKAI_KBN
+			AND		SCR_DLTFLG		=	:SCR_DLTFLG
+			AND		SHOKAI_KBN		=	:SHOKAI_KBN
+			AND		KAKU_KAKUNINYMD	=	:KAKU_KAKUNINYMD
+			ORDER	BY	KAKU_KAKUNINHMS DESC
+		;
+	};
+};
+
+path	key20 	{
+	DBSELECT	{
+		DECLARE tbl_onshi_kaku_key20_csr CURSOR FOR
+		SELECT *
+		FROM tbl_onshi_kaku
+			WHERE	HOSPNUM			=	:HOSPNUM
+			AND		PTID			=	:PTID
+			AND		ORCA_SHOKAI_KBN	=	:ORCA_SHOKAI_KBN
+			AND		SHOKAI_KBN		=	:SHOKAI_KBN
+			AND		SCR_DLTFLG		=	:SCR_DLTFLG
+			ORDER	BY	KAKU_KAKUNINYMD DESC,KAKU_KAKUNINHMS DESC
+		;
+	};
+};
+
+path	key22 	{
+	DBSELECT	{
+		DECLARE tbl_onshi_kaku_key22_csr CURSOR FOR
+		SELECT *
+		FROM tbl_onshi_kaku
+			WHERE	HOSPNUM	=	:HOSPNUM
+			AND		PTID	=	:PTID
+			AND		SCR_DLTFLG	=	:SCR_DLTFLG
+			ORDER	BY	KAKUNINYMD DESC,SHORI_TIME DESC,SHOKAI_KBN
+		;
+	};
+};
+path	key23 	{
+	DBSELECT	{
+		DECLARE tbl_onshi_kaku_key23_csr CURSOR FOR
+		SELECT *
+		FROM tbl_onshi_kaku
+			WHERE	HOSPNUM	=	:HOSPNUM
+			AND		PTID	=	:PTID
+			ORDER	BY	KAKUNINYMD DESC,SHORI_TIME DESC,SHOKAI_KBN
+		;
+	};
+};
+
+path	key24	{
+	DBSELECT	{
+		DECLARE	tbl_onshi_kaku_key24_csr CURSOR FOR
+		SELECT	*
+		FROM	tbl_onshi_kaku
+			WHERE	HOSPNUM		=	:HOSPNUM
+			AND		KAKU_KAKUNINYMD	=	:KAKU_KAKUNINYMD
+			AND		ORCA_SHOKAI_KBN	=	:ORCA_SHOKAI_KBN
+			AND		SCR_DLTFLG	=	:SCR_DLTFLG
+			ORDER	BY	PTID
+		;
+	};
+};
+
+path	key25 	{
+	DBSELECT	{
+		DECLARE tbl_onshi_kaku_key25_csr CURSOR FOR
+		SELECT *
+		FROM tbl_onshi_kaku
+			WHERE   HOSPNUM    =   :HOSPNUM
+			AND		KAKUNINYMD  =   :KAKUNINYMD
+			AND		SHOKAI_KBN  =   :SHOKAI_KBN
+			AND		ORCA_SHOKAI_KBN	=	:ORCA_SHOKAI_KBN
+			AND		SCR_DLTFLG	=	:SCR_DLTFLG
+			ORDER   BY        SHORI_TIME,
+                              OYA_UUID  DESC,
+                              TBL_UUID  DESC
+		;
+	};
+};
+
+path	key26	{
+	DBSELECT	{
+		DECLARE	tbl_onshi_kaku_key26_csr CURSOR FOR
+		SELECT	*
+		FROM	tbl_onshi_kaku
+			WHERE	HOSPNUM			=	:HOSPNUM
+			AND		KAKU_KAKUNINYMD	=	:KAKU_KAKUNINYMD
+			AND		SHOKAI_KBN		=	:SHOKAI_KBN
+			AND		ORCA_SHOKAI_KBN	=	:ORCA_SHOKAI_KBN
+			AND		SCR_DLTFLG		=	:SCR_DLTFLG
+			ORDER	BY	PTID
+			LIMIT	:SELLIMIT
+			OFFSET	:SELOFFSET
+		;
+	};
+};
+
+path	key27 	{
+	DBSELECT	{
+		DECLARE tbl_onshi_kaku_key27_csr CURSOR FOR
+		SELECT *
+		FROM tbl_onshi_kaku
+			WHERE	HOSPNUM		=	:HOSPNUM
+			AND		FUJYO_UUID	=	:FUJYO_UUID
+			AND		KAKU_KAKUNINYMD	=	:KAKU_KAKUNINYMD
+			AND		SCR_DLTFLG	=	:SCR_DLTFLG
+			ORDER   BY        SHORI_TIME, TBL_UUID
+		;
+	};
+};
+
+path	key28 	{
+	DBSELECT	{
+		DECLARE	tbl_onshi_kaku_key28_csr CURSOR FOR
+		SELECT	*
+		FROM	tbl_onshi_kaku
+			WHERE	HOSPNUM		=	:HOSPNUM
+			AND		FUJYO_UUID1	=	:FUJYO_UUID1
+			AND		TBL_UUID	<>	:TBL_UUID
+			AND		SCR_DLTFLG	=	:SCR_DLTFLG
+			ORDER	BY	TBL_UUID
+		;
+	};
+};
+
+path	key29 	{
+	DBSELECT	{
+		DECLARE	tbl_onshi_kaku_key29_csr CURSOR FOR
+		SELECT	*
+		FROM	tbl_onshi_kaku
+			WHERE	HOSPNUM		=	:HOSPNUM
+			AND		PTID		=	:PTID
+			AND		FUJYO_UUID1	=	:FUJYO_UUID1
+			AND		SCR_DLTFLG	=	:SCR_DLTFLG
+			ORDER	BY	TBL_UUID
+		;
+	};
+};
+
+path	key30	{
+	DBSELECT	{
+		DECLARE tbl_onshi_kaku_key30_csr CURSOR FOR
+		SELECT *
+		FROM tbl_onshi_kaku
+			WHERE   HOSPNUM    =   :HOSPNUM
+			AND		PTID		=	:PTID
+			AND     OYA_UUID	=	:OYA_UUID
+			AND		SCR_DLTFLG	=	:SCR_DLTFLG
+			ORDER	BY	TBL_UUID
+		;
+	};
+};
+
+path	key31 	{
+	DBSELECT	{
+		DECLARE tbl_onshi_kaku_key31_csr CURSOR FOR
+		SELECT *
+		FROM tbl_onshi_kaku
+			WHERE   HOSPNUM    =   :HOSPNUM
+			AND		KAKUNINYMD  =   :KAKUNINYMD
+			AND		ONSHINRYO_KBN   =   :ONSHINRYO_KBN
+			AND		ORCA_SHOKAI_KBN	<>	:ORCA_SHOKAI_KBN
+			AND		SCR_DLTFLG	=	:SCR_DLTFLG
+			ORDER   BY        SHORI_TIME,
+							  FUJYO_UUID,
+							  CARD_CLASS,
+							  OYA_UUID  DESC,
+							  TBL_UUID  DESC
+		;
+	};
+};

@@ -1,0 +1,19 @@
+#このリクエストは、push通知を受けた時のみ発行される(２つの業務で同時にpushされた場合は?:排他があるから
+#可能性は低いか?)
+#1受付、患者登録(診療行為)のpush通知を受け、onshi_receiver から発行される
+#2この日レセAPIの情報から、資格確認テーブルを参照し、該当患者の資格確認指示、照会番号登録、薬剤、特定
+# の指示(出せる?:この時点では、資格確認依頼をまだしていないので、ここでは資格確認依頼のみ?)
+#後日、再度確認する場合は、日付はどうする?(運用日で対応してもらう)
+#診療行為は、最初「登録」ボタン押下時がよいのでは?(患者番号入力時は、日付の確定が出来ない)
+xml_onlinequareq1	{
+	context		int;
+	object		object;
+	mode		int;
+	recordname	varchar(128);
+	onlinequareq1 {
+		Patient_ID		varchar(20);
+        Information_Date	varchar(10);
+        Information_Time	varchar(8);
+		Qualification_Uuid	varchar(36);
+   	};
+};

@@ -1,0 +1,14 @@
+xml_medicationgetv2req {
+	context	        int;
+	object		object;
+	mode		int;
+	recordname	varchar(128);
+	medicationgetreq {
+#---	リクエスト番号
+		Request_Number		varchar(2);
+#---	リクエストコード
+		Request_Code		varchar(20);
+#---	基準日
+		Base_Date			varchar(10);
+   	};
+};

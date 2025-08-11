@@ -1,0 +1,30 @@
+xml_patientlst8v2res {
+	context	        int;
+	object		object;
+	mode		int;
+	recordname	varchar(128);
+	patientlst8res {
+	Information_Date	varchar(10);
+   	Information_Time	varchar(8);
+   	Api_Result	    	varchar(3);
+   	Api_Result_Message	varchar(100);
+  	Reskey  			varchar(100);
+    Patient_Information	{
+		Patient_ID		varchar(20);
+		WholeName		varchar(100);
+		WholeName_inKana	varchar(100);
+#--->   通称名
+        NickName            varchar(100);
+		BirthDate		varchar(10);
+		Sex			varchar(1);
+      	};
+    Former_Name_Information	{
+#--->   変更年月日
+		ChangeDate           varchar(10);
+		WholeName	    	varchar(100);
+		WholeName_inKana	varchar(100);
+#--->   通称名
+        NickName            varchar(100);
+    	} [20];
+   	};
+};

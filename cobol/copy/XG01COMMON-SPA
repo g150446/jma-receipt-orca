@@ -1,0 +1,55 @@
+      *******************************************************************
+      * Project code name "ORCA"
+      * Æü°åÉ¸½à¥ì¥»¥×¥È¥½¥Õ¥È¡ÊJMA standard receipt software¡Ë
+      * Copyright(C) 2002 JMA (Japan Medical Association)
+      *
+      * This program is part of "JMA standard receipt software".
+      *
+      *     This program is distributed in the hope that it will be useful
+      * for further advancement in medical care, according to JMA Open
+      * Source License, but WITHOUT ANY WARRANTY.
+      *     Everyone is granted permission to use, copy, modify and
+      * redistribute this program, but only under the conditions described
+      * in the JMA Open Source License. You should have received a copy of
+      * this license along with this program. If not, stop using this
+      * program and contact JMA, 2-28-16 Honkomagome, Bunkyo-ku, Tokyo,
+      * 113-8621, Japan.
+      ********************************************************************
+      *****************************************************************
+      *
+      *    Åý·×£Ã£Ó£Ö½ÐÎÏ¶¦ÄÌ£Ó£Ð£Á(SPA-WORK ¤ÎÆâÍÆ)
+      *          
+      *****************************************************************
+      *  ¥³¥Ô¡¼¶ç½¤ÀµÍúÎò
+      * Maj/Min/Rev  ½¤Àµ¼Ô       ÆüÉÕ      ÆâÍÆ
+      *  05.00.01    NMED-Æ£¸¶    21/03/01  £È£Á£Ï£Ò£ÉÂÐ±þ
+      *****************************************************************
+       01  SPA-XG01KYOUTU.
+           03  SPA-XG01-CUR            PIC 9(05).
+           03  SPA-XG01-TBL-GROUP      PIC X(14).
+           03  SPA-XG01-JOB-JOBID      PIC 9(07).
+      *
+           03  SPA-XG99-FILESV-CHK-FLG PIC 9(01).
+           03  SPA-XG01-MOTOPG         PIC X(08).
+      *
+           03  SPA-XGIDCD              PIC X(04).
+      *
+           03  SPA-XGID1-AREA. 
+               05  SPA-XGID1-FLG       PIC X(02).
+               05  SPA-XG99-FLG        PIC X(02).
+      *
+           03  SPA-XG01-JOB-PARAM.
+               05  SPA-XG01-JOB-ORCA-UID
+                                       PIC X(36).
+               05  SPA-XG01-JOB-KARTE-UID
+                                       PIC X(36).
+      *
+           03  SPA-XG01-MONBLOB-OCC        OCCURS  10.
+               05  SPA-XG01-MONBLOB-PRINT-ID
+                                       PIC X(37).
+               05  SPA-XG01-MONBLOB-DATA-ID
+                                       PIC X(37).
+      *
+           03  SPA-XG01-PUSHBA01-EVENT PIC X(50).
+      *
+           03  SPA-XG01-DATA-FORMAT    PIC X(10).

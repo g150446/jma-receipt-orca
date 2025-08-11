@@ -1,0 +1,79 @@
+MPDEL { #GtkWindow
+  title varchar(256);
+  popup_summary varchar(256);
+  popup_body varchar(256);
+  popup_icon varchar(256);
+  popup_timeout int;
+  fixed32 { #GtkFixed
+    B01 { #GtkButton
+      state int;
+    };
+    B02 { #GtkButton
+      state int;
+    };
+    B03 { #GtkButton
+      state int;
+    };
+    B04 { #GtkButton
+      state int;
+    };
+    B05 { #GtkButton
+      state int;
+    };
+    B06 { #GtkButton
+      state int;
+    };
+    B07 { #GtkButton
+      state int;
+    };
+    B08 { #GtkButton
+      state int;
+    };
+    B09 { #GtkButton
+      state int;
+    };
+    B10 { #GtkButton
+      state int;
+    };
+    B11 { #GtkButton
+      state int;
+    };
+    B12 { #GtkButton
+      state int;
+    };
+    scrolledwindow26 { #GtkScrolledWindow
+      LIST { #GtkPandaCList
+        count int;
+        row int;
+        selectdata bool[100];
+        fgcolor varchar(20)[100];
+        bgcolor varchar(20)[100];
+        item {
+          column1 varchar(50);
+          column2 varchar(10);
+          column3 varchar(10);
+          column4 varchar(20);
+          column5 varchar(10);
+          column6 varchar(2);
+          column7 varchar(200);
+          column8 varchar(10);
+          column9 varchar(2);
+          column10 varchar(10);
+          column11 varchar(4);
+          column12 varchar(10);
+          column13 varchar(64);
+        }[100];
+      };
+    };
+    MIDASI { #GtkLabel
+      textdata varchar(50);
+    };
+    NEXTMSG { #GtkLabel
+      style varchar(20);
+      textdata varchar(50);
+    };
+    SELPTNUM { #GtkPandaEntry
+      textdata varchar(20);
+    };
+  };
+};

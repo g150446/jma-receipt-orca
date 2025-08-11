@@ -1,0 +1,68 @@
+tbl_onshi_kenshin_sub {
+	HOSPNUM				number(2,0);
+	PTID				number(10,0);
+	JISSHIYMD			varchar(8);
+	RENNUM				number(3,0);
+	KOMOKUCD     			varchar(17);
+	KOMOKUNAME     			varchar(80);
+	DATA_TYPE    			varchar(2);
+	DATA_VALUE   			varchar(256);
+	DATA_TANI   			varchar(26);
+	TERMID    			varchar(64);
+	OPID     			varchar(16);
+	CREYMD   			char(8);
+	CREHMS				char(6);
+	UPYMD    			char(8);
+	UPHMS				char(6);
+};
+
+primary	{
+	HOSPNUM,PTID,JISSHIYMD,RENNUM;
+};
+
+path	key 	{
+	DBSELECT	{
+		DECLARE tbl_onshi_kenshin_sub_key_csr CURSOR FOR
+		SELECT *
+		FROM tbl_onshi_kenshin_sub
+			WHERE   HOSPNUM	=   :HOSPNUM
+			AND   PTID	=   :PTID
+			AND   JISSHIYMD	=   :JISSHIYMD
+			AND   RENNUM	=   :RENNUM
+		;
+	};
+};
+
+path	key2	{
+	DBSELECT	{
+		DECLARE tbl_onshi_kenshin_sub_key2_csr CURSOR FOR
+		SELECT *
+		FROM tbl_onshi_kenshin_sub
+			WHERE   HOSPNUM	=   :HOSPNUM
+			AND   PTID	=   :PTID
+			AND   JISSHIYMD	=   :JISSHIYMD
+			ORDER	BY	RENNUM
+		;
+	};
+};
+
+path	all 	{
+	DBSELECT	{
+		DECLARE tbl_onshi_kenshin_sub_all_csr CURSOR FOR
+		SELECT *
+		FROM tbl_onshi_kenshin_sub
+			WHERE   HOSPNUM    =   :HOSPNUM
+ 		;
+	};
+};
+
+path	del1 	{
+	DBDELETE	{
+		DELETE
+		FROM tbl_onshi_kenshin_sub
+			WHERE   HOSPNUM    	=   	:HOSPNUM
+			AND	PTID		=	:PTID
+		;
+	};
+};
+

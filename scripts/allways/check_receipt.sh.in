@@ -1,0 +1,196 @@
+#!/bin/bash
+
+if test -z "$JMARECEIPT_ENV"; then
+    JMARECEIPT_ENV="@jma-receipt-env@"
+fi
+if ! test -f "$JMARECEIPT_ENV"; then
+    exit 0
+fi
+
+. $JMARECEIPT_ENV
+
+#-------------------------------------------#
+#        患者チェックスクリプト処理（レセプト）
+#        $1    医療機関番号
+#        $2    ジョブＩＤ
+#        $3    シェルＩＤ
+#        $4    患者番号
+#        $5    患者ＩＤ
+#        $6    診療年月
+#-------------------------------------------#
+MONSQL="/usr/lib/panda/bin/monsql"
+
+do_monsql(){
+  ${MONSQL} -dir ./lddef/directory -o CSV -c "$1"
+}
+
+sel_monsql(){
+  COLUMNS=($(do_monsql "select column_name from information_schema.columns where table_schema ='public' and table_name = '${TBL_NAME}' order by columns.ordinal_position" ))
+  [ $? -ne 0 ] && error "0001" && exit 1
+  echo $(IFS=,; echo "${COLUMNS[*]}" | tr "[:upper:]" "[:lower:]")
+  ${MONSQL} -o CSV -dir ./lddef/directory -c "select * from ${TBL_NAME} where ptid = ${PTID}"
+}
+
+sel_monsql_sryym(){
+  COLUMNS=($(do_monsql "select column_name from information_schema.columns where table_schema ='public' and table_name = '${TBL_NAME}' order by columns.ordinal_position" ))
+  [ $? -ne 0 ] && error "0001" && exit 1
+  echo $(IFS=,; echo "${COLUMNS[*]}" | tr "[:upper:]" "[:lower:]")
+  ${MONSQL} -o CSV -dir ./lddef/directory -c "select * from ${TBL_NAME} where ptid = ${PTID} and sryym = ${SRYYM}"
+}
+sel_monsql_all(){
+  COLUMNS=($(do_monsql "select column_name from information_schema.columns where table_schema ='public' and table_name = '${TBL_NAME}' order by columns.ordinal_position" ))
+  [ $? -ne 0 ] && error "0001" && exit 1
+  echo $(IFS=,; echo "${COLUMNS[*]}" | tr "[:upper:]" "[:lower:]")
+  ${MONSQL} -o CSV -dir ./lddef/directory -c "select * from ${TBL_NAME}"
+}
+
+PTNUM=$4
+PTID=$5
+SRYYM=\'$6\'
+PTNUM1=\'$4%\'
+
+#echo ${PTNUM}
+#echo ${PTID}
+#echo ${SRYYM}
+#echo ${PTNUM1}
+
+echo "----- tbl_ptnum -----"
+TBL_NAME=tbl_ptnum
+sel_monsql
+echo "----- tbl_ptinf -----"
+echo ""tstptnumkbn","maxzainum","opid","creymd","upymd","uphms""
+${MONSQL} -o CSV -dir ./lddef/directory -c "select tstptnumkbn,maxzainum,opid,creymd,upymd,uphms from tbl_ptinf where ptid = ${5}"
+echo "----- tbl_receprt -----"
+COLUMNS=($(do_monsql "select column_name from information_schema.columns where table_schema ='public' and table_name = 'tbl_receprt' order by columns.ordinal_position" ))
+[ $? -ne 0 ] && error "0001" && exit 1
+echo $(IFS=,; echo "${COLUMNS[*]}" | tr "[:upper:]" "[:lower:]")
+${MONSQL} -o CSV -dir ./lddef/directory -c "select * from tbl_receprt where sryym = ${SRYYM} and ptnum like ${PTNUM1}"
+echo "----- tbl_receden -----"
+COLUMNS=($(do_monsql "select column_name from information_schema.columns where table_schema ='public' and table_name = 'tbl_receden' order by columns.ordinal_position" ))
+[ $? -ne 0 ] && error "0001" && exit 1
+echo $(IFS=,; echo "${COLUMNS[*]}" | tr "[:upper:]" "[:lower:]")
+${MONSQL} -o CSV -dir ./lddef/directory -c "select * from tbl_receden where ptid = ${PTID} and sryym = ${SRYYM} order by nyugaikbn"
+echo "----- tbl_efout -----"
+COLUMNS=($(do_monsql "select column_name from information_schema.columns where table_schema ='public' and table_name = 'tbl_efout' order by columns.ordinal_position" ))
+[ $? -ne 0 ] && error "0001" && exit 1
+echo $(IFS=,; echo "${COLUMNS[*]}" | tr "[:upper:]" "[:lower:]")
+${MONSQL} -o CSV -dir ./lddef/directory -c "select * from tbl_efout where ptid = ${PTID} and sryym = ${SRYYM} and nyugaikbn = '1'"
+${MONSQL} -o CSV -dir ./lddef/directory -c "select * from tbl_efout where ptid = ${PTID} and sryym = ${SRYYM} and nyugaikbn = '2'"
+echo "----- tbl_seikyu_main -----"
+TBL_NAME=tbl_seikyu_main
+sel_monsql_sryym
+echo "----- tbl_seikyu_koh -----"
+TBL_NAME=tbl_seikyu_koh
+sel_monsql_sryym
+echo "----- tbl_seikyu_etc -----"
+TBL_NAME=tbl_seikyu_etc
+sel_monsql_sryym
+echo "----- tbl_henrei_kanri -----"
+TBL_NAME=tbl_henrei_kanri
+sel_monsql_all
+echo "----- tbl_henrei_body -----"
+TBL_NAME=tbl_henrei_body
+sel_monsql
+echo "----- tbl_kohsky -----"
+TBL_NAME=tbl_kohsky
+sel_monsql_sryym
+echo "----- tbl_syuka -----"
+TBL_NAME=tbl_syuka
+sel_monsql_sryym
+echo "----- tbl_hkncombi -----"
+TBL_NAME=tbl_hkncombi
+sel_monsql
+echo "----- tbl_pthkninf -----"
+TBL_NAME=tbl_pthkninf
+sel_monsql
+echo "----- tbl_ptkohinf -----"
+TBL_NAME=tbl_ptkohinf
+sel_monsql
+echo "----- tbl_ptkohftn -----"
+TBL_NAME=tbl_ptkohftn
+sel_monsql
+echo "----- tbl_ptkohftnetc -----"
+TBL_NAME=tbl_ptkohftnetc
+sel_monsql
+echo "----- tbl_ptrsiinf -----"
+TBL_NAME=tbl_ptrsiinf
+sel_monsql
+echo "----- tbl_tsyrrk -----"
+TBL_NAME=tbl_tsyrrk
+sel_monsql
+echo "----- tbl_tnkrrk -----"
+TBL_NAME=tbl_tnkrrk
+sel_monsql
+echo "----- tbl_ptnyuinrrk -----"
+TBL_NAME=tbl_ptnyuinrrk
+sel_monsql
+echo "----- tbl_nyuinacct -----"
+TBL_NAME=tbl_nyuinacct
+sel_monsql
+echo "----- tbl_nyuinact -----"
+TBL_NAME=tbl_nyuinact
+sel_monsql
+echo "----- tbl_ptteikirrk -----"
+TBL_NAME=tbl_ptteikirrk
+sel_monsql
+echo "----- tbl_jyurrk -----"
+TBL_NAME=tbl_jyurrk
+sel_monsql
+echo "----- tbl_sryacct_main -----"
+TBL_NAME=tbl_sryacct_main
+sel_monsql_sryym
+echo "----- tbl_sryact -----"
+TBL_NAME=tbl_sryact
+sel_monsql_sryym
+echo "----- tbl_santei -----"
+TBL_NAME=tbl_santei
+sel_monsql
+echo "----- tbl_wksryact -----"
+TBL_NAME=tbl_wksryact
+sel_monsql
+echo "----- tbl_syunou_main -----"
+TBL_NAME=tbl_syunou_main
+sel_monsql
+echo "----- tbl_syunou_nyuin -----"
+TBL_NAME=tbl_syunou_nyuin
+sel_monsql
+echo "----- tbl_syurrk -----"
+TBL_NAME=tbl_syurrk
+sel_monsql
+echo "----- tbl_syumei -----"
+TBL_NAME=tbl_syumei
+sel_monsql
+echo "----- tbl_syuka -----"
+TBL_NAME=tbl_syuka
+sel_monsql
+echo "----- tbl_ptcom -----"
+TBL_NAME=tbl_ptcom
+sel_monsql
+echo "----- tbl_rececom -----"
+TBL_NAME=tbl_rececom
+sel_monsql_sryym
+echo "----- tbl_ryocom -----"
+TBL_NAME=tbl_ryocom
+sel_monsql_sryym
+echo "----- tbl_opecom -----"
+TBL_NAME=tbl_opecom
+sel_monsql
+echo "----- tbl_ptbyomei -----"
+TBL_NAME=tbl_ptbyomei
+sel_monsql
+echo "----- tbl_monthlynum -----"
+TBL_NAME=tbl_monthlynum
+sel_monsql
+echo "----- tbl_bunben -----"
+TBL_NAME=tbl_bunben
+sel_monsql
+echo "----- tbl_syskanri('1001','1005','5000','5001','5002','4001','2010') -----"
+COLUMNS=($(do_monsql "select column_name from information_schema.columns where table_schema ='public' and table_name = 'tbl_syskanri' order by columns.ordinal_position" ))
+[ $? -ne 0 ] && error "0001" && exit 1
+echo $(IFS=,; echo "${COLUMNS[*]}" | tr "[:upper:]" "[:lower:]")
+${MONSQL} -o CSV -dir ./lddef/directory -c "select * from tbl_syskanri where kanricd in ('1001','1005','5000','5001','5002','4001','2010') order by kanricd,kbncd,styukymd"
+echo "----- tbl_hknnum -----"
+COLUMNS=($(do_monsql "select column_name from information_schema.columns where table_schema ='public' and table_name = 'tbl_hknnum' order by columns.ordinal_position" ))
+[ $? -ne 0 ] && error "0001" && exit 1
+echo $(IFS=,; echo "${COLUMNS[*]}" | tr "[:upper:]" "[:lower:]")
+${MONSQL} -o CSV -dir ./lddef/directory -c "select * from tbl_hknnum order by hknnum"

@@ -1,0 +1,50 @@
+tbl_youhouchg {
+	HOSPNUM				number(2,0);
+	SRYCD   			varchar(9);
+	CODE    			varchar(16);
+	YOUHOUFLG1  		number(1,0);
+	YOUHOUFLG2  		number(1,0);
+	YOUHOUFLG3  		number(1,0);
+	TERMID   			varchar(64);
+	OPID     			varchar(16);
+	CREYMD   			varchar(8);
+	CREHMS				varchar(6);
+	UPYMD    			varchar(8);
+	UPHMS				varchar(6);
+};
+primary	{
+	HOSPNUM,SRYCD;
+};
+
+path	key 	{
+	DBSELECT	{
+		DECLARE tbl_youhouchg_key_csr CURSOR FOR
+		SELECT *
+		FROM tbl_youhouchg
+		WHERE 	HOSPNUM	= :HOSPNUM
+			AND   SRYCD  =   :SRYCD
+		;
+	};
+};
+
+path	key2 	{
+	DBSELECT	{
+		DECLARE tbl_youhouchg_key2_csr CURSOR FOR
+		SELECT *
+		FROM tbl_youhouchg
+		WHERE 	HOSPNUM	= :HOSPNUM
+			AND   CODE  =   :CODE
+			ORDER   BY  SRYCD
+		;
+	};
+};
+
+path	all	{
+	DBSELECT	{
+		DECLARE tbl_youhouchg_all_csr CURSOR FOR
+		SELECT *
+		FROM tbl_youhouchg
+		WHERE 	HOSPNUM	= :HOSPNUM
+ 		;
+	};
+};

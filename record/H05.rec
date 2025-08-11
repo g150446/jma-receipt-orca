@@ -1,0 +1,96 @@
+H05 { #GtkWindow
+  fixed6 { #GtkFixed
+    B03 {
+      state int;
+    };
+    B09 {
+      state int;
+    };
+    B12 {
+      state int;
+    };
+    SELNUM {
+      numdata number(3);
+    };
+    scrolledwindow1 {
+      KANRI_LIST {
+        count int;
+        row int;
+          item {
+            column1 varchar(3);
+            column2 varchar(6);
+            column3 varchar(12);
+            column4 varchar(2);
+            column5 varchar(4);
+            column6 varchar(2);
+            column7 varchar(3);
+            column8 varchar(9);
+          }[100];
+          selectdata bool[100];
+      };
+    };
+    scrolledwindow2 {
+      BODY_LIST {
+        HYODAI2 {
+          textdata varchar(6);
+        };
+        HYODAI {
+          textdata varchar(16);
+        };
+        count int;
+        row int;
+        rowattr int;
+         item {
+            column1 varchar(3);
+            column2 varchar(20);
+            column3 varchar(40);
+            column4 varchar(9);
+            column5 varchar(2);
+            column6 varchar(6);
+            column7 varchar(8);
+            column8 varchar(40);
+            column9 varchar(2);
+            column10 varchar(2);
+            column11 varchar(10);
+            column12 varchar(4);
+            column13 varchar(2);
+          }[200];
+          selectdata bool[200];
+          fgcolor varchar(16)[200];
+          bgcolor varchar(16)[200];
+      };
+    };
+    scrolledwindow3 {
+      CHK_LIST {
+        CHK_HYODAI2 {
+          textdata varchar(6);
+        };
+        CHK_HYODAI {
+          textdata varchar(16);
+        };
+        count int;
+        row int;
+          item {
+            column1 varchar(20);
+            column2 varchar(40);
+            column3 varchar(9);
+            column4 varchar(2);
+            column5 varchar(6);
+            column6 varchar(8);
+            column7 varchar(40);
+            column8 varchar(2);
+            column9 varchar(2);
+            column10 varchar(10);
+            column11 varchar(4);
+            column12 varchar(2);
+          }[2];
+          selectdata bool[2];
+          fgcolor varchar(16)[2];
+          bgcolor varchar(16)[2];
+      };
+    };
+    B_SELNUM { #GtkNumberEntry
+      numdata number(3);
+    };
+  };
+};

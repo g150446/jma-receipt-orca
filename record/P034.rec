@@ -1,0 +1,202 @@
+P034 { #GtkWindow
+  title varchar(256);
+  popup_summary varchar(256);
+  popup_body varchar(256);
+  popup_icon varchar(256);
+  popup_timeout int;
+  fixed1 { #GtkFixed
+    B01 { #GtkButton
+      state int;
+    };
+    ON_MIDASHI { #GtkLabel
+      style varchar(20);
+      textdata varchar(100);
+    };
+    LABEL01 { #GtkLabel
+      textdata varchar(20);
+    };
+    LABEL02 { #GtkLabel
+      textdata varchar(20);
+    };
+    GENDO_MSG { #GtkLabel
+      textdata varchar(150);
+    };
+    SIKKAN_MSG1 { #GtkLabel
+      textdata varchar(150);
+    };
+    SIKKAN_MSG2 { #GtkLabel
+      textdata varchar(150);
+    };
+    SIKKAN_MSG3 { #GtkLabel
+      textdata varchar(150);
+    };
+    ON_KOHMSG1 { #GtkLabel
+      style varchar(20);
+      textdata varchar(150);
+    };
+    ON_KOHMSG2 { #GtkLabel
+      style varchar(20);
+      textdata varchar(150);
+    };
+    ON_KOHMSG3 { #GtkLabel
+      style varchar(20);
+      textdata varchar(150);
+    };
+    ON_KOHMSG4 { #GtkLabel
+      style varchar(20);
+      textdata varchar(150);
+    };
+    ON_KOHMSG5 { #GtkLabel
+      style varchar(20);
+      textdata varchar(150);
+    };
+    ON_KOHMSG6 { #GtkLabel
+      style varchar(20);
+      textdata varchar(150);
+    };
+    ON_KOHMSG7 { #GtkLabel
+      style varchar(20);
+      textdata varchar(150);
+    };
+    scrolledwindow1 { #GtkScrolledWindow
+      KOHLIST { #GtkPandaCList
+        count int;
+        row int;
+        selectdata bool[40];
+        fgcolor varchar(26)[40];
+        bgcolor varchar(26)[40];
+        item {
+          column1 varchar(30);
+          column2 varchar(8);
+          column3 varchar(20);
+          column4 varchar(10);
+          column5 varchar(10);
+        }[40];
+      };
+    };
+    scrolledwindow2 { #GtkScrolledWindow
+      TEISYOLIST { #GtkPandaCList
+        LABL1 {
+              textdata varchar(12);
+            };
+        count int;
+        row int;
+        selectdata bool[10];
+        fgcolor varchar(26)[10];
+        bgcolor varchar(26)[10];
+        item {
+          column1 varchar(10);
+          column2 varchar(10);
+          column3 varchar(12);
+          column4 varchar(10);
+          column5 varchar(10);
+          column6 varchar(20);
+        }[10];
+      };
+    };
+    MIDASHI2 { #GtkLabel
+      textdata varchar(50);
+    };
+    CHK_KOHMSG1 { #GtkCheckButton
+      isactive bool;
+      style varchar(20);
+      label varchar(30);
+    };
+    CHK_KOHMSG2 { #GtkCheckButton
+      isactive bool;
+      style varchar(20);
+      label varchar(30);
+    };
+    CHK_KOHMSG3 { #GtkCheckButton
+      isactive bool;
+      style varchar(20);
+      label varchar(30);
+    };
+    CHK_KOHMSG4 { #GtkCheckButton
+      isactive bool;
+      style varchar(20);
+      label varchar(30);
+    };
+    CHK_KOHMSG5 { #GtkCheckButton
+      isactive bool;
+      style varchar(20);
+      label varchar(30);
+    };
+    CHK_KOHMSG6 { #GtkCheckButton
+      isactive bool;
+      style varchar(20);
+      label varchar(30);
+    };
+    CHK_KOHMSG7 { #GtkCheckButton
+      isactive bool;
+      style varchar(20);
+      label varchar(30);
+    };
+    B02 { #GtkButton
+      state int;
+    };
+    FTNJANUM { #GtkPandaEntry
+      textdata varchar(8);
+    };
+    KOHNUM_COMB { #GtkPandaCombo
+      count int;
+      item varchar(20)[200];
+      KOHNUM { #GtkPandaEntry
+        textdata varchar(20);
+      };
+    };
+    JKYSNUM { #GtkPandaEntry
+      textdata varchar(20);
+    };
+    TEKSTYMD { #GtkPandaEntry
+      textdata varchar(10);
+    };
+    TEKEDYMD { #GtkPandaEntry
+      textdata varchar(10);
+    };
+    B05 { #GtkButton
+      state int;
+    };
+    B08 { #GtkButton
+      state int;
+    };
+    B03 { #GtkButton
+      state int;
+    };
+    SELNUM { #GtkPandaEntry
+      textdata varchar(2);
+    };
+    LABEL03 { #GtkLabel
+      textdata varchar(30);
+    };
+    MONTHMSG { #GtkLabel
+      textdata varchar(60);
+    };
+    LABEL04 { #GtkLabel
+      textdata varchar(20);
+    };
+    LABEL05 { #GtkLabel
+      textdata varchar(20);
+    };
+    B06 { #GtkButton
+      state int;
+      label varchar(12);
+    };
+    MONTHMSG1 { #GtkLabel
+      textdata varchar(60);
+    };
+    MONTHMSG2 { #GtkLabel
+      textdata varchar(60);
+    };
+    MONTHMSG3 { #GtkLabel
+      textdata varchar(60);
+    };
+    MONTHMSG4 { #GtkLabel
+      textdata varchar(60);
+    };
+    ON_MIDASHI2 { #GtkLabel
+      style varchar(20);
+      textdata varchar(60);
+    };
+  };
+};

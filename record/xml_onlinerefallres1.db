@@ -1,0 +1,39 @@
+xml_onlinerefallres1	{
+	context	        int;
+	object		object;
+	mode		int;
+	recordname	varchar(128);
+	onlinerefallres1 {
+		Information_Date			varchar(10);
+		Information_Time			varchar(8);
+		Api_Result					varchar(3);
+		Api_Result_Message			varchar(100);
+#---   照会番号継続フラグ(Yes No)
+		ReferenceNumber_Continue	varchar(03);
+#---   最終照会番号(受け取った最後の照会番号(ptid))
+		Last_ReferenceNumber		varchar(10);
+#---   照会番号登録(Ref)
+		MessageHeader  {
+#---   医療機関コード
+			MedicalInstitutionCode		varchar(10);
+#---   任意のファイル識別子(医療機関固有項目)
+			ArbitraryFileIdentifier		varchar(50);
+		};
+#---   メッセージボディ部
+		MessageBody   {
+#---   照会番号登録情報
+				ReferenceNumberRegistrationInfo   {
+#---   照会番号
+					ReferenceNumber		varchar(50);
+#---   保険者番号
+					InsurerNumber		varchar(08);
+#---   被保険者証記号
+					InsuredCardSymbol	varchar(80);
+#---   被保険者証番号
+					InsuredIdentificationNumber	varchar(80);
+#---   被保険者証枝番
+					InsuredBranchNumber	varchar(02);
+				} [5000];
+		};
+   	};
+};

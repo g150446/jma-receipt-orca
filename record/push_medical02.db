@@ -1,0 +1,16 @@
+push_medical02	{
+	event				varchar(50);
+	body	{
+		Request_Number		varchar(02);
+		InOut			varchar(01);
+		Patient_ID		varchar(20);
+		Information_Date	varchar(10);
+		Information_Time	varchar(08);
+		Perform_Date		varchar(10);
+		Perform_Time		varchar(08);
+		Insurance_Combination_Number	varchar(04);
+		Department_Code		varchar(02);
+		Physician_Code		varchar(05);
+	};
+};
+

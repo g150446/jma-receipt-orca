@@ -1,0 +1,75 @@
+tbl_onshi_image {
+	HOSPNUM				number(2,0);
+	TBL_UUID			varchar(36);
+	OCR_FILE_NAME			varchar(100);
+	OCR_IMAGE_FILE_STATUS		varchar(1);
+	OCR_IMAGEDATA			varchar(500000);
+	TERMID  			varchar(64);
+	OPID    			varchar(16);
+	CREYMD  			char(8);
+	CREHMS				char(6);
+	UPYMD    			char(8);
+	UPHMS				char(6);
+};
+primary	{
+	HOSPNUM,TBL_UUID,OCR_FILE_NAME;
+};
+
+path	key		{ 	
+	DBSELECT	{
+		DECLARE tbl_onshi_image_key_csr CURSOR FOR
+		SELECT *
+		FROM tbl_onshi_image
+			WHERE	HOSPNUM		=	:HOSPNUM
+			AND	TBL_UUID	=	:TBL_UUID
+			AND	OCR_FILE_NAME	=	:OCR_FILE_NAME
+		;
+	};
+};
+
+path	key1		{ 	
+	DBSELECT	{
+		DECLARE tbl_onshi_image_key1_csr CURSOR FOR
+		SELECT *
+		FROM tbl_onshi_image
+			WHERE	HOSPNUM		=	:HOSPNUM
+			AND	OCR_FILE_NAME	=	:OCR_FILE_NAME
+		;
+	};
+};
+
+path	all 	{
+	DBSELECT	{
+		DECLARE tbl_onshi_image_all_csr CURSOR FOR
+		SELECT *
+		FROM tbl_onshi_image
+			WHERE   HOSPNUM    =   :HOSPNUM
+ 		;
+	};
+};
+
+path	del 	{
+	DBDELETE	{
+		DELETE
+		FROM tbl_onshi_image
+			WHERE	HOSPNUM		=	:HOSPNUM
+			AND	OCR_FILE_NAME	=	:OCR_FILE_NAME
+		;
+	};
+};
+
+path	del1 	{
+	DBDELETE	{
+		DELETE
+		FROM tbl_onshi_image
+			WHERE	HOSPNUM		=	:HOSPNUM
+			AND	CREYMD			<	:CREYMD
+ 		;
+	};
+};
+
+
+
+
+
+

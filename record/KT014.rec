@@ -1,0 +1,48 @@
+KT014 { #GtkWindow
+  popup_summary varchar(256);
+  popup_body varchar(256);
+  popup_icon varchar(256);
+  popup_timeout int;
+  fixed10 { #GtkFixed
+    B01 { #GtkButton
+      state int;
+    };
+    B12 { #GtkButton
+      state int;
+    };
+    B06 { #GtkButton
+      state int;
+    };
+    B07 { #GtkButton
+      state int;
+    };
+    MIDASHI1 { #GtkLabel
+      textdata varchar(100);
+    };
+    SRYCD { #GtkPandaEntry
+      textdata varchar(9);
+    };
+    scrolledwindow2 { #GtkScrolledWindow
+      FORMALNAME { #GtkPandaText
+        textdata varchar(400);
+      };
+    };
+    INPUTSTRING { #GtkPandaEntry
+      textdata varchar(100);
+    };
+    MIDASHI2 { #GtkLabel
+      textdata varchar(50);
+    };
+    NAMELABEL { #GtkLabel
+      textdata varchar(30);
+    };
+    MIDASHI3 { #GtkLabel
+      style varchar(20);
+      textdata varchar(30);
+    };
+    MIDASHI4 { #GtkLabel
+      style varchar(20);
+      textdata varchar(30);
+    };
+  };
+};

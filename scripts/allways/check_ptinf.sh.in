@@ -1,0 +1,157 @@
+#!/bin/bash
+
+if test -z "$JMARECEIPT_ENV"; then
+    JMARECEIPT_ENV="@jma-receipt-env@"
+fi
+if ! test -f "$JMARECEIPT_ENV"; then
+    exit 0
+fi
+
+. $JMARECEIPT_ENV
+
+#-------------------------------------------#
+#        患者チェックスクリプト処理
+#        $1    医療機関番号
+#        $2    ジョブＩＤ
+#        $3    シェルＩＤ
+#        $4    患者ＩＤ
+#-------------------------------------------#
+MONSQL="/usr/lib/panda/bin/monsql"
+
+do_monsql(){
+  ${MONSQL} -dir ./lddef/directory -o CSV -c "$1"
+}
+
+sel_monsql(){
+  COLUMNS=($(do_monsql "select column_name from information_schema.columns where table_schema ='public' and table_name = '${TBL_NAME}' order by columns.ordinal_position" ))
+  [ $? -ne 0 ] && error "0001" && exit 1
+  echo $(IFS=,; echo "${COLUMNS[*]}" | tr "[:upper:]" "[:lower:]")
+  ${MONSQL} -o CSV -dir ./lddef/directory -c "select * from ${TBL_NAME} where ptid = ${PTID}"
+}
+
+PTID=$4
+
+echo "----- tbl_ptinf -----"
+echo ""tstptnumkbn","maxzainum","creymd","upymd","uphms""
+${MONSQL} -o CSV -dir ./lddef/directory -c "select tstptnumkbn,maxzainum,creymd,upymd,uphms from tbl_ptinf where ptid = ${4}"
+echo "----- tbl_uketuke -----"
+echo ""ukeymd","ukeid","uketime","ptid","sryka","drcd","srynaiyo","hkncombi","kaikeitime","keyyyktime","yyktime","yykid","srflg","termid","opid","creymd","upymd","uphms","hospnum""
+${MONSQL} -o CSV -dir ./lddef/directory -c "select  ukeymd","ukeid,uketime","ptid,sryka,drcd,srynaiyo,hkncombi,kaikeitime,keyyyktime,yyktime,yykid,srflg,termid,opid,creymd,upymd,uphms,hospnum from tbl_uketuke where ptid = ${4}"
+echo "----- tbl_ptnum -----"
+TBL_NAME=tbl_ptnum
+sel_monsql
+echo "----- tbl_hkncombi -----"
+TBL_NAME=tbl_hkncombi
+sel_monsql
+echo "----- tbl_pthkninf -----"
+TBL_NAME=tbl_pthkninf
+sel_monsql
+echo "----- tbl_ptkohinf -----"
+TBL_NAME=tbl_ptkohinf
+sel_monsql
+echo "----- tbl_ptkohftn -----"
+TBL_NAME=tbl_ptkohftn
+sel_monsql
+echo "----- tbl_ptkohftnetc -----"
+TBL_NAME=tbl_ptkohftnetc
+sel_monsql
+echo "----- tbl_ptrsiinf -----"
+TBL_NAME=tbl_ptrsiinf
+sel_monsql
+echo "----- tbl_tsyrrk -----"
+TBL_NAME=tbl_tsyrrk
+sel_monsql
+echo "----- tbl_tnkrrk -----"
+TBL_NAME=tbl_tnkrrk
+sel_monsql
+echo "----- tbl_ptnyuinrrk -----"
+TBL_NAME=tbl_ptnyuinrrk
+sel_monsql
+echo "----- tbl_nyuinacct -----"
+TBL_NAME=tbl_nyuinacct
+sel_monsql
+echo "----- tbl_nyuinact -----"
+TBL_NAME=tbl_nyuinact
+sel_monsql
+echo "----- tbl_ptteikirrk -----"
+TBL_NAME=tbl_ptteikirrk
+sel_monsql
+echo "----- tbl_jyurrk -----"
+TBL_NAME=tbl_jyurrk
+sel_monsql
+echo "----- tbl_sryacct_main -----"
+TBL_NAME=tbl_sryacct_main
+sel_monsql
+echo "----- tbl_sryact -----"
+TBL_NAME=tbl_sryact
+sel_monsql
+echo "----- tbl_santei -----"
+TBL_NAME=tbl_santei
+sel_monsql
+echo "----- tbl_wksryact -----"
+TBL_NAME=tbl_wksryact
+sel_monsql
+echo "----- tbl_syunou_main -----"
+TBL_NAME=tbl_syunou_main
+sel_monsql
+echo "----- tbl_syunou_nyuin -----"
+TBL_NAME=tbl_syunou_nyuin
+sel_monsql
+echo "----- tbl_syurrk -----"
+TBL_NAME=tbl_syurrk
+sel_monsql
+echo "----- tbl_syumei -----"
+TBL_NAME=tbl_syumei
+sel_monsql
+echo "----- tbl_syuka -----"
+TBL_NAME=tbl_syuka
+sel_monsql
+echo "----- tbl_ptcom -----"
+TBL_NAME=tbl_ptcom
+sel_monsql
+echo "----- tbl_rececom -----"
+TBL_NAME=tbl_rececom
+sel_monsql
+echo "----- tbl_ryocom -----"
+TBL_NAME=tbl_ryocom
+sel_monsql
+echo "----- tbl_opecom -----"
+TBL_NAME=tbl_opecom
+sel_monsql
+echo "----- tbl_ptbyomei -----"
+TBL_NAME=tbl_ptbyomei
+sel_monsql
+echo "----- tbl_monthlynum -----"
+TBL_NAME=tbl_monthlynum
+sel_monsql
+echo "----- tbl_bunben -----"
+TBL_NAME=tbl_bunben
+sel_monsql
+echo "----- tbl_onshi_kaku -----"
+echo ""hospnum","tbl_uuid","aite_uuid","oya_uuid","kouhi_uuid","fujyo_uuid","orca_err_code","set_ptid","orca_sikaku_yuko","kaku_renumber","kaku_endflg","kaku_kakuninymd","kaku_kakuninhms","shou_renumber","shou_endflg","yakuzai_renumber","yakuzai_endflg","kenshin_renumber","kenshin_endflg","ptid","fukusu_gaito","shori_time","kakuninymd","hospcd","file_sikibetu","shokai_kbn","orca_shokai_kbn","onshinryo_kbn","result_kbn","err_code","err_msg","code_type","sho_hknjanum","sho_kigo","sho_num","sho_edaban","sho_birthday","sho_shoho_keitai","sho_douiflg","result","result_code","result_msg","sikaku_yuko","card_class","res_hknjanum","res_kigo","res_num","res_edaban","res_honkzkkbn","res_birthday","skkgetymd","tekstymd","tekedymd","ftnrate","misyugaku","loss_jiyu","elder_skkgetymd","elder_tekstymd","elder_tekedymd","elder_ftnrate","koh_tekstymd1","koh_tekedymd1","koh_ftnrate1","koh_jgngak1","koh_tekstymd2","koh_tekedymd2","koh_ftnrate2","koh_jgngak2","gendo_douiflg","gendo_time","gendo_shokbn","gendo_tekkbn","gendo_skkgetymd","gendo_tekstymd","gendo_tekedymd","gendo_skjgnstymd","sikkan_douiflg","sikkan_time","sikkan_sipkbn1","sikkan_skjgnstymd1","sikkan_tekstymd1","sikkan_tekedymd1","sikkan_ftnmoney1","sikkan_sipkbn2","sikkan_skjgnstymd2","sikkan_tekstymd2","sikkan_tekedymd2","sikkan_ftnmoney2","sikkan_sipkbn3","sikkan_skjgnstymd3","sikkan_tekstymd3","sikkan_tekedymd3","sikkan_ftnmoney3","kenshin_douiflg","kenshin_time","kenshin_kigenymd","yakuzai_douiflg","yakuzai_time","yakuzai_kigen","sikibetu","shokai_num","mod_flg","lock_kbn","scr_dltflg","termid","opid","creymd","crehms","upymd","uphms""
+${MONSQL} -o CSV -dir ./lddef/directory -c "select hospnum,tbl_uuid,aite_uuid,oya_uuid,kouhi_uuid,fujyo_uuid,orca_err_code,set_ptid,orca_sikaku_yuko,kaku_renumber,kaku_endflg,kaku_kakuninymd,kaku_kakuninhms,shou_renumber,shou_endflg,yakuzai_renumber,yakuzai_endflg,kenshin_renumber,kenshin_endflg,ptid,fukusu_gaito,shori_time,kakuninymd,hospcd,file_sikibetu,shokai_kbn,orca_shokai_kbn,onshinryo_kbn,result_kbn,err_code,err_msg,code_type,sho_hknjanum,sho_kigo,sho_num,sho_edaban,sho_birthday,sho_shoho_keitai,sho_douiflg,result,result_code,result_msg,sikaku_yuko,card_class,res_hknjanum,res_kigo,res_num,res_edaban,res_honkzkkbn,res_birthday,skkgetymd,tekstymd,tekedymd,ftnrate,misyugaku,loss_jiyu,elder_skkgetymd,elder_tekstymd,elder_tekedymd,elder_ftnrate,koh_tekstymd1,koh_tekedymd1,koh_ftnrate1,koh_jgngak1,koh_tekstymd2,koh_tekedymd2,koh_ftnrate2,koh_jgngak2,gendo_douiflg,gendo_time,gendo_shokbn,gendo_tekkbn,gendo_skkgetymd,gendo_tekstymd,gendo_tekedymd,gendo_skjgnstymd,sikkan_douiflg,sikkan_time,sikkan_sipkbn1,sikkan_skjgnstymd1,sikkan_tekstymd1,sikkan_tekedymd1,sikkan_ftnmoney1,sikkan_sipkbn2,sikkan_skjgnstymd2,sikkan_tekstymd2,sikkan_tekedymd2,sikkan_ftnmoney2,sikkan_sipkbn3,sikkan_skjgnstymd3,sikkan_tekstymd3,sikkan_tekedymd3,sikkan_ftnmoney3,kenshin_douiflg,kenshin_time,kenshin_kigenymd,yakuzai_douiflg,yakuzai_time,yakuzai_kigen,sikibetu,shokai_num,mod_flg,lock_kbn,scr_dltflg,termid,opid,creymd,crehms,upymd,uphms from tbl_onshi_kaku where ptid = ${4} order by kaku_kakuninymd,kaku_kakuninhms,kakuninymd,shori_time"
+echo "----- tbl_onshi_yakuzai_main -----"
+echo ""hospnum","ptid","sryym","nyugaikbn","chozai_seqnum","chozai_kbn","shoho_seqnum","shoho_kbn","srydd_1","srydd_2","srydd_3","srydd_4","srydd_5","srydd_6","srydd_7","srydd_8","srydd_9","srydd_10","srydd_11","srydd_12","srydd_13","srydd_14","srydd_15","srydd_16","srydd_17","srydd_18","srydd_19","srydd_20","srydd_21","srydd_22","srydd_23","srydd_24","srydd_25","srydd_26","srydd_27","srydd_28","srydd_29","srydd_30","srydd_31","termid","opid","creymd","crehms","upymd","uphms""
+${MONSQL} -o CSV -dir ./lddef/directory -c "select hospnum,ptid,sryym,nyugaikbn,chozai_seqnum,chozai_kbn,shoho_seqnum,shoho_kbn,srydd_1,srydd_2,srydd_3,srydd_4,srydd_5,srydd_6,srydd_7,srydd_8,srydd_9,srydd_10,srydd_11,srydd_12,srydd_13,srydd_14,srydd_15,srydd_16,srydd_17,srydd_18,srydd_19,srydd_20,srydd_21,srydd_22,srydd_23,srydd_24,srydd_25,srydd_26,srydd_27,srydd_28,srydd_29,srydd_30,srydd_31,termid,opid,creymd,crehms,upymd,uphms from tbl_onshi_yakuzai_main where ptid = ${4}"
+echo "----- tbl_onshi_yakuzai_sub -----"
+TBL_NAME=tbl_onshi_yakuzai_sub
+sel_monsql
+echo "----- tbl_onshi_kenshin_main -----"
+echo ""hospnum","ptid","jisshiymd","termid","opid","creymd","crehms","upymd","uphms""
+${MONSQL} -o CSV -dir ./lddef/directory -c "select hospnum,ptid,jisshiymd,termid,opid,creymd,crehms,upymd,uphms from tbl_onshi_kenshin_main where ptid = ${4}"
+echo "----- tbl_onshi_kenshin_sub -----"
+TBL_NAME=tbl_onshi_kenshin_sub
+sel_monsql
+echo "----- tbl_onshi_aidlst -----"
+echo ""hospnum","tbl_uuid","fujyo_uuid","ptid","ftnjanum","jkysnum","rennum","tekstymd","tekedymd","medical_type","nyugaikbn","sryym","kofunum","ftngaku","xml_image_file_status","aid_imagedata","termid","opid","creymd","crehms","upymd","uphms""
+${MONSQL} -o CSV -dir ./lddef/directory -c "select hospnum,tbl_uuid,fujyo_uuid,ptid,ftnjanum,jkysnum,rennum,tekstymd,tekedymd,medical_type,nyugaikbn,sryym,kofunum,ftngaku,xml_image_file_status,substring(aid_imagedata,1,20),termid,opid,creymd,crehms,upymd,uphms from tbl_onshi_aidlst where ptid = ${4} order by creymd,uphms"
+echo "----- tbl_syskanri('1001','1005','5000','5001','5002','4001','2010') -----"
+COLUMNS=($(do_monsql "select column_name from information_schema.columns where table_schema ='public' and table_name = 'tbl_syskanri' order by columns.ordinal_position" ))
+[ $? -ne 0 ] && error "0001" && exit 1
+echo $(IFS=,; echo "${COLUMNS[*]}" | tr "[:upper:]" "[:lower:]")
+${MONSQL} -o CSV -dir ./lddef/directory -c "select * from tbl_syskanri where kanricd in ('1001','1005','5000','5001','5002','4001','2010') order by kanricd,kbncd,styukymd"
+echo "----- tbl_hknnum -----"
+COLUMNS=($(do_monsql "select column_name from information_schema.columns where table_schema ='public' and table_name = 'tbl_hknnum' order by columns.ordinal_position" ))
+[ $? -ne 0 ] && error "0001" && exit 1
+echo $(IFS=,; echo "${COLUMNS[*]}" | tr "[:upper:]" "[:lower:]")
+${MONSQL} -o CSV -dir ./lddef/directory -c "select * from tbl_hknnum order by hknnum"

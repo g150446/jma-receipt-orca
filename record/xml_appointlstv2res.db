@@ -1,0 +1,61 @@
+xml_appointlstv2res {
+    context	int;
+    object	object;
+    mode	int;
+    recordname	varchar(128);
+	appointlstres {
+        Information_Date					varchar(10);
+        Information_Time					varchar(8);
+        Api_Result						varchar(2);
+        Api_Result_Message					varchar(100);
+        Reskey							varchar(100);
+        Appointment_Date					varchar(10);
+	Appointlst_Information {
+        	Appointment_Time				varchar(08);
+		Medical_Information				varchar(02);
+        	Department_Code					varchar(2);
+        	Department_WholeName				varchar(80);
+        	Physician_Code					varchar(5);
+        	Physician_WholeName				varchar(80);
+        	Visit_Information				varchar(1);
+	        Appointment_Id					varchar(2);
+		Patient_Information {
+        		Patient_ID				varchar(20);
+        		WholeName				varchar(100);
+        		WholeName_inKana			varchar(100);
+        		BirthDate				varchar(10);
+        		Sex					varchar(1);
+        		Home_Address_Information    {
+           		 	PhoneNumber1			varchar(15);
+        		};
+#--- 保険情報
+			HealthInsurance_Information	{
+	 		 HealthInsurance_Info 	{
+            	InsuranceProvider_Class			varchar(03);
+            	InsuranceProvider_Number		varchar(08);
+            	InsuranceProvider_WholeName		varchar(20);
+            	HealthInsuredPerson_Symbol		varchar(80);
+            	HealthInsuredPerson_Number		varchar(80);
+            	HealthInsuredPerson_Branch_Number	varchar(2);
+            	HealthInsuredPerson_Assistance		varchar(01);
+            	HealthInsuredPerson_Assistance_Name	varchar(20);
+            	RelationToInsuredPerson			varchar(01);
+            	Certificate_StartDate			varchar(10);
+            	Certificate_ExpiredDate			varchar(10);
+            	};
+    	    };
+#--- 公費情報
+ 			PublicInsurance_Information   {
+              PublicInsurance_Info      {
+                PublicInsurance_Class			varchar(03);
+                PublicInsurance_Name			varchar(20);
+                PublicInsurer_Number			varchar(08);
+                PublicInsuredPerson_Number		varchar(20);
+                Certificate_IssuedDate			varchar(10);
+                Certificate_ExpiredDate			varchar(10);
+     			} [6];
+  		      };
+        	};
+        	} [500];
+    	};
+};

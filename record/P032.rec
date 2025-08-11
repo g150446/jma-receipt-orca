@@ -1,0 +1,85 @@
+P032 { #GtkWindow
+  title varchar(256);
+  popup_summary varchar(256);
+  popup_body varchar(256);
+  popup_icon varchar(256);
+  popup_timeout int;
+  fixed1 { #GtkFixed
+    B01 { #GtkButton
+      state int;
+    };
+    MIDASI { #GtkLabel
+      style varchar(20);
+      textdata varchar(100);
+    };
+    scrolledwindow1 { #GtkScrolledWindow
+      ONSHILIST { #GtkPandaCList
+        count int;
+        row int;
+        selectdata bool[50];
+        fgcolor varchar(20)[50];
+        bgcolor varchar(20)[50];
+        item {
+          column1 varchar(3);
+          column2 varchar(4);
+          column3 varchar(4);
+          column4 varchar(4);
+          column5 varchar(4);
+          column6 varchar(4);
+          column7 varchar(4);
+          column8 varchar(4);
+          column9 varchar(10);
+          column10 varchar(20);
+          column11 varchar(8);
+          column12 varchar(160);
+          column13 varchar(2);
+          column14 varchar(2);
+          column15 varchar(3);
+          column16 varchar(16);
+          column17 varchar(9);
+          column18 varchar(100);
+          column19 varchar(100);
+          column20 varchar(8);
+          column21 varchar(200);
+          column22 varchar(50);
+        }[50];
+      };
+    };
+    SELNUM { #GtkNumberEntry
+      numdata number(3);
+    };
+    KAKUNINYMD { #GtkPandaEntry
+      textdata varchar(30);
+    };
+    B02 { #GtkButton
+      state int;
+    };
+    B06 { #GtkButton
+      state int;
+    };
+    B07 { #GtkButton
+      state int;
+    };
+    B12 { #GtkButton
+      state int;
+    };
+    MIDASINEXT { #GtkLabel
+      style varchar(20);
+      textdata varchar(40);
+    };
+    B04 { #GtkButton
+      state int;
+    };
+    B05 { #GtkButton
+      state int;
+    };
+    B10 { #GtkButton
+      state int;
+      label varchar(10);
+    };
+    MIDASI2 { #GtkLabel
+      style varchar(20);
+      textdata varchar(50);
+    };
+  };
+};

@@ -1,0 +1,20 @@
+xml_statistics_datav3req {
+    context	int;
+    object	object;
+	mode	int;
+	recordname	varchar(128);
+	statistics_datav3req {
+		Request_Number		varchar(2);
+		Karte_Uid		varchar(36);
+		Orca_Uid		varchar(36);
+		Statistics_Mode		varchar(7);
+		Statistics_Data_Format	varchar(10);
+		Statistics_Data_Information {
+			Statistics_Group_No		varchar(14);
+			Statistics_Processing_Number	varchar(4);
+			Statistics_Serial_Number	varchar(4);
+			Statistics_Character_Code	varchar(10);
+			Statistics_File_Name		varchar(200);
+		};
+	};
+};

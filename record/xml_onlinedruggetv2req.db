@@ -1,0 +1,16 @@
+xml_onlinedruggetv2req {
+	context	        int;
+	object		object;
+	mode		int;
+	recordname	varchar(128);
+	onlinedruggetreq {
+		Request_Number		varchar(2);
+		Patient_ID		varchar(20);
+    	MeTrMonth		varchar(7);
+		InOut			varchar(1);
+#---   医療機関・薬局コード(2022/7 追加)
+		MeTrDiHCd		varchar(10);
+#---   処方箋発行医療機関コード(2022/7 追加)
+		PrlsHCd			varchar(10);
+   	};
+};

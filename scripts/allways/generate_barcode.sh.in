@@ -1,0 +1,31 @@
+#!/bin/bash 
+if test -z "$JMARECEIPT_ENV" ; then
+    JMARECEIPT_ENV="@jma-receipt-env@"
+fi
+if ! test -f "$JMARECEIPT_ENV"; then
+    exit 0
+fi
+
+. $JMARECEIPT_ENV
+
+#-------------------------------------------#
+#        バーコードデータ生成
+#
+#        $1 バーコードデータ12桁(チェックディジットはコマンド側で追加される。）
+#        $2 IDファイル名
+#        $3 "T"の時、バーコードイメージ削除を削除する。
+#-------------------------------------------#
+
+NUMBERS="$1"
+ID_FILE=${MCP_TEMPDIR}/"$2"
+SVG_FILE=${ID_FILE}.svg
+BARCODE=${ID_FILE}.png
+ZIP_FILE=${ID_FILE}.zip
+REMOVE_BARCODE="$3"
+touch ${ID_FILE}
+barcode -e ean13 -u mm -g 80x30 -b "${NUMBERS}" -S -o ${SVG_FILE} && rsvg-convert ${SVG_FILE} -b white -o ${BARCODE} && zip ${ZIP_FILE} -j ${BARCODE} && ${MONBLOB} -dir ${LDDIRECTORY} -lifetype 2 -import ${ZIP_FILE} > ${ID_FILE}
+[ -f ${BARCODE} ] && [ ${REMOVE_BARCODE} == "T" ] && rm ${BARCODE}
+[ -f ${SVG_FILE} ] && rm ${SVG_FILE}
+[ -f ${ZIP_FILE} ] && rm ${ZIP_FILE}
+exit
+

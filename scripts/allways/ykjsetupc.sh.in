@@ -1,0 +1,76 @@
+#!/bin/bash
+
+JMARECEIPT_ENV="@jma-receipt-env@"
+if [ ! -f ${JMARECEIPT_ENV} ]; then
+    echo "${JMARECEIPT_ENV} does not found."
+    exit 1
+fi
+. $JMARECEIPT_ENV
+
+#RENNUM=0
+#-------------------------------------------#
+# 薬剤情報マスタ確認一覧作成
+#     $1-${11} 印刷ＤＢ用固定引数
+#     ${12} ジョブＩＤ
+#     ${13} シェルＩＤ
+#     ${14} 医療機関識別番号HOSPNUM
+#     ${15} 医療機関ＩＤHOSPID
+#     ${16} アクセスキー
+#     ${17} エラーファイル名 
+#-------------------------------------------#
+
+JOBID=${12}
+SHELLID=$(printf "%-8s" ${13})
+HOSPNUM=${14}
+#HOSPID=${15}
+#ACCESSKEY=${16}
+# クラウド対応スクリプトにより直接指定する
+HOSPID=
+ACCESSKEY=
+
+cleanup(){
+  rm -f ${MCP_TEMPDIR}/meddata.tar.gz
+  rm -f ${MCP_TEMPDIR}/meddata.txt
+  rm -f ${MCP_TEMPDIR}/medphotodata.tar.gz
+  rm -rf ${MCP_TEMPDIR}/medphotodata
+}
+
+file_download(){
+  DATAURL="${MSTSRVPATH}"/yakujyo/${1}.p7m
+  LOGMSG=`orcadt_verify.rb --dir "${MCP_TEMPDIR}" --cacert "${CACERTFILE}" --user "${HOSPID}" --password "${ACCESSKEY}" "${DATAURL}"`
+  RESULT=`echo "$LOGMSG" | head -1`
+  if [ "[ERROR]" = "${RESULT:0:7}" ] ; then
+    echo "${LOGMSG}"
+    return 0
+  else
+    tar -C ${MCP_TEMPDIR} -xzf ${MCP_TEMPDIR}/${1}
+    if [ $? -ne 0 ]; then
+      echo "tar end NG"
+      return 0
+    fi
+  fi
+  return 1
+}
+
+trap cleanup EXIT
+
+if file_download meddata.tar.gz ; then
+  ${DBSTUB} -dir ${LDDIRECTORY} -bd orcabt ORCBJOB2 -parameter "$(printf '%-18s9901' JBE${JOBID}${SHELLID}),${HOSPNUM},,,ファイルのダウンロードに失敗しました。"
+  touch ${MCP_TEMPDIR}/$(basename ${17})
+  exit 1
+fi
+
+if file_download medphotodata.tar.gz ; then
+  ${DBSTUB} -dir ${LDDIRECTORY} -bd orcabt ORCBJOB2 -parameter "$(printf '%-18s9902' JBE${JOBID}${SHELLID}),${HOSPNUM},,,ファイルのダウンロードに失敗しました。"
+  touch ${MCP_TEMPDIR}/$(basename ${17})
+  exit 1
+fi
+
+mkdir -p ${MCP_TEMPDIR}/medphotodata/medimage
+find  ${MCP_TEMPDIR}/medphotodata/  -maxdepth 1 -type f -exec mv {} ${MCP_TEMPDIR}/medphotodata/medimage/ \;
+
+#RENNUM=$(expr $RENNUM + 1) 
+${DBSTUB} -dir ${LDDIRECTORY} -bd orcabt ORCBSETUPYJ \
+ -parameter ${1},${2},${3},${4},${5},${6},${7},${8},${9},${10},${11},${12},${13},${14},${17}
+
+exit 0

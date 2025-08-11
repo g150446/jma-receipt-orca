@@ -1,0 +1,104 @@
+xml_claimed_managementv3req {
+	context	int;
+	object	object;
+	mode	int;
+	recordname	varchar(128);
+	claimed_managementv3req {
+		Request_Number		varchar(2);
+		Karte_Uid		varchar(36);
+		Orca_Uid		varchar(36);
+		Perform_Date		varchar(10);
+		Patient_Information {
+			Patient_ID      	varchar(20);
+			Perform_Month		varchar(7);
+			Ac_Information {
+				Ac_Class	varchar(1);
+			};
+			Receipt_Information {
+				Receipt_Ac_Month	varchar(7);
+				Receipt_Return_Month	varchar(7);
+			};
+			Local_Public_Information {
+				Local_Public_Ac_Month		varchar(7);
+				Local_Public_Return_Month	varchar(7);
+			};
+			Patient_Detail_Information {
+				Patient_Detail_Submission_Mode	varchar(2);
+				Patient_Detail_InOut		varchar(1);
+				Patient_Detail_Code		varchar(4);
+				Patient_Detail_Type		varchar(40);
+				Patient_Detail_Insurance_Information {
+					Patient_Detail_InsuranceProvider_Id		varchar(10);
+					Patient_Detail_InsuranceProvider_Class		varchar(3);
+					Patient_Detail_HealthInsurance_Information {
+						Patient_Detail_InsuranceProvider_Number		varchar(8);
+						Patient_Detail_HealthInsuredPerson_Symbol	varchar(38);
+						Patient_Detail_HealthInsuredPerson_Number	varchar(38);
+						Patient_Detail_HealthInsuredPerson_Assistance	varchar(1);
+						Patient_Detail_Accident_Target_Class		varchar(4);
+						Patient_Detail_Incare_Class			varchar(4);
+						Patient_Detail_PublicInsurance_Information   {
+							Patient_Detail_PublicInsurance_Id		varchar(10);
+							Patient_Detail_PublicInsurance_Class		varchar(3);
+							Patient_Detail_PublicInsurer_Number		varchar(8);
+							Patient_Detail_PublicInsuredPerson_Number	varchar(20);
+						} [4];
+					};
+					Patient_Detail_Accident_Insurance_Information {
+						Patient_Detail_Accident_Insurance		varchar(1);
+						Patient_Detail_Accident_Insurance_Number	varchar(14);
+						Patient_Detail_PensionCertificate_Number	varchar(9);
+						Patient_Detail_Accident_Class			varchar(1);
+						Patient_Detail_PersonalHealthRecord_Number	varchar(13);
+						Patient_Detail_D_Code				varchar(3);
+						Patient_Detail_Perform_Date			varchar(10);
+						Patient_Detail_Disease_Location			varchar(20);
+						Patient_Detail_Accident_StartDate		varchar(10);
+					};
+					Patient_Detail_Liability_Insurance_Information {
+						Patient_Detail_Liability_Disease_Location	varchar(20);
+						Patient_Detail_Liability_Form_Style		varchar(1);
+						Patient_Detail_Liability_StartDate		varchar(10);
+					};
+					Patient_Detail_PollutionInsurance_Information {
+						Patient_Detail_PollutionInsuredPerson_Symbol	varchar(38);
+						Patient_Detail_PollutionInsuredPerson_Number	varchar(38);
+					};
+				};
+				Patient_Detail_Local_Public_Information {
+					Patient_Detail_Local_PublicInsurance_Information {
+						Patient_Detail_Local_PublicInsurance_Id		varchar(10);
+						Patient_Detail_Local_PublicInsurance_Class	varchar(3);
+						Patient_Detail_Local_PublicInsurer_Number	varchar(8);
+						Patient_Detail_Local_PublicInsuredPerson_Number	varchar(20);
+					} [4];
+				};
+				Patient_Detail_Examining_Return_Information {
+					Patient_Detail_Examining_Return_Return_Month	varchar(7);
+					Patient_Detail_Examining_Return_Submission_Mode	varchar(2);
+					Patient_Detail_Examining_Return_Submission_Sign	varchar(1);
+					Patient_Detail_Examining_Return_InOut		varchar(1);
+					Patient_Detail_Examining_Return_Code		varchar(4);
+					Patient_Detail_Examining_Return_Type		varchar(40);
+					Patient_Detail_Examining_Return_Insurance_Information {
+						Patient_Detail_Examining_Return_InsuranceProvider_Number	varchar(8);
+						Patient_Detail_Examining_Return_HealthInsuredPerson_Symbol	varchar(38);
+						Patient_Detail_Examining_Return_HealthInsuredPerson_Number	varchar(38);
+						Patient_Detail_Examining_Return_Accident_Target_Class		varchar(4);
+						Patient_Detail_Examining_Return_Incare_Class			varchar(4);
+						Patient_Detail_Examining_Return_PublicInsurance_Information   {
+							Patient_Detail_Examining_Return_PublicInsurer_Number		varchar(8);
+							Patient_Detail_Examining_Return_PublicInsuredPerson_Number	varchar(20);
+						} [4];
+					};
+					Patient_Detail_Examining_Return_Accident_Insurance_Information {
+						Patient_Detail_Examining_Return_Accident_Insurance		varchar(1);
+						Patient_Detail_Examining_Return_Accident_Insurance_Number	varchar(14);
+						Patient_Detail_Examining_Return_PensionCertificate_Number	varchar(9);
+						Patient_Detail_Examining_Return_Accident_Class			varchar(1);
+					};
+				};
+			} [50];
+		};
+	};
+};

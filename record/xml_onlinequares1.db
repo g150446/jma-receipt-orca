@@ -1,0 +1,184 @@
+xml_onlinequares1	{
+	context	        int;
+	object		object;
+	mode		int;
+	recordname	varchar(128);
+	onlinequares1 {
+		Information_Date			varchar(10);
+		Information_Time			varchar(8);
+		Api_Result				varchar(3);
+		Api_Result_Message			varchar(100);
+		Patient_ID		varchar(20);
+#---   資格確認要否(Qua)
+		QualificationCon_Class	varchar(05);
+#---   照会番号登録要否(Ref)
+		ReferenceNumber_Class	varchar(05);
+#---   薬剤情報要否(Drg)
+		DrugInf_Class		varchar(05);
+#---   特定検診情報要否(Spec)
+		SpecificHealthCheckupInfo_Class		varchar(05);
+#---   資格確認
+		MessageHeader_Qua  {
+#---   資格確認日
+			QualificationConfirmationDate	varchar(08);
+#---   医療機関コード
+			MedicalInstitutionCode		varchar(10);
+#---   任意のファイル識別子(医療機関固有項目)
+			ArbitraryFileIdentifier		varchar(50);
+#---   メッセージボディ部
+			MessageBody   {
+#---   資格確認照会用情報
+				QualificationConfirmSearchInfo   {
+#---   保険者番号
+					InsurerNumber		varchar(08);
+#---   被保険者証記号
+					InsuredCardSymbol	varchar(80);
+#---   被保険者証番号
+					InsuredIdentificationNumber	varchar(80);
+#---   被保険者証枝番
+					InsuredBranchNumber	varchar(02);
+#---   生年月日
+					Birthdate		varchar(08);
+#---   限度額適用認定証提供同意フラグ
+					LimitApplicationCertificateRelatedConsFlg	varchar(01);
+#---   限度額適用認定証取得フラグ(2024-11 オン診、訪診のみ)
+					LimitApplicationCertificateRelatedDisplayFlg	varchar(01);
+#---   特定疾病療養受療証取得フラグ(2024-11 オン診、訪診のみ)
+					SpecificDiseasesCertificateListDisplayFlg	varchar(01);
+#---   任意の識別子(医療機関固有項目)
+					ArbitraryIdentifier	varchar(50);
+#---   医療情報閲覧要求リスト(2024-11 訪診のみ)
+					MedicalInformationRequestList  {
+#---   医療情報閲覧要求(2024-11 訪診のみ)
+						MedicalInformationRequest  {
+#---   医療情報種別(2024-11 訪診のみ TKK or YZK)
+							MedicalInformationType	varchar(03);
+#---   要求ファイル種別(2024-11 訪診のみ )
+							MedicalInformationFileCategory	varchar(01);
+#---   医療情報閲覧要求年月(2024-11 訪診のみ )
+							MedicalInformationDate {
+#---   開始年月(2024-11 訪診のみ)
+								StartDate	varchar(06);
+#---   終了年月(2024-11 訪診のみ)
+								EndDate		varchar(06);
+#---   前回取得日(2024-11 訪診のみ)
+								LastDate	varchar(08);
+							} ;
+#---   処方・調剤情報閲覧区分(2024-11 訪診のみ )
+							PrDiInfClassification	varchar(01);
+#---   要求ファイル(2024-11 訪診のみ )
+							Yzk_Pdf_File_Name	varchar(38);
+						} [4];
+					};
+#---   診療区分 (2024-11 訪診:2 オン診:3)
+#---   この値によって、要求ファイル名を決定する
+					MedicalTreatmentFlag	varchar(01);
+#---   処方箋発行形態
+					PrescriptionIssueSelect	varchar(01);
+				} ;
+			} ;
+		};
+#---   照会番号登録(Ref)
+		MessageHeader_Ref  {
+#---   医療機関コード
+			MedicalInstitutionCode		varchar(10);
+#---   任意のファイル識別子(医療機関固有項目)
+			ArbitraryFileIdentifier		varchar(50);
+#---   メッセージボディ部
+			MessageBody   {
+#---   照会番号登録情報
+				ReferenceNumberRegistrationInfo   {
+#---   照会番号
+					ReferenceNumber		varchar(50);
+#---   保険者番号
+					InsurerNumber		varchar(08);
+#---   被保険者証記号
+					InsuredCardSymbol	varchar(80);
+#---   被保険者証番号
+					InsuredIdentificationNumber	varchar(80);
+#---   被保険者証枝番
+					InsuredBranchNumber	varchar(02);
+				} ;
+			} ;
+		};
+#---   薬剤情報(Drg)
+		MessageHeader_Drg  {
+#---   医療機関コード
+			MedicalInstitutionCode		varchar(10);
+#---   保険者番号
+			InsurerNumber			varchar(08);
+#---   被保険者証記号
+			InsuranceCardSymbol		varchar(80);
+#---   被保険者証番号
+			InsuredPersonIdentificationNumber	varchar(80);
+#---   被保険者証枝番
+			BranchNumber			varchar(02);
+#---   任意のファイル識別子(医療機関固有項目)
+			ArbitraryFileIdentifier		varchar(50);
+#---   メッセージボディ部
+			MessageBody   {
+#---   開始年月(202109 以降とすること)
+				StartDate		varchar(06);
+#---   終了年月(999999 は、当月扱い。最長36ヶ月(3年)とすること)
+				EndDate			varchar(06);
+#---   前回取得日
+				LastDate		varchar(08);
+#---   要求ファイル種別
+				FileCategory		varchar(01);
+#---   診療区分
+				MedicalTreatmentFlag	varchar(01);
+#---   要求ファイル
+				Yzk_Pdf_File_Name	varchar(38);
+			};
+		} [13];
+		MessageHeader_Spec  {
+#---   医療機関コード
+			MedicalInstitutionCode		varchar(10);
+#---   保険者番号
+			InsurerNumber			varchar(08);
+#---   被保険者証記号
+			InsuranceCardSymbol		varchar(80);
+#---   被保険者証番号
+			InsuredPersonIdentificationNumber	varchar(80);
+#---   被保険者証枝番
+			BranchNumber			varchar(02);
+#---   任意のファイル識別子(医療機関固有項目)
+			ArbitraryFileIdentifier		varchar(50);
+#---   メッセージボディ部
+			MessageBody   {
+#---   要求ファイル種別
+				FileCategory		varchar(01);
+#---   診療区分
+				MedicalTreatmentFlag	varchar(01);
+#---   要求ファイル
+				Tkk_Pdf_File_Name	varchar(38);
+			};
+		} [2];
+#---   閲覧同意取り消し要求（訪問診療等） (2024-11 訪診のみ)
+#---    OQSsihvd01req_xxxxxxxxxxxx.xml
+		MessageHeader_Cancel  {
+#---   医療機関コード
+			MedicalInstitutionCode		varchar(10);
+#---   任意のファイル識別子(医療機関固有項目)
+			ArbitraryFileIdentifier		varchar(50);
+#---   メッセージボディ部
+			MessageBody   {
+#---   同意取り消し用情報
+				ConsentCancelInfo   {
+#---   保険者番号
+					InsurerNumber		varchar(08);
+#---   被保険者証記号
+					InsuredCardSymbol	varchar(80);
+#---   被保険者証番号
+					InsuredIdentificationNumber	varchar(80);
+#---   被保険者証枝番
+					InsuredBranchNumber	varchar(02);
+#---   生年月日
+					Birthdate			varchar(08);
+#---   診療区分
+					MedicalTreatmentFlag	varchar(01);
+				};
+			};
+		};
+   	};
+};

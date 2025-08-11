@@ -1,0 +1,12 @@
+xml_onlinerefallreq1	{
+	context	        int;
+	object		object;
+	mode		int;
+	recordname	varchar(128);
+	onlinerefallreq1 {
+		Information_Date			varchar(10);
+		Information_Time			varchar(8);
+#---   最終照会番号(受け取った最後の照会番号(ptid))
+		Last_ReferenceNumber			varchar(10);
+   	};
+};

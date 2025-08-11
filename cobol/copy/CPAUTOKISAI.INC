@@ -1,0 +1,112 @@
+       01  TBL-AUTO-KISAI-AREA.
+           03  FILLER              PIC X(11)  VALUE  "0 111011810".
+           03  FILLER              PIC X(11)  VALUE  "0 111012610".
+           03  FILLER              PIC X(11)  VALUE  "0 111012810".
+           03  FILLER              PIC X(11)  VALUE  "2 112015810".
+           03  FILLER              PIC X(11)  VALUE  "2 112017010".
+           03  FILLER              PIC X(11)  VALUE  "2 112015950".
+           03  FILLER              PIC X(11)  VALUE  "2 112017150".
+           03  FILLER              PIC X(11)  VALUE  "2 112023550".
+           03  FILLER              PIC X(11)  VALUE  "2 112023850".
+           03  FILLER              PIC X(11)  VALUE  "2 112016210".
+           03  FILLER              PIC X(11)  VALUE  "2 112016410".
+           03  FILLER              PIC X(11)  VALUE  "2 112017610".
+           03  FILLER              PIC X(11)  VALUE  "2 112023210".
+           03  FILLER              PIC X(11)  VALUE  "2 113006510".
+           03  FILLER              PIC X(11)  VALUE  "0 180000710".
+           03  FILLER              PIC X(11)  VALUE  "0 113004310".
+           03  FILLER              PIC X(11)  VALUE  "2 113008310".
+           03  FILLER              PIC X(11)  VALUE  "2 113008410".
+           03  FILLER              PIC X(11)  VALUE  "2 113008510".
+           03  FILLER              PIC X(11)  VALUE  "2 113031610".
+           03  FILLER              PIC X(11)  VALUE  "2 113031710".
+           03  FILLER              PIC X(11)  VALUE  "2 113008070".
+           03  FILLER              PIC X(11)  VALUE  "2 113008170".
+           03  FILLER              PIC X(11)  VALUE  "2 113000810".
+           03  FILLER              PIC X(11)  VALUE  "2 113009910".
+           03  FILLER              PIC X(11)  VALUE  "2 113029410".
+           03  FILLER              PIC X(11)  VALUE  "2 113014610".
+           03  FILLER              PIC X(11)  VALUE  "2 113024310".
+           03  FILLER              PIC X(11)  VALUE  "2 113028310".
+           03  FILLER              PIC X(11)  VALUE  "0 113030670".
+           03  FILLER              PIC X(11)  VALUE  "0 113030770".
+           03  FILLER              PIC X(11)  VALUE  "2 113032810".
+           03  FILLER              PIC X(11)  VALUE  "0 113015130".
+           03  FILLER              PIC X(11)  VALUE  "2 113030470".
+           03  FILLER              PIC X(11)  VALUE  "2 113030570".
+           03  FILLER              PIC X(11)  VALUE  "0 113015310".
+           03  FILLER              PIC X(11)  VALUE  "0 113015410".
+           03  FILLER              PIC X(11)  VALUE  "2 113024410".
+           03  FILLER              PIC X(11)  VALUE  "2 113024510".
+           03  FILLER              PIC X(11)  VALUE  "1 190030310".
+           03  FILLER              PIC X(11)  VALUE  "1 113011710".
+           03  FILLER              PIC X(11)  VALUE  "1 113008910".
+           03  FILLER              PIC X(11)  VALUE  "0 114045470".
+           03  FILLER              PIC X(11)  VALUE  "0 114045670".
+           03  FILLER              PIC X(11)  VALUE  "0 114009410".
+           03  FILLER              PIC X(11)  VALUE  "2 114000110".
+           03  FILLER              PIC X(11)  VALUE  "2 114001610".
+           03  FILLER              PIC X(11)  VALUE  "2 114001110".
+           03  FILLER              PIC X(11)  VALUE  "2 114030310".
+           03  FILLER              PIC X(11)  VALUE  "2 114042110".
+           03  FILLER              PIC X(11)  VALUE  "2 114042210".
+           03  FILLER              PIC X(11)  VALUE  "0 114020910".
+           03  FILLER              PIC X(11)  VALUE  "0 114027610".
+           03  FILLER              PIC X(11)  VALUE  "0 114027710".
+           03  FILLER              PIC X(11)  VALUE  "0 114027810".
+           03  FILLER              PIC X(11)  VALUE  "0 114045510".
+           03  FILLER              PIC X(11)  VALUE  "2 114043970".
+           03  FILLER              PIC X(11)  VALUE  "2 140054270".
+           03  FILLER              PIC X(11)  VALUE  "2 140054370".
+           03  FILLER              PIC X(11)  VALUE  "2 140054470".
+           03  FILLER              PIC X(11)  VALUE  "0 140055110".
+           03  FILLER              PIC X(11)  VALUE  "0 140057510".
+           03  FILLER              PIC X(11)  VALUE  "0 140057610".
+           03  FILLER              PIC X(11)  VALUE  "1 140052170".
+           03  FILLER              PIC X(11)  VALUE  "1 140052270".
+           03  FILLER              PIC X(11)  VALUE  "1 140052370".
+           03  FILLER              PIC X(11)  VALUE  "1 140061210".
+           03  FILLER              PIC X(11)  VALUE  "2 188007010".
+           03  FILLER              PIC X(11)  VALUE  "2 180047810".
+           03  FILLER              PIC X(11)  VALUE  "2 188010610".
+           03  FILLER              PIC X(11)  VALUE  "2 180056410".
+           03  FILLER              PIC X(11)  VALUE  "2 180057210".
+           03  FILLER              PIC X(11)  VALUE  "2 180057310".
+           03  FILLER              PIC X(11)  VALUE  "2 180057810".
+           03  FILLER              PIC X(11)  VALUE  "2 180057910".
+           03  FILLER              PIC X(11)  VALUE  "2 180057410".
+           03  FILLER              PIC X(11)  VALUE  "2 180057510".
+           03  FILLER              PIC X(11)  VALUE  "2 180057610".
+           03  FILLER              PIC X(11)  VALUE  "2 180057710".
+           03  FILLER              PIC X(11)  VALUE  "2 180058010".
+           03  FILLER              PIC X(11)  VALUE  "2 180058110".
+           03  FILLER              PIC X(11)  VALUE  "2 180064010".
+           03  FILLER              PIC X(11)  VALUE  "2 180064110".
+           03  FILLER              PIC X(11)  VALUE  "2 180047910".
+           03  FILLER              PIC X(11)  VALUE  "2 188010710".
+           03  FILLER              PIC X(11)  VALUE  "2 180058710".
+           03  FILLER              PIC X(11)  VALUE  "2 188011810".
+           03  FILLER              PIC X(11)  VALUE  "0 180056570".
+           03  FILLER              PIC X(11)  VALUE  "0 188011270".
+           03  FILLER              PIC X(11)  VALUE  "0 180058650".
+           03  FILLER              PIC X(11)  VALUE  "2 180058270".
+           03  FILLER              PIC X(11)  VALUE  "2 180020570".
+           03  FILLER              PIC X(11)  VALUE  "2 180047270".
+           03  FILLER              PIC X(11)  VALUE  "2 180047370".
+           03  FILLER              PIC X(11)  VALUE  "1 190076570".
+           03  FILLER              PIC X(11)  VALUE  "1 190127510".
+           03  FILLER              PIC X(11)  VALUE  "1 190076670".
+           03  FILLER              PIC X(11)  VALUE  "1 190127610".
+           03  FILLER              PIC X(11)  VALUE  "1 190219010".
+      *R02.8
+      *    òJç–ÉRÅ[Éh
+           03  FILLER              PIC X(11)  VALUE  "0 101110040".
+           03  FILLER              PIC X(11)  VALUE  "0 101120040".
+           03  FILLER              PIC X(11)  VALUE  "0 101120080".
+      *
+       01  TBL-AUTO-KISAI-AREA-R   REDEFINES  TBL-AUTO-KISAI-AREA.
+      **   03  TBL-AUTO-KISAI-OCC  OCCURS  99.
+           03  TBL-AUTO-KISAI-OCC  OCCURS  102     INDEXED  TBL-IDX.
+               05  TBL-AK-NYUGAI   PIC X(01).
+               05  TBL-AK-YOBI1    PIC X(01).
+               05  TBL-AK-SRYCD    PIC X(09).

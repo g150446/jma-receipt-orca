@@ -1,0 +1,223 @@
+Z06W {
+  fixed1 {
+    SRYCDH {
+      textdata varchar(9);
+    };
+    YUKOSTYMDH {
+      textdata varchar(9);
+    };
+    YUKOEDYMDH {
+      textdata varchar(9);
+    };
+    NAMEH {
+      textdata varchar(100);
+    };
+    NAME {
+      textdata varchar(100);
+    };
+    KANANAME {
+      textdata varchar(100);
+    };
+    YUKOSTYMD {
+      textdata varchar(10);
+    };
+    YUKOEDYMD {
+      textdata varchar(10);
+    };
+    FORMALNAME {
+      textdata varchar(200);
+    };
+    JITEN1COMB {
+      JITEN1 {
+        textdata varchar(12);
+      };
+      count int;
+        item varchar(12)[2];
+    };
+    JITEN2COMB {
+      JITEN2 {
+        textdata varchar(12);
+      };
+      count int;
+        item varchar(12)[2];
+    };
+    JITEN3COMB {
+      JITEN3 {
+        textdata varchar(12);
+      };
+      count int;
+        item varchar(12)[2];
+    };
+    JITEN4COMB {
+      JITEN4 {
+        textdata varchar(12);
+      };
+      count int;
+        item varchar(12)[2];
+    };
+    JITEN5COMB {
+      JITEN5 {
+        textdata varchar(12);
+      };
+      count int;
+        item varchar(12)[2];
+    };
+    DIGIT1 {
+      numdata number(3);
+    };
+    DIGIT2 {
+      numdata number(3);
+    };
+    DIGIT3 {
+      numdata number(3);
+    };
+    DIGIT4 {
+      numdata number(3);
+    };
+    DIGIT5 {
+      numdata number(3);
+    };
+    COMMENTKBN_COMB {
+      COMMENTKBN {
+        textdata varchar(30);
+      };
+      count int;
+        item varchar(30)[5];
+    };
+    COPYCD {
+      state int;
+      textdata varchar(9);
+    };
+    B06 {
+      state int;
+      label varchar(10);
+    };
+    B09 {
+      state int;
+      label varchar(10);
+    };
+    B10 {
+      state int;
+      label varchar(10);
+    };
+    B03 {
+      state int;
+    };
+    B04 {
+      state int;
+      label varchar(10);
+    };
+    B07 {
+      state int;
+      label varchar(10);
+    };
+    B08 {
+      state int;
+      label varchar(10);
+    };
+    MIDASHI { #GtkLabel
+      style varchar(20);
+      textdata varchar(80);
+    };
+    YOHCODE { #GtkPandaEntry
+      textdata varchar(16);
+    };
+    YOHNAME { #GtkPandaEntry
+      textdata varchar(200);
+    };
+    YOUSTYMD { #GtkPandaEntry
+      textdata varchar(10);
+    };
+    YOUEDYMD { #GtkPandaEntry
+      textdata varchar(10);
+    };
+    YOHKANA { #GtkPandaEntry
+      textdata varchar(480);
+    };
+    YOUFLG_COB { #GtkPandaCombo
+      count int;
+      item varchar(10)[2];
+      YOUFLG { #GtkPandaEntry
+        textdata varchar(10);
+      };
+    };
+    BASIC_COB { #GtkPandaCombo
+      count int;
+      item varchar(10)[10];
+      BASIC { #GtkPandaEntry
+        textdata varchar(10);
+      };
+    };
+    DETAIL_COB { #GtkPandaCombo
+      count int;
+      item varchar(32)[30];
+      DETAIL { #GtkPandaEntry
+        textdata varchar(32);
+      };
+    };
+    TIMING_COB { #GtkPandaCombo
+      count int;
+      item varchar(62)[30];
+      TIMING { #GtkPandaEntry
+        textdata varchar(62);
+      };
+    };
+    CODEC_COB { #GtkPandaCombo
+      count int;
+      item varchar(30)[10];
+      CODEC { #GtkPandaEntry
+        textdata varchar(30);
+      };
+    };
+    LABEL3 { #GtkLabel
+      visible bool;
+      textdata varchar(20);
+    };
+    YOUFLG3_COB { #GtkPandaCombo
+      visible bool;
+      count int;
+      item varchar(30)[10];
+      YOUFLG3 { #GtkPandaEntry
+        textdata varchar(30);
+      };
+    };
+    REFER_NO { #GtkPandaEntry
+      textdata varchar(4);
+    };
+    TONPUKU_COB { #GtkPandaCombo
+      count int;
+      item varchar(30)[10];
+      TONPUKU { #GtkPandaEntry
+        textdata varchar(30);
+      };
+    };
+    TOYTIMNG_COB { #GtkPandaCombo
+      count int;
+      item varchar(30)[10];
+      TOYTIMNG { #GtkPandaEntry
+        textdata varchar(30);
+      };
+    };
+    TOYTIME_COB { #GtkPandaCombo
+      count int;
+      item varchar(30)[10];
+      TOYTIME { #GtkPandaEntry
+        textdata varchar(30);
+      };
+    };
+    INTERVAL_COB { #GtkPandaCombo
+      count int;
+      item varchar(30)[10];
+      INTERVAL { #GtkPandaEntry
+        textdata varchar(30);
+      };
+    };
+    BUI_COB { #GtkPandaCombo
+      count int;
+      item varchar(30)[10];
+      BUI { #GtkPandaEntry
+        textdata varchar(30);
+      };
+    };
+  };
+};

@@ -1,0 +1,19 @@
+##診療行為等からの資格確認だけのためのpush通知用
+push_onlinequa	{
+	event				varchar(50);
+	body	{
+		Hospnum			varchar(2);
+		Patient_ID		varchar(20);
+		Information_Date	varchar(10);
+		Information_Time	varchar(08);
+		Qualification_Class	varchar(04);
+		Qualification_Uuid	varchar(36);
+		Qualification_Date	varchar(10);
+		kikan_kbn			varchar(1);
+ 		StartDate			varchar(10);
+		EndDate				varchar(10);
+		Shokai_kbn			varchar(1);
+		Process_Class		varchar(05);
+	};
+};
+

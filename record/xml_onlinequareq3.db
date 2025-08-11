@@ -1,0 +1,180 @@
+xml_onlinequareq3 {
+	context	        int;
+	object		object;
+	mode		int;
+	recordname	varchar(128);
+	onlinequareq3 {
+		MessageHeader  {
+#---   処理実行日時(YYYYMMDDHHmmss)
+			ProcessExecutionTime		varchar(14);
+#---   資格確認日
+			QualificationConfirmationDate	varchar(08);
+#---   医療機関コード
+			MedicalInstitutionCode		varchar(10);
+#---   任意のファイル識別子(医療機関固有項目)
+			ArbitraryFileIdentifier		varchar(50);
+#---   照会区分
+			ReferenceClassification		varchar(01);
+#---   処理結果区分
+			SegmentOfResult			varchar(01);
+#---   エラーコード
+			ErrorCode			varchar(09);
+#---   エラーメッセージ
+			ErrorMessage			varchar(60);
+#---   文字コード識別
+			CharacterCodeIdentifier		varchar(01);
+		};
+#---   メッセージボディ部
+		MessageBody   {
+#---   資格確認照会用情報
+			QualificationConfirmSearchInfo   {
+#---   保険者番号
+				InsurerNumber		varchar(08);
+#---   被保険者証記号
+				InsuredCardSymbol	varchar(80);
+#---   被保険者証番号
+				InsuredIdentificationNumber	varchar(80);
+#---   被保険者証枝番
+				InsuredBranchNumber	varchar(02);
+#---   生年月日
+				Birthdate		varchar(08);
+#---   限度額適用認定証提供同意フラグ
+				LimitApplicationCertificateRelatedConsFlg	varchar(01);
+#---   任意の識別子(医療機関固有項目)
+				ArbitraryIdentifier	varchar(50);
+			};
+#---   処理結果状況
+			ProcessingResultStatus		varchar(01);
+#---   処理結果コード
+			ProcessingResultCode		varchar(09);
+#---   処理結果メッセージ
+			ProcessingResultMessage		varchar(60);
+#---   資格有効性
+			QualificationValidity		varchar(01);
+#---   資格確認結果リスト
+			ResultList   {
+#---   資格確認結果
+				ResultOfQualificationConfirmation	{
+#---   被保険者証区分
+					InsuredCardClassification	varchar(02);
+#---   保険者番号
+					InsurerNumber			varchar(100);
+#---   被保険者証記号
+					InsuredCardSymbol		varchar(80);
+#---   被保険者証番号
+					InsuredIdentificationNumber	varchar(80);
+#---   被保険者証枝番
+					InsuredBranchNumber		varchar(02);
+#---   本人・家族の別
+					PersonalFamilyClassification	varchar(01);
+#---   被保険者氏名(世帯主氏名)
+					InsuredName			varchar(100);
+#---   氏名
+					Name				varchar(100);
+#---   氏名(その他)
+					NameOfOther			varchar(100);
+#---   氏名カナ
+					NameKana			varchar(100);
+#---   氏名カナ(その他)
+					NameOfOtherKana			varchar(100);
+#---   性別1
+					Sex1				varchar(01);
+#---   性別2
+					Sex2				varchar(01);
+#---   生年月日
+					Birthdate			varchar(08);
+#---   住所
+					Address				varchar(250);
+#---   郵便番号
+					PostNumber			varchar(08);
+#---   被保険者証交付年月日
+					InsuredCertificateIssuanceDate	varchar(08);
+#---   被保険者証有効開始年月日
+					InsuredCardValidDate		varchar(100);
+#---   被保険者証有効終了年月日
+					InsuredCardExpirationDate	varchar(100);
+#---   被保険者証一部負担金割合
+					InsuredPartialContributionRatio	varchar(100);
+#---   被保険者証一部負担金額
+					InsuredPartialContributionLimit	varchar(100);
+#---   未就学区分
+					PreschoolClassification		varchar(01);
+#---   資格喪失事由
+					ReasonOfLoss			varchar(02);
+#---   保険者名称
+					InsurerName			varchar(200);
+#---   高齢受給者証情報
+					ElderlyRecipientCertificateInfo	{
+#---   高齢受給者証交付年月日
+						ElderlyRecipientCertificateDate		varchar(08);
+#---   高齢受給者証有効開始年月日
+						ElderlyRecipientValidStartDate		varchar(08);
+#---   高齢受給者証有効終了年月日
+						ElderlyRecipientValidEndDate		varchar(08);
+#---   高齢受給者証一部負担金割合
+						ElderlyRecipientContributionRatio	varchar(03);
+					} ;
+#---   限度額適用認定証提供同意フラグ
+					LimitApplicationCertificateRelatedConsFlg	varchar(01);
+#---   限度額適用認定証提供同意日時(YYYYMMDDHHmmss)
+					LimitApplicationCertificateRelatedConsTime	varchar(14);
+#---   限度額適用認定証関連情報
+					LimitApplicationCertificateRelatedInfo	{
+#---   限度額適用認定証区分
+						LimitApplicationCertificateClassification	varchar(02);
+#---   限度額適用認定証適用区分
+						LimitApplicationCertificateClassificationFlag	varchar(03);
+#---   限度額適用認定証交付年月日
+						LimitApplicationCertificateDate		varchar(08);
+#---   限度額適用認定証有効開始年月日
+						LimitApplicationCertificateValidStartDate	varchar(08);
+#---   限度額適用認定証有効終了年月日
+						LimitApplicationCertificateValidEndDate		varchar(08);
+#---   限度額適用認定証長期入院該当年月日
+						LimitApplicationCertificateLongTermDate		varchar(08);
+					} ;
+#---   特定疾病療養受療証提供同意フラグ
+					SpecificDiseasesCertificateRelatedConsFlg	varchar(01);
+#---   特定疾病療養受療証提供同意日時(YYYYMMDDHHmmss)
+					SpecificDiseasesCertificateRelatedConsTime	varchar(14);
+#---   特定疾病療養受療証情報リスト
+					SpecificDiseasesCertificateList	{
+#---   特定疾病療養受療証情報
+						SpecificDiseasesCertificateInfo	{
+#---   特定疾病療養受療証認定疾病区分
+							SpecificDiseasesDiseaseCategory	varchar(01);
+#---   特定疾病療養受療証交付年月日
+							SpecificDiseasesCertificateDate	varchar(08);
+#---   特定疾病療養受療証有効開始年月日
+							SpecificDiseasesValidStartDate	varchar(08);
+#---   特定疾病療養受療証有効終了年月日
+							SpecificDiseasesValidEndDate	varchar(08);
+#---   特定疾病療養受療証自己負担限度額
+							SpecificDiseasesSelfPay		varchar(06);
+						} [03];
+					};
+#---   特定健診情報閲覧同意フラグ
+					SpecificHealthCheckupsInfoConsFlg	varchar(01);
+#---   特定健診情報閲覧同意日時
+					SpecificHealthCheckupsInfoConsTime	varchar(14);
+#---   特定健診情報閲覧有効期限
+					SpecificHealthCheckupsInfoAvailableTime	varchar(14);
+#---   薬剤情報閲覧同意フラグ
+					PharmacistsInfoConsFlg			varchar(01);
+#---   薬剤情報閲覧同意日時
+					PharmacistsInfoConsTime			varchar(14);
+#---   薬剤情報閲覧有効期限
+					PharmacistsInfoAvailableTime	varchar(14);
+#---   任意の識別子(医療機関固有項目)
+					ArbitraryIdentifier			varchar(50);
+#---   照会番号
+					ReferenceNumber				varchar(50);
+				} [50] ;
+			};
+		};
+   	};
+};
+
+
+
+

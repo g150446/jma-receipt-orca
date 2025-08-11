@@ -1,0 +1,90 @@
+tbl_onshi_shika_sub {
+	HOSPNUM				number(2,0);
+	TBL_UUID			varchar(36);
+	PTID  				number(10,0);
+	SRYYM				varchar(6);
+	NYUGAIKBN			varchar(1);
+	SRYDD   			varchar(2);
+	SHOHO_HAKKOYMD			varchar(8);
+	RENNUM 				number(3,0);
+	RENNUM1				number(3,0);
+	SRYKASANCD			varchar(5);
+	SRYKASAN_NAME		varchar(64);
+	SURYO   			number(10,5);
+	TANINAME			varchar(12);
+	TERMID  			varchar(64);
+	OPID    			varchar(16);
+	CREYMD  			char(8);
+	CREHMS				char(6);
+	UPYMD    			char(8);
+	UPHMS				char(6);
+};
+primary	{
+	HOSPNUM,TBL_UUID,PTID,SRYYM,SRYDD,SHOHO_HAKKOYMD,RENNUM,RENNUM1;
+};
+
+path	key		{ 	
+	DBSELECT	{
+		DECLARE tbl_onshi_shika_sub_key_csr CURSOR FOR
+		SELECT *
+		FROM tbl_onshi_shika_sub
+			WHERE	HOSPNUM		=	:HOSPNUM
+			AND	TBL_UUID	=	:TBL_UUID
+			AND	PTID		=	:PTID
+			AND	SRYYM		=	:SRYYM
+			AND	SRYDD		=	:SRYDD
+			AND	SHOHO_HAKKOYMD	=	:SHOHO_HAKKOYMD
+			AND	RENNUM		=	:RENNUM
+			AND	RENNUM1		=	:RENNUM1
+		;
+	};
+};
+
+path	all 	{
+	DBSELECT	{
+		DECLARE tbl_onshi_shika_sub_all_csr CURSOR FOR
+		SELECT *
+		FROM tbl_onshi_shika_sub
+			WHERE   HOSPNUM    =   :HOSPNUM
+ 		;
+	};
+};
+
+path	key2	{ 	
+	DBSELECT	{
+		DECLARE tbl_onshi_shika_sub_key2_csr CURSOR FOR
+		SELECT *
+		FROM tbl_onshi_shika_sub
+			WHERE	HOSPNUM		=	:HOSPNUM
+			AND	TBL_UUID	=	:TBL_UUID
+			AND	PTID		=	:PTID
+			AND	SRYYM		=	:SRYYM
+			AND	SRYDD		=	:SRYDD
+			AND	RENNUM		=	:RENNUM
+		ORDER	BY	RENNUM1
+		;
+	};
+};
+
+path	del1 	{
+	DBDELETE	{
+		DELETE
+		FROM tbl_onshi_shika_sub
+			WHERE   HOSPNUM    	=   	:HOSPNUM
+			AND	TBL_UUID	=	:TBL_UUID
+			AND	PTID		=	:PTID
+			AND	SRYYM		=	:SRYYM
+		;
+	};
+};
+
+path	del2 	{
+	DBDELETE	{
+		DELETE
+		FROM tbl_onshi_shika_sub
+			WHERE   HOSPNUM    	=   	:HOSPNUM
+			AND	PTID		=	:PTID
+		;
+	};
+};
+

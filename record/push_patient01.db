@@ -1,0 +1,14 @@
+push_patient01	{
+	event				varchar(50);
+	body	{
+		Hospnum			varchar(2);
+		Patient_Mode		varchar(10);
+		Patient_ID		varchar(20);
+       	Old_Patient_ID		varchar(20);
+		Information_Date	varchar(10);
+		Information_Time	varchar(08);
+                Qualification_Class     varchar(03);
+                Qualification_Uuid      varchar(36);
+	};
+};
+

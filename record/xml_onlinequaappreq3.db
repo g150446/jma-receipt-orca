@@ -1,0 +1,257 @@
+xml_onlinequaappreq3 {
+	object                      object;
+	mode                    int;
+#---   診療情報用
+	data {
+		MessageHeader {
+#---   プロセス識別 (2024-12 訪問:2 オン診:3)
+			Process_Class				varchar(01);
+#---   処理実行日時(YYYYMMDDHHmmss)
+			ProcessExecutionTime		varchar(14);
+#---   資格確認日
+			QualificationConfirmationDate	varchar(08);
+#---   医療機関コード
+			MedicalInstitutionCode		varchar(10);
+#---   任意のファイル識別子(医療機関固有項目)
+			ArbitraryFileIdentifier		varchar(50);
+#---   受付番号
+			ReceptionNumber				varchar(38);
+#---   処理結果区分 1:正常終了 2:処理中 9:異常終了
+			SegmentOfResult				varchar(01);
+#---   エラーコード
+			ErrorCode					varchar(09);
+#---   エラーメッセージ
+			ErrorMessage				varchar(60);
+#---   総処理件数
+			NumberOfProcessingResult	varchar(04);
+#---   処理件数(正常)
+			NumberOfNormalProcessing	varchar(04);
+#---   処理件数(エラー)
+			NumberOfError				varchar(04);
+#---   文字コード識別
+			CharacterCodeIdentifier		varchar(01);
+		};
+#---   メッセージボディ部
+		MessageBody   {
+#---   資格確認照会用情報(2024-12 訪問のみ)
+			QualificationConfirmSearchInfo   {
+#---   同意年月日（自） (2024-12 訪問のみ)
+				ConsentDateFrom			varchar(08);
+#---   同意年月日（至） (2024-12 訪問のみ)
+				ConsentDateTo			varchar(08);
+#---   診療区分 (2024-12 訪問のみ)
+				MedicalTreatmentFlag	varchar(01);
+			};
+#---   処理結果状況(2024-12 訪問のみ)
+			ProcessingResultStatus		varchar(01);
+#---   処理結果コード(2024-12 訪問のみ)
+			ProcessingResultCode		varchar(09);
+#---   個人単位情報
+			BulkConfirmUnit   {
+#---   資格確認照会用情報
+				QualificationConfirmSearchInfo   {
+#---   保険者番号
+					InsurerNumber		varchar(08);
+#---   被保険者証記号
+					InsuredCardSymbol	varchar(80);
+#---   被保険者証番号
+					InsuredIdentificationNumber	varchar(80);
+#---   被保険者証枝番
+					InsuredBranchNumber	varchar(02);
+#---   生年月日
+					Birthdate			varchar(08);
+#---   限度額適用認定証関連情報
+					LimitApplicationCertificateRelatedinfo	{
+#---   限度額適用認定証区分
+						LimitApplicationCertificateClassification	varchar(02);
+#---   限度額適用認定証適用区分
+						LimitApplicationCertificateRelatedConsFlg	varchar(03);
+					};
+#---   任意の識別子(医療機関固有項目)
+					ArbitraryIdentifier	varchar(50);
+				};
+#---   処理結果状況
+				ProcessingResultStatus		varchar(01);
+#---   処理結果コード
+				ProcessingResultCode		varchar(09);
+#---   処理結果メッセージ
+				ProcessingResultMessage		varchar(60);
+#---   資格有効性
+				QualificationValidity		varchar(01);
+#---   資格情報提供同意フラグ (2024-12 訪問のみ)
+				QualificationConsFlg		varchar(01);
+#---   資格情報提供同意日時 (2024-12 訪問のみ)
+				QualificationConsTime		varchar(14);
+#---   資格情報提供有効期限 (2024-12 訪問のみ)
+				QualificationAvailableTime	varchar(14);
+#---   資格情報提供同意有効期限切れ理由 (2024-12 訪問のみ)
+				QualificationConsExpiredReason	varchar(01);
+#---   資格確認結果リスト (2024-12 訪問のみ)
+				ResultList	{
+#---   資格確認結果
+					ResultOfQualificationConfirmation	{
+#---   被保険者証区分
+						InsuredCardClassification	varchar(02);
+#---   保険者番号
+						InsurerNumber				varchar(08);
+#---   被保険者証記号
+						InsuredCardSymbol			varchar(80);
+#---   被保険者証番号	
+						InsuredIdentificationNumber	varchar(80);
+#---   被保険者証枝番
+						InsuredBranchNumber			varchar(02);
+#---   本人・家族の別
+						PersonalFamilyClassification	varchar(01);
+#---   被保険者氏名(世帯主氏名)
+						InsuredName					varchar(100);
+#---   氏名
+						Name						varchar(100);
+#---   氏名(その他)
+						NameOfOther					varchar(100);
+#---   氏名カナ
+						NameKana					varchar(100);
+#---   氏名カナ(その他)
+						NameOfOtherKana				varchar(100);
+#---   性別1
+						Sex1						varchar(01);
+#---   性別2
+						Sex2						varchar(01);
+#---   生年月日
+						Birthdate					varchar(08);
+#---   住所
+						Address						varchar(250);
+#---   郵便番号	
+						PostNumber					varchar(08);
+#---   資格取得年月日
+						QualificationDate			varchar(08);
+#---   資格喪失年月日
+						DisqualificationDate		varchar(08);
+#---   被保険者証交付年月日
+						InsuredCertificateIssuanceDate	varchar(08);
+#---   被保険者証有効開始年月日
+						InsuredCardValidDate		varchar(08);
+#---   被保険者証有効終了年月日
+						InsuredCardExpirationDate	varchar(08);
+#---   被保険者証一部負担金割合
+						InsuredPartialContributionRatio	varchar(03);
+#---   未就学区分
+						PreschoolClassification		varchar(01);
+#---   資格喪失事由
+						ReasonOfLoss				varchar(02);
+#---   保険者名称
+						InsurerName					varchar(200);
+#---   高齢受給者証情報
+						ElderlyRecipientCertificateInfo	{
+#---   高齢受給者証交付年月日
+							ElderlyRecipientCertificateDate		varchar(08);
+#---   高齢受給者証有効開始年月日
+							ElderlyRecipientValidStartDate		varchar(08);
+#---   高齢受給者証有効終了年月日
+							ElderlyRecipientValidEndDate		varchar(08);
+#---   高齢受給者証一部負担金割合
+							ElderlyRecipientContributionRatio	varchar(03);
+						};
+#---   限度額適用認定証情報変更有無
+						LimitApplicationCertificateChanged		varchar(01);
+#---   限度額適用認定証提供同意フラグ (2024-12 訪問のみ)
+						LimitApplicationCertificateRelatedConsFlg	varchar(01);
+#---   限度額適用認定証提供同意日時 (2024-12 訪問のみ)
+						LimitApplicationCertificateRelatedConsTime	varchar(14);
+#---   限度額適用認定証提供有効期限 (2024-12 訪問のみ)
+						LimitApplicationCertificateRelatedAvailableTime	varchar(14);
+#---   限度額適用認定証関連情報 (2024-12 訪問のみ)
+						LimitApplicationCertificateRelatedInfo	{
+#---   限度額適用認定証区分 (2024-12 訪問のみ)
+							LimitApplicationCertificateClassification	varchar(02);
+#---   限度額適用認定証適用区分 (2024-12 訪問のみ)
+							LimitApplicationCertificateClassificationFlag	varchar(03);
+#---   限度額適用認定証交付年月日 (2024-12 訪問のみ)
+							LimitApplicationCertificateDate	varchar(08);
+#---   限度額適用認定証有効開始年月日 (2024-12 訪問のみ)
+							LimitApplicationCertificateValidStartDate	varchar(08);
+#---   限度額適用認定証有効終了年月日 (2024-12 訪問のみ)
+							LimitApplicationCertificateValidEndDate	varchar(08);
+#---   限度額適用認定証長期入院該当年月日 (2024-12 訪問のみ)
+							LimitApplicationCertificateLongTermDate	varchar(08);
+						};
+#---   特定疾病療養受療証提供同意フラグ (2024-12 訪問のみ)
+						SpecificDiseasesCertificateRelatedConsFlg	varchar(01);
+#---   特定疾病療養受療証提供同意日時 (2024-12 訪問のみ)
+						SpecificDiseasesCertificateRelatedConsTime	varchar(14);
+#---   特定疾病療養受療証提供有効期限 (2024-12 訪問のみ)
+						SpecificDiseasesCertificateRelatedAvailableTime	varchar(14);
+#---   特定疾病療養受療証提供同意有効期限切れ理由 (2024-12 訪問のみ)
+						SpecificDiseasesCertificateRelatedConsExpiredReason	varchar(01);
+#---   特定疾病療養受療証情報リスト (2024-12 訪問のみ)
+						SpecificDiseasesCertificateList	{
+#---   特定疾病療養受療証情報 (2024-12 訪問のみ)
+							SpecificDiseasesCertificateInfo	{
+#---   特定疾病療養受療証認定疾病区分 (2024-12 訪問のみ)
+								SpecificDiseasesDiseaseCategory	varchar(01);
+#---   特定疾病療養受療証交付年月日 (2024-12 訪問のみ)
+								SpecificDiseasesCertificateDate	varchar(08);
+#---   特定疾病療養受療証有効開始年月日 (2024-12 訪問のみ)
+								SpecificDiseasesValidStartDate	varchar(08);
+#---   特定疾病療養受療証有効終了年月日 (2024-12 訪問のみ)
+								SpecificDiseasesValidEndDate	varchar(08);
+#---   特定疾病療養受療証自己負担限度額 (2024-12 訪問のみ)
+								SpecificDiseasesSelfPay	varchar(06);
+							} [03];
+						};
+#---   医療扶助資格確認結果リスト (2024-12 訪問のみ)
+						PublicExpenseResultList	{
+#---   医療券・調剤券情報 (2024-12 訪問のみ)
+							MedicalTicketInfo	{
+#---   交付番号 (2024-12 訪問のみ)
+								IssueNumber	varchar(30);
+#---   診療年月 (2024-12 訪問のみ)
+								MedicalTreatmentMonth	varchar(06);
+#---   医療券・調剤券別(01 :医療券 02 :調剤券)
+								TicketType				varchar(02);
+#---   診療別(01: 入院 02:入院外　これ以外は捨て(03:歯科 etc))
+								MedicalTreatmentType	varchar(02);
+							} [04];
+						};
+#---   特定健診情報閲覧同意フラグ (2024-12 訪問のみ)
+						SpecificHealthCheckupsInfoConsFlg	varchar(01);
+#---   特定健診情報閲覧同意日時 (2024-12 訪問のみ)
+						SpecificHealthCheckupsInfoConsTime	varchar(14);
+#---   特定健診情報閲覧有効期限 (2024-12 訪問のみ)
+						SpecificHealthCheckupsInfoAvailableTime	varchar(14);
+#---   特定健診情報閲覧同意有効期限切れ理由 (2024-12 訪問のみ)
+						SpecificHealthCheckupsInfoConsExpiredReason	varchar(01);
+#---   薬剤情報閲覧同意フラグ (2024-12 訪問のみ)
+						PharmacistsInfoConsFlg	varchar(01);
+#---   薬剤情報閲覧同意日時 (2024-12 訪問のみ)
+						PharmacistsInfoConsTime	varchar(14);
+#---   薬剤情報閲覧有効期限 (2024-12 訪問のみ)
+						PharmacistsInfoAvailableTime	varchar(14);
+#---   薬剤情報閲覧同意有効期限切れ理由 (2024-12 訪問のみ)
+						PharmacistsInfoConsExpiredReason	varchar(01);
+#---   診療情報閲覧同意フラグ (2024-12 訪問のみ)
+						DiagnosisInfoConsFlg	varchar(01);
+#---   診療情報閲覧同意日時 (2024-12 訪問のみ)
+						DiagnosisInfoConsTime	varchar(14);
+#---   診療情報閲覧有効期限 (2024-12 訪問のみ)
+						DiagnosisInfoAvailableTime	varchar(14);
+#---   診療情報閲覧同意有効期限切れ理由 (2024-12 訪問のみ)
+						DiagnosisInfoConsExpiredReason	varchar(01);
+#---   手術情報閲覧同意フラグ (2024-12 訪問のみ)
+						OperationInfoConsFlg	varchar(01);
+#---   手術情報閲覧同意日時 (2024-12 訪問のみ)
+						OperationInfoConsTime	varchar(14);
+#---   手術情報閲覧有効期限 (2024-12 訪問のみ)
+						OperationInfoAvailableTime	varchar(14);
+#---   手術情報閲覧同意有効期限切れ理由 (2024-12 訪問のみ)
+						OperationInfoConsExpiredReason	varchar(01);
+#---   オン資登録（更新）日時 (2024-12 訪問のみ)
+						OnsRegistrationTime	varchar(14);
+					} [02] ;
+				};
+#---   照会番号
+				ReferenceNumber				varchar(50);
+			};
+		};
+	};
+};
+

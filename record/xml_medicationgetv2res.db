@@ -1,0 +1,46 @@
+xml_medicationgetv2res {
+	context	        int;
+	object		object;
+	mode		int;
+	recordname	varchar(128);
+	medicationgetres {
+        Information_Date			varchar(10);
+        Information_Time			varchar(8);
+        Api_Result			    	varchar(3);
+        Api_Result_Message			varchar(100);
+        Reskey			    		varchar(100);
+		Request_Code			varchar(20);
+    	Base_Date				varchar(10);
+    	Medication_Information {
+#----       診療コード
+			Medication_Code				varchar(9);
+			Medication_Name				varchar(200);
+			Medication_Name_inKana		varchar(200);
+#----       単位
+    		Unit_Code				varchar(3);
+    		Unit_Name				varchar(24);
+	    	StartDate				varchar(10);
+	    	EndDate					varchar(10);
+		};
+#----  選択式コメントリスト
+    	Selection_Expression_Information {
+#----       コメントコード
+			Comment_Code				varchar(9);
+			Comment_Name				varchar(200);
+#----       項番
+			Item_Number				varchar(4);
+#----       枝番
+			Item_Number_Branch		varchar(2);
+#----       区分
+			Category				varchar(64);
+#----       条件区分
+			Condition_Category			varchar(2);
+#----       非算定理由コメント
+			Not_Use_Comment			varchar(1);
+#----       処理区分
+			Process_Category			varchar(1);
+#----       診療行為名称等
+			Selection_Grep_Name			varchar(300);
+		}[200];
+   	};
+};

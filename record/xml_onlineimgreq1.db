@@ -1,0 +1,14 @@
+#このリクエストは、保険証OCR画像転送用の日レセAPI
+xml_onlineimgreq1	{
+	context		int;
+	object		object;
+	mode		int;
+	recordname	varchar(128);
+	onlineimgreq1 {
+		Hknocr_FileName		varchar(100);
+	    Information_Date	varchar(10);
+       	Information_Time	varchar(8);
+		Image_file_status	varchar(1);
+		Image_Data		varchar(500000);
+   	};
+};

@@ -1,0 +1,60 @@
+xml_onlinespecgetv2res	{
+    context	        int;
+    object		object;
+    mode		int;
+    recordname		varchar(128);
+    onlinespecgetres {
+	Information_Date			varchar(10);
+	Information_Time			varchar(8);
+	Api_Result				varchar(3);
+	Api_Result_Message			varchar(100);
+	Reskey					varchar(100);
+#---    患者情報
+	Patient_Information {
+		Patient_ID			varchar(20);
+        	WholeName			varchar(100);
+        	WholeName_inKana		varchar(100);
+        	BirthDate			varchar(10);
+        	Sex				varchar(1);
+		};
+#---    実施年月日
+    	Req_EffectiveTime		varchar(10);
+#---    資格薬剤登録年月情報
+	EffectiveTime_Information {
+    		EffectiveTime		varchar(10);
+		}[50];
+#-
+#---    資格確認情報
+	QuaInf   {
+#---   保険者番号
+		InsNum			varchar(08);
+#---   被保険者証記号
+		InsCdSym		varchar(80);
+#---   被保険者証番号
+		InsCdNum		varchar(80);
+#---   被保険者証枝番
+		BrancNum		varchar(02);
+		};
+#---   特定健診情報
+	SpecificHealthCheckupInfo	{
+#---   実施年月日
+		EffectiveTime		varchar(10);
+		HealthCheckupResultAndQuestionInfos    {
+#---   健診結果・質問票情報
+		HealthCheckupResultAndQuestionInfo	{
+#---   項目コード
+			ItemCode	varchar(17);
+#---   項目名
+			ItemName	varchar(80);
+#---   データ型
+			DataType	varchar(02);
+#---   データ値
+			DataValue	varchar(256);
+#---   単位
+			Unit		varchar(26);
+			}[200] ;
+		};
+	}[10] ;
+   };
+};
+

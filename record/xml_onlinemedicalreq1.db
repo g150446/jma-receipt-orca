@@ -1,0 +1,77 @@
+xml_onlinemedicalreq1 {
+    object			object;
+	mode 			int;
+#---   診療情報用
+	data {
+ 		MessageHeader {
+#---   要求保険者番号
+                ReqInsurerNumber  varchar(08);
+#---   要求被保険者証記号
+                ReqInsuranceCardSymbol  varchar(80);
+#---   要求被保険者証番号
+                ReqInsuredPersonIdentificationNumber    varchar(80);
+#---   要求枝番
+                ReqBranchNumber         varchar(02);
+
+#---   要求任意のファイル識別子(医療機関固有項目)
+		ReqArbitraryFileIdentifier	varchar(50);
+#---   要求結果コード
+		ResultCode			varchar(01);
+		};
+ 		MessageBody	{
+#---   診療年月別情報
+                        MeTrMonthInf    {
+#---   診療年月
+			MeTrMonth		varchar(06);
+#---   入外等の別
+                                InOut           varchar(01);
+#---   診療機関毎連番
+                                GrpNum1         varchar(03);
+#---   診療機関区分
+                                DiOrg           varchar(01);
+#---   処方機関毎連番
+                                GrpNum2         varchar(03);
+#---   処方箋発行機関区分
+                                PrIsOrg         varchar(01);
+#---   医療機関・薬局コード(2022/7 追加)
+                                MeTrDiHCd       varchar(10);
+#---   医療機関・薬局名(2022/7 追加)
+                                MeTrDiHNm       varchar(80);
+#---   処方箋発行医療機関コード(2022/7 追加)
+                                PrlsHCd         varchar(10);
+#---   処方箋発行医療機関名(2022/7 追加)
+                                PrlsHNm         varchar(80);
+#---   診療日別情報群
+                        DiDateInfs      {
+#---   診療日別情報(配列 31)
+ 		DiDateInf	{
+#---   診療日
+			DiDate			varchar(08);
+#---   処方箋発行日
+                                                PrDate          varchar(08);
+#---   診療情報群
+                                                MeTrInfs        {
+#---   診療情報(配列 200)
+                                                        MeTrInf {
+#---   診療識別等区分
+                                                                MeTrIdCl        varchar(02);
+#---   診療行為コード
+                                                                SinInfCd        varchar(09);
+#---   診療行為名
+                                                                SinInfN         varchar(64);
+#---   単位
+                                                                Unit            varchar(12);
+#---   使用量
+                                                                Qua1            varchar(11);
+#---   数量2
+                                                                Qua2            varchar(08);
+#---   回数
+                                                                Times           varchar(03);
+				}[200];
+				};
+				};
+			};
+		};
+	};
+	};
+};

@@ -1,0 +1,72 @@
+xml_onlinemedgetv2res2	{
+    object		object;
+    mode		int;
+    data {
+	Information_Date			varchar(10);
+	Information_Time			varchar(8);
+	Api_Result			    	varchar(3);
+	Api_Result_Message			varchar(100);
+#---    患者情報
+	Patient_Information {
+		Patient_ID			varchar(20);
+        	WholeName			varchar(100);
+        	WholeName_inKana		varchar(100);
+        	BirthDate			varchar(10);
+        	Sex				varchar(1);
+		};
+#---    資格確認情報
+	QuaInf   {
+#---   保険者番号
+		InsNum			varchar(08);
+#---   被保険者証記号
+		InsCdSym		varchar(80);
+#---   被保険者証番号
+		InsCdNum		varchar(80);
+#---   被保険者証枝番
+		BrancNum		varchar(02);
+		};
+	MeTrMonthInf    {
+#---   入外等の別
+		InOut		varchar(01);
+#---   医療機関・薬局コード
+		MeTrDiHCd	varchar(10);
+#---   医療機関・薬局名
+		MeTrDiHNm	varchar(80);
+#---   処方箋発行医療機関コード
+		PrlsHCd		varchar(10);
+#---   処方箋発行医療機関名
+		PrlsHNm		varchar(80);
+#---   診療日別情報群
+  		DiDateInfs 	{
+#---   診療日別情報
+  		DiDateInf 	{
+#---   診療日
+			DiDate		varchar(10);
+#---   処方箋発行日
+			PrDate		varchar(10);
+#---   診療情報群
+  			MeTrInfs	{
+#---   診療情報
+				MeTrInf	{
+#---   診療識別等区分
+						MeTrIdCl	varchar(02);
+#---   診療行為コード
+						SinInfCd	varchar(09);
+#---   診療行為名
+						SinInfN		varchar(64);
+#---   単位
+						Unit		varchar(12);
+#---   使用量
+						Qua1		varchar(11);
+#---   数量2
+						Qua2		varchar(11);
+#---   回数
+						Times		varchar(03);
+						}[200];
+  					};
+				};
+			};
+		};
+   	};
+};
+

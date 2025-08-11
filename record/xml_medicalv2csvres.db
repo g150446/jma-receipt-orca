@@ -1,0 +1,66 @@
+xml_medicalv2csvres {
+    context         int;
+    object  object;
+	mode	int;
+	recordname	varchar(128);
+	medicalcsvres {
+        Information_Date			varchar(10);
+        Information_Time			varchar(8);
+        Api_Result				varchar(2);
+        Api_Result_Message			varchar(100);
+        Reskey					varchar(100);
+        Perform_Date				varchar(10);
+        Perform_Time				varchar(8);
+        Department_Code				varchar(2);
+        Department_Name				varchar(80);
+        Physician_Code				varchar(5);
+        Physician_WholeName			varchar(80);
+    	Patient_Information {
+		Patient_ID			varchar(20);
+        	WholeName			varchar(100);
+        	WholeName_inKana		varchar(100);
+        	BirthDate			varchar(10);
+        	Sex				varchar(1);
+			HealthInsurance_Information  {
+			Insurance_Combination_Number		varchar(04);
+			InsuranceProvider_Class			varchar(03);
+            	InsuranceProvider_Number		varchar(08);
+            	InsuranceProvider_WholeName		varchar(20);
+            	HealthInsuredPerson_Symbol		varchar(80);
+            	HealthInsuredPerson_Number		varchar(80);
+#-----> 枝番
+            	HealthInsuredPerson_Branch_Number	varchar(2);
+            	HealthInsuredPerson_Continuation	varchar(01);
+            	HealthInsuredPerson_Assistance		varchar(01);
+            	RelationToInsuredPerson			varchar(01);
+            	HealthInsuredPerson_WholeName		varchar(100);
+            	Certificate_StartDate			varchar(10);
+            	Certificate_ExpiredDate			varchar(10);
+            	PublicInsurance_Information   {
+                	PublicInsurance_Class		varchar(03);
+                	PublicInsurance_Name		varchar(20);
+                	PublicInsurer_Number		varchar(08);
+                	PublicInsuredPerson_Number	varchar(20);
+					Rate_Admission			varchar(04);
+					Money_Admission			varchar(06);
+					Rate_Outpatient			varchar(04);
+					Money_Outpatient		varchar(06);
+                	Certificate_IssuedDate		varchar(10);
+                	Certificate_ExpiredDate		varchar(10);
+            	} [4];
+        	};
+    	};
+		Medical_Message_Information {
+		     Medical_Result				varchar(4);
+       		 Medical_Result_Message1		varchar(100);
+       		 Medical_Result_Message2		varchar(100);
+    	};
+		Prescription_Information { 
+  		      Prescription_Csv			varchar(250000);
+  		      Prescription_Csv2			varchar(250000);
+  		      Prescription_Csv3			varchar(250000);
+  		      Prescription_Csv4			varchar(250000);
+  		      Prescription_Csv5			varchar(250000);
+    	};
+   	};
+};

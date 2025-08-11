@@ -1,0 +1,82 @@
+xml_onlinequaappres1	{
+	context		int;
+	object		object;
+	mode		int;
+	recordname	varchar(128);
+	onlinequaappres1	{
+		Information_Date		varchar(10);
+		Information_Time		varchar(8);
+		Api_Result				varchar(3);
+		Api_Result_Message		varchar(100);
+#---   プロセス識別(V001 (同意一括))
+		Process_Class			varchar(05);
+#---   一括同意取得用エリア
+		Vconsent_Bulk	{
+			MessageHeader	{
+#---   医療機関コード
+				MedicalInstitutionCode			varchar(10);
+#---   任意のファイル識別子(医療機関固有項目)
+				ArbitraryFileIdentifier			varchar(50);
+			};
+#---   メッセージボディ部
+			MessageBody	{
+#---    資格確認照会用情報
+				QualificationConfirmSearchInfo {
+#---    同意年月日（自）
+					ConsentDateFrom		varchar(10);
+#---    同意年月日（至）
+					ConsentDateTo		varchar(10);
+#---    診療区分
+					MedicalTreatmentFlag	varchar(01);
+				};
+			};
+		};
+#---    未実施一覧
+		Bulk_Information	{
+#---    予約日
+		Appointment_Date		varchar(10);
+#---    受付番号
+			ReceptionNumber		varchar(38);
+#---   プロセスクラス
+		Process_Class			varchar(05);
+		} [10];
+#---   一括照会継続フラグ(Yes No)
+		Qualification_Continue	varchar(03);
+#---   最終予約番号(受け取った最後の予約カウント)
+		Last_AppointmentNumber	varchar(10);
+#---   一括資格確認
+		MessageHeader	{
+#---   資格確認日
+			QualificationConfirmationDate	varchar(12);
+#---   医療機関コード
+			MedicalInstitutionCode			varchar(10);
+#---   任意のファイル識別子(医療機関固有項目)
+			ArbitraryFileIdentifier			varchar(50);
+		};
+#---   メッセージボディ部
+		MessageBody	{
+#---   一括資格確認情報
+			QualificationConfirmSearchInfo   {
+#---   保険者番号
+				InsurerNumber				varchar(08);
+#---   被保険者証記号
+				InsuredCardSymbol			varchar(80);
+#---   被保険者証番号
+				InsuredIdentificationNumber	varchar(80);
+#---   被保険者証枝番
+				InsuredBranchNumber			varchar(02);
+#---   生年月日
+				Birthdate					varchar(10);
+#---   限度額適用認定証関連情報
+				LimitApplicationCertificateRelatedinfo	{
+#---   限度額適用認定証区分
+					LimitApplicationCertificateClassification	varchar(02);
+#---   限度額適用認定証適用区分
+					LimitApplicationCertificateRelatedConsFlg	varchar(03);
+				};
+#---   任意の識別子(医療機関固有項目)
+				ArbitraryIdentifier		varchar(50);
+			} [300];
+		};
+	};
+};

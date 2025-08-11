@@ -1,0 +1,15 @@
+#
+# http protocol
+#
+#DBUPGRADEPATH=https://ftp.orca.med.or.jp/pub/orca_data
+#PGUPGRADEPATH=https://dl.orca.med.or.jp/bugfix/ubuntu/@ARCHITECTURE@/@DISTCODENAME@
+#MSTUPDATEPATH=https://ftp.orca.med.or.jp/pub/orca_data
+#DBLICENSEPATH=https://dl.orca.med.or.jp/orca_data
+
+#
+# file protocol
+#
+#DBUPGRADEPATH=file:///cdrom/pub/orca_data
+#PGUPGRADEPATH=file:///cdrom/pub/bugfix/ubuntu/@ARCHITECTURE@/@DISTCODENAME@
+#MSTUPDATEPATH=file:///cdrom/pub/orca_data
+#DBLICENSEPATH=file:///cdrom/pub/orca_data/license_master

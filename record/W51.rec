@@ -1,0 +1,167 @@
+W51 { #GtkWindow
+  title varchar(256);
+  popup_summary varchar(256);
+  popup_body varchar(256);
+  popup_icon varchar(256);
+  popup_timeout int;
+  fixed1 { #GtkFixed
+    B01 { #GtkButton
+      state int;
+    };
+    B02 { #GtkButton
+      state int;
+    };
+    B12 { #GtkButton
+      state int;
+    };
+    B11 { #GtkButton
+      state int;
+    };
+    B10 { #GtkButton
+      state int;
+    };
+    B09 { #GtkButton
+      state int;
+    };
+    B08 { #GtkButton
+      state int;
+    };
+    B07 { #GtkButton
+      state int;
+    };
+    B06 { #GtkButton
+      state int;
+    };
+    B05 { #GtkButton
+      state int;
+    };
+    B04 { #GtkButton
+      state int;
+    };
+    B03 { #GtkButton
+      state int;
+    };
+    DENSHISHOHO_TITLE {
+      visible bool;
+    };
+    ONSHIKAKU_COMB { #GtkPandaCombo
+      count int;
+      item varchar(62)[5];
+      ONSHIKAKU { #GtkPandaEntry
+        textdata varchar(62);
+      };
+    };
+    POP_TIME { #GtkNumberEntry
+      numdata number(3);
+    };
+    POP_COND_TIME { #GtkNumberEntry
+      numdata number(3);
+    };
+    POP_KGMN_TIME { #GtkNumberEntry
+      numdata number(3);
+    };
+    ONSHIYAKUZAI_COMB { #GtkPandaCombo
+      count int;
+      item varchar(62)[5];
+      ONSHIYAKUZAI { #GtkPandaEntry
+        textdata varchar(62);
+      };
+    };
+    ONSHIKENSIN_COMB { #GtkPandaCombo
+      count int;
+      item varchar(62)[5];
+      ONSHIKENSIN { #GtkPandaEntry
+        textdata varchar(62);
+      };
+    };
+    ONSHISINRYO_COMB { #GtkPandaCombo
+      count int;
+      item varchar(62)[5];
+      ONSHISINRYO { #GtkPandaEntry
+        textdata varchar(62);
+      };
+    };
+    ONSHIYKZSINRYO_COMB { #GtkPandaCombo
+      count int;
+      item varchar(62)[5];
+      ONSHIYKZSINRYO { #GtkPandaEntry
+        textdata varchar(62);
+      };
+    };
+    DENSHISHOHO_COMB { #GtkPandaCombo
+      visible bool;
+      count int;
+      item varchar(62)[5];
+      DENSHISHOHO { #GtkPandaEntry
+        textdata varchar(62);
+      };
+    };
+    YOHOCHGKBN_TITLE { #GtkLabel
+       visible bool;
+    };
+    YOHOCHGKBN_COMB { #GtkPandaCombo
+      visible bool;
+      count int;
+      item varchar(32)[5];
+      YOHOCHGKBN { #GtkPandaEntry
+        textdata varchar(32);
+      };
+    };
+    YOUHOUNAME_TITLE { #GtkLabel
+       visible bool;
+    };
+    YOUHOUNAME_COMB { #GtkPandaCombo
+      visible bool;
+      count int;
+      item varchar(32)[5];
+      YOUHOUNAME { #GtkPandaEntry
+        textdata varchar(32);
+      };
+    };
+    CSVFILEDIR_TITLE1 { #GtkLabel
+       visible bool;
+    };
+    CSVFILEDIR_TITLE2 { #GtkLabel 
+       visible bool;
+    };
+    CSVFILEDIR_TITLE3 { #GtkLabel
+       visible bool;
+    };
+    CSVFILEDIR { #GtkPandaEntry
+       visible bool;
+      textdata varchar(200);
+    };
+    HOUMON_COMB { #GtkPandaCombo
+      count int;
+      item varchar(62)[2];
+      HOUMON { #GtkPandaEntry
+        textdata varchar(62);
+      };
+    };
+    ONLINE_COMB { #GtkPandaCombo
+      count int;
+      item varchar(62)[2];
+      ONLINE { #GtkPandaEntry
+        textdata varchar(62);
+      };
+    };
+    KOFUTNK_COMB { #GtkPandaCombo
+      count int;
+      item varchar(62)[2];
+      KOFUTNK { #GtkPandaEntry
+        textdata varchar(62);
+      };
+    };
+    FUJYO_COMB { #GtkPandaCombo
+      count int;
+      item varchar(62)[2];
+      FUJYO { #GtkPandaEntry
+        textdata varchar(62);
+      };
+    };
+    HOSPCDF { #GtkPandaEntry
+      textdata varchar(10);
+    };
+
+  };
+};

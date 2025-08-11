@@ -1,0 +1,164 @@
+tbl_onshi_yakuzai_main {
+	HOSPNUM				number(2,0);
+	TBL_UUID			varchar(36);
+	PTID  				number(10,0);
+	SRYYM				varchar(6);
+	NYUGAIKBN			varchar(1);
+	HKNJANUM			varchar(8);
+	KIGO				varchar(80);
+	NUM				varchar(80);
+	EDABAN				varchar(02);
+	HOSPCD  			varchar(10);
+	HOSPNAME			varchar(80);
+	CHOZAICD  			varchar(10);
+	CHOZAINAME			varchar(80);
+	CHOZAI_SEQNUM		number(3,0);
+	CHOZAI_KBN			varchar(1);
+	SHOHO_SEQNUM		number(3,0);
+	SHOHO_KBN			varchar(1);
+	SRYDD_1				varchar(2);
+	SRYDD_2				varchar(2);
+	SRYDD_3				varchar(2);
+	SRYDD_4				varchar(2);
+	SRYDD_5				varchar(2);
+	SRYDD_6				varchar(2);
+	SRYDD_7				varchar(2);
+	SRYDD_8				varchar(2);
+	SRYDD_9				varchar(2);
+	SRYDD_10			varchar(2);
+	SRYDD_11			varchar(2);
+	SRYDD_12			varchar(2);
+	SRYDD_13			varchar(2);
+	SRYDD_14			varchar(2);
+	SRYDD_15			varchar(2);
+	SRYDD_16			varchar(2);
+	SRYDD_17			varchar(2);
+	SRYDD_18			varchar(2);
+	SRYDD_19			varchar(2);
+	SRYDD_20			varchar(2);
+	SRYDD_21			varchar(2);
+	SRYDD_22			varchar(2);
+	SRYDD_23			varchar(2);
+	SRYDD_24			varchar(2);
+	SRYDD_25			varchar(2);
+	SRYDD_26			varchar(2);
+	SRYDD_27			varchar(2);
+	SRYDD_28			varchar(2);
+	SRYDD_29			varchar(2);
+	SRYDD_30			varchar(2);
+	SRYDD_31			varchar(2);
+	TERMID  			varchar(64);
+	OPID    			varchar(16);
+	CREYMD  			char(8);
+	CREHMS				char(6);
+	UPYMD    			char(8);
+	UPHMS				char(6);
+};
+primary	{
+	HOSPNUM,TBL_UUID,PTID,SRYYM;
+};
+
+path	key		{ 	
+	DBSELECT	{
+		DECLARE tbl_onshi_yakuzai_main_key_csr CURSOR FOR
+		SELECT *
+		FROM tbl_onshi_yakuzai_main
+			WHERE	HOSPNUM		=	:HOSPNUM
+			AND	TBL_UUID	=	:TBL_UUID
+			AND	PTID		=	:PTID
+			AND	SRYYM		=	:SRYYM
+		;
+	};
+};
+
+path	all 	{
+	DBSELECT	{
+		DECLARE tbl_onshi_yakuzai_main_all_csr CURSOR FOR
+		SELECT *
+		FROM tbl_onshi_yakuzai_main
+			WHERE   HOSPNUM    =   :HOSPNUM
+ 		;
+	};
+};
+
+path	key2	{ 	
+	DBSELECT	{
+		DECLARE tbl_onshi_yakuzai_main_key2_csr CURSOR FOR
+		SELECT *
+		FROM tbl_onshi_yakuzai_main
+			WHERE	HOSPNUM	=	:HOSPNUM
+			AND	PTID	=	:PTID
+		ORDER	BY	SRYYM DESC
+		;
+	};
+};
+
+path	key3	{ 	
+	DBSELECT	{
+		DECLARE tbl_onshi_yakuzai_main_key3_csr CURSOR FOR
+		SELECT *
+		FROM tbl_onshi_yakuzai_main
+			WHERE	HOSPNUM	=	:HOSPNUM
+			AND	PTID	=	:PTID
+			AND	SRYYM	=	:SRYYM
+		ORDER	BY	NYUGAIKBN,
+				CHOZAI_SEQNUM,
+				SHOHO_SEQNUM
+		;
+	};
+};
+
+path	key4	{ 	
+	DBSELECT	{
+		DECLARE tbl_onshi_yakuzai_main_key4_csr CURSOR FOR
+		SELECT *
+		FROM tbl_onshi_yakuzai_main
+			WHERE	HOSPNUM	=	:HOSPNUM
+			AND	PTID	=	:PTID
+			AND	SRYYM	<=	:SRYYM
+		ORDER	BY	SRYYM   DESC,
+				NYUGAIKBN,
+				CHOZAI_SEQNUM,
+				SHOHO_SEQNUM
+		;
+	};
+};
+
+path	key5	{ 	
+	DBSELECT	{
+		DECLARE tbl_onshi_yakuzai_main_key5_csr CURSOR FOR
+		SELECT *
+		FROM tbl_onshi_yakuzai_main
+			WHERE	HOSPNUM	=	:HOSPNUM
+			AND	PTID	=	:PTID
+			AND	SRYYM	=	:SRYYM
+			AND	NYUGAIKBN	=	:NYUGAIKBN
+		ORDER	BY
+				CHOZAI_SEQNUM,
+				SHOHO_SEQNUM
+		;
+	};
+};
+
+path	del1 	{
+	DBDELETE	{
+		DELETE
+		FROM tbl_onshi_yakuzai_main
+			WHERE   HOSPNUM    	=   	:HOSPNUM
+			AND	PTID		=	:PTID
+			AND	SRYYM		=	:SRYYM
+		;
+	};
+};
+
+path	del2 	{
+	DBDELETE	{
+		DELETE
+		FROM tbl_onshi_yakuzai_main
+			WHERE   HOSPNUM    	=   	:HOSPNUM
+			AND	PTID		=	:PTID
+		;
+	};
+};
+
+

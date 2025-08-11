@@ -1,0 +1,77 @@
+tbl_onshi_kenshin_main {
+	HOSPNUM				number(2,0);
+	PTID				number(10,0);
+	JISSHIYMD			varchar(8);
+	HKNJANUM			varchar(8);
+	KIGO     			varchar(80);
+	NUM     			varchar(80);
+	EDABAN    			varchar(2);
+	TERMID   			varchar(64);
+	OPID     			varchar(16);
+	CREYMD   			char(8);
+	CREHMS				char(6);
+	UPYMD    			char(8);
+	UPHMS				char(6);
+};
+
+primary	{
+	HOSPNUM,PTID,JISSHIYMD;
+};
+
+path	key 	{
+	DBSELECT	{
+		DECLARE tbl_onshi_kenshin_main_key_csr CURSOR FOR
+		SELECT *
+		FROM tbl_onshi_kenshin_main
+			WHERE   HOSPNUM	=   :HOSPNUM
+			AND   PTID	=   :PTID
+			AND   JISSHIYMD	=   :JISSHIYMD
+		;
+	};
+};
+
+path	key2 	{
+	DBSELECT	{
+		DECLARE tbl_onshi_kenshin_main_key2_csr CURSOR FOR
+		SELECT *
+		FROM tbl_onshi_kenshin_main
+			WHERE   HOSPNUM	=   :HOSPNUM
+			AND   PTID	=   :PTID
+		ORDER	BY	JISSHIYMD DESC
+		;
+	};
+};
+
+path	key3 	{
+	DBSELECT	{
+		DECLARE tbl_onshi_kenshin_main_key3_csr CURSOR FOR
+		SELECT *
+		FROM tbl_onshi_kenshin_main
+			WHERE   HOSPNUM	=   :HOSPNUM
+			AND   PTID	=   :PTID
+			AND   JISSHIYMD	<=  :JISSHIYMD
+		ORDER	BY	JISSHIYMD DESC
+		;
+	};
+};
+
+path	all 	{
+	DBSELECT	{
+		DECLARE tbl_onshi_kenshin_main_all_csr CURSOR FOR
+		SELECT *
+		FROM tbl_onshi_kenshin_main
+			WHERE   HOSPNUM    =   :HOSPNUM
+ 		;
+	};
+};
+
+path	del1 	{
+	DBDELETE	{
+		DELETE
+		FROM tbl_onshi_kenshin_main
+			WHERE   HOSPNUM    	=   	:HOSPNUM
+			AND	PTID		=	:PTID
+		;
+	};
+};
+

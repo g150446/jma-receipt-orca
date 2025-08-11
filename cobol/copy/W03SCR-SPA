@@ -1,0 +1,105 @@
+      *******************************************************************
+      * Project code name "ORCA"
+      * 日医標準レセプトソフト（JMA standard receipt software）
+      * Copyright(C) 2002 JMA (Japan Medical Association)
+      *
+      * This program is part of "JMA standard receipt software".
+      *
+      *     This program is distributed in the hope that it will be useful
+      * for further advancement in medical care, according to JMA Open
+      * Source License, but WITHOUT ANY WARRANTY.
+      *     Everyone is granted permission to use, copy, modify and
+      * redistribute this program, but only under the conditions described
+      * in the JMA Open Source License. You should have received a copy of
+      * this license along with this program. If not, stop using this
+      * program and contact JMA, 2-28-16 Honkomagome, Bunkyo-ku, Tokyo,
+      * 113-8621, Japan.
+      ********************************************************************
+      *    施設基準登録ＳＰＡ  (W03,W031)
+      ********************************************************************
+      *  コピー句修正履歴
+      * Maj/Min/Rev  修正者       日付      内容
+      *****************************************************************
+      *
+      *    画面用ＳＰＡ
+       01  SPA-W03.
+      *    検索画面共通
+           03  SPA-W25-KYOUTU          PIC X(30000).
+      *
+           03  SPA-W03-AREA.
+      *
+               05  SPA-W03-GMN-AREA.
+                   07  SPA-GMN-PAGE        PIC 9(04).
+                   07  SPA-GMN-LINE        PIC 9(02).
+                   07  SPA-GMN-MAX         PIC 9(04).
+                   07  SPA-GMN-PAGE-MAX    PIC 9(04).
+                   07  SPA-GMN-CUR         PIC 9(02).
+                   07  SPA-GMN-NEXT        PIC 9(01).
+      *
+                   07  SPA-GMN-AREA.
+                       09  SPA-GMN-STYUKYMD    PIC X(09).
+                       09  SPA-GMN-EDYUKYMD    PIC X(09).
+                       09  SPA-GMN-TBL.
+                           11  SPA-GMN-TBLO            OCCURS  25.
+                               13  SPA-GMN-TCD         PIC X(04).
+                               13  SPA-GMN-TNAME       PIC X(100).
+                               13  SPA-GMN-TSSTKIJUN   PIC 9(01).
+                               13  SPA-GMN-TKEIFLG     PIC 9(01).
+      *                        期間外
+                               13  SPA-GMN-TMEIFLG     PIC 9(01).
+                   07  SPA-GMN-SELCD                   PIC X(04).
+      *
+                   07  SPA-NAI-AREA.
+                       09  SPA-NAI-TBL.
+                           11  SPA-NAI-TBLO            OCCURS  8500.
+                               13  SPA-NAI-TSSTKIJUN   PIC 9(01).
+                               13  SPA-NAI-TKEIFLG     PIC 9(01).
+      *
+                               13  SPA-MAE-TSSTKIJUN   PIC 9(01).
+      *H28.1           施設基準名称有
+                       09  SPA-NAI-TBL2.
+                           11  SPA-NAI-TBL2            OCCURS  8500.
+                               13  SPA-NAI-MEIFLG      PIC 9(01).
+      *
+                       09  SPA-SYORIFLG                PIC 9(01).
+                       09  SPA-NAI-SELCD               PIC 9(04).
+      *
+               05  SPA-GMN-INPUT-AREA.
+                   07  SPA-GMN-SRYCD                   PIC X(09).
+                   07  SPA-GMN-MEISYO                  PIC X(100).
+                   07  SPA-GMN-YUKOKIKAN.
+                       09  SPA-GMN-YUKOSTYMD       PIC X(09).
+                       09  SPA-GMN-YUKOK1          PIC X(02).
+                       09  SPA-GMN-YUKOEDYMD       PIC X(09).
+                   07  SPA-NAI-YUKOKIKAN-G.
+                       09  SPA-NAI-YUKOSTYMD       PIC X(08).
+                       09  SPA-NAI-YUKOEDYMD       PIC X(08).
+                   07  SPA-GMN-SSTKIJUNCD-G.
+                       09  SPA-GMN-SSTKIJUNCD          PIC 9(04)
+                                                       OCCURS  10.
+                   07  SPA-KIJUN-MAX                   PIC 9(04).
+                   07  SPA-GMN-KIJUNTEIGENCD           PIC 9(04).
+      *
+                   07  SPA-NAI-KIJUNFLG                PIC 9(04).
+      *
+      *H28.1
+               05  SPA-HYOJI-FLG           PIC 9(01).
+      *
+      *2024/09
+           03  SPA-W031-AREA.
+               05  SPA-W031-CUR        PIC 9(02).
+               05  SPA-W031-SYORIKBN   PIC 9(01).
+      *
+               05  SPA-W031-NEN        PIC 9(04).
+               05  SPA-W031-GMN-NEN    PIC X(10).
+               05  SPA-W031-STYUKYMD.
+                   07  SPA-W031-SYY        PIC X(04).
+                   07  SPA-W031-SMMDD      PIC X(06).
+               05  SPA-W031-EDYUKYMD.
+                   07  SPA-W031-EYY        PIC X(04).
+                   07  SPA-W031-EMMDD      PIC X(06).
+               05  SPA-W031-RITU-G.
+                   07  SPA-W031-RITU       PIC 9(03)
+                                           OCCURS   12.
+      *
+               05  SPA-W031-KEIFLG         PIC 9(01).

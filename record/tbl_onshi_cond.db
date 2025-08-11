@@ -1,0 +1,97 @@
+tbl_onshi_cond {
+	HOSPNUM				number(2,0);
+	FAILURE_DATE			varchar(8);
+	FAILURE_TIME			varchar(8);
+	TERM_NO				number(2,0);
+	TERM_NAME			varchar(100);
+	ERR_CODE			varchar(9);
+	ERR_MSG 			varchar(120);
+	DLTFLG				number(1,0);
+	CREYMD   			char(8);
+	CREHMS				char(6);
+};
+
+primary	{
+	HOSPNUM,FAILURE_DATE,FAILURE_TIME;
+};
+
+path	key 	{
+	DBSELECT	{
+		DECLARE tbl_onshi_cond_key_csr CURSOR FOR
+		SELECT *
+		FROM tbl_onshi_cond
+			WHERE   HOSPNUM      =   :HOSPNUM
+			AND     FAILURE_DATE =   :FAILURE_DATE
+			AND     FAILURE_TIME =   :FAILURE_TIME
+		;
+	};
+
+	DBINSERT	{
+		INSERT INTO 	tbl_onshi_cond
+			VALUES(
+				:HOSPNUM,
+				:FAILURE_DATE,
+				:FAILURE_TIME,
+				:TERM_NO,
+				:TERM_NAME,
+				:ERR_CODE,
+				:ERR_MSG,
+				:DLTFLG,
+				:CREYMD,
+				:CREHMS
+			)
+		;
+	};
+};
+
+path	key1 	{
+	DBSELECT	{
+		DECLARE tbl_onshi_cond_key1_csr CURSOR FOR
+		SELECT *
+		FROM tbl_onshi_cond
+			WHERE   HOSPNUM      =   :HOSPNUM
+			AND     FAILURE_DATE =   :FAILURE_DATE
+			AND	DLTFLG	     =   0
+			ORDER  BY  FAILURE_TIME
+		;
+	};
+};
+
+path	key2 	{
+	DBSELECT	{
+		DECLARE tbl_onshi_cond_key2_csr CURSOR FOR
+		SELECT *
+		FROM tbl_onshi_cond
+			WHERE   HOSPNUM      =   :HOSPNUM
+			AND     FAILURE_DATE =   :FAILURE_DATE
+			AND     ERR_CODE     =   :ERR_CODE
+			AND	DLTFLG	     =   0
+			ORDER  BY  FAILURE_TIME
+		;
+	};
+};
+
+path	updflg	{ 	
+	DBUPDATE	{
+		UPDATE	tbl_onshi_cond
+				SET
+			DLTFLG	=	:DLTFLG
+			WHERE	HOSPNUM	      =  :HOSPNUM
+			AND     FAILURE_DATE =   :FAILURE_DATE
+			AND     FAILURE_TIME =   :FAILURE_TIME
+		;
+	};
+};
+
+path	dlt1 	{
+	DBDELETE	{
+		DELETE
+		FROM tbl_onshi_cond
+			WHERE   HOSPNUM      =   :HOSPNUM
+			AND   ((FAILURE_DATE <   :FAILURE_DATE)
+			OR    ((DLTFLG	     =   1)
+			AND    (FAILURE_DATE =   :FAILURE_DATE)
+			AND    (FAILURE_TIME <   :FAILURE_TIME)))
+		;
+	};
+};

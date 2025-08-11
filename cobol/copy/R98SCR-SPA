@@ -1,0 +1,111 @@
+      *******************************************************************
+      * Project code name "ORCA" 
+      * 日医標準レセプトソフト（JMA standard receipt software）
+      * Copyright(C) 2002 JMA (Japan Medical Association)
+      *
+      * This program is part of "JMA standard receipt software".
+      *
+      *     This program is distributed in the hope that it will be useful
+      * for further advancement in medical care, according to JMA Open
+      * Source License, but WITHOUT ANY WARRANTY.
+      *     Everyone is granted permission to use, copy, modify and
+      * redistribute this program, but only under the conditions described
+      * in the JMA Open Source License. You should have received a copy of
+      * this license along with this program. If not, stop using this
+      * program and contact JMA, 2-28-16 Honkomagome, Bunkyo-ku, Tokyo,
+      * 113-8621, Japan.
+      ********************************************************************
+      *****************************************************************
+      *
+      *    レセプト作成 画面ＳＰＡ     (SPA-FREE の内容)
+      *          
+      *****************************************************************
+      *  コピー句修正履歴
+      * Maj/Min/Rev  修正者       日付      内容
+      *****************************************************************
+      *
+       01  SPA-R98FREE.
+           03  SPA-R98-AREA.
+               05  SPA-GMN-MAX                     PIC 9(04).
+               05  SPA-GMN-PAGE                    PIC 9(02).
+               05  SPA-GMN-MAX-PAGE                PIC 9(02). 
+               05  SPA-GMN-CUR                     PIC 9(02).
+               05  SPA-GMN-AREA.
+                   07  SPA-GMN-SRYYMH              PIC X(26).
+                   07  SPA-GMN-SRYYM               PIC X(06).
+                   07  SPA-GMN-TABLE.
+                       09  SPA-GMN-TBL             OCCURS   40.
+                           11  SPA-GMN-TBL-G       OCCURS   25.
+                               13  SPA-GMN-TRENNUM PIC X(05).
+                               13  SPA-GMN-TPTNUM  PIC X(20).
+                               13  SPA-GMN-TNAME   PIC X(30).
+                               13  SPA-GMN-TFTNJANUM
+                                                   PIC X(08).
+                               13  SPA-GMN-TJKYSNUM
+                                                   PIC X(20).
+                               13  SPA-GMN-TKOFUNUM
+                                                   PIC X(15).
+                               13  SPA-GMN-TTEKSTYMD
+                                                   PIC X(09).
+      *
+               05  SPA-NAI-AREA.
+                   07  SPA-NAI-SRYYM               PIC 9(06).
+                   07  SPA-NAI-KOFU-IDX            PIC 9(02).
+                   07  SPA-NAI-TABLE.
+                       09  SPA-NAI-TBL             OCCURS  40.
+                           11  SPA-NAI-TBL-G       OCCURS  25.
+                               13  SPA-NAI-TPTID   PIC 9(10).
+                               13  SPA-NAI-TKOHID  PIC 9(10).
+                               13  SPA-NAI-TSRYYM  PIC 9(06).
+                               13  SPA-NAI-JKYSNUM-CHK
+                                                   PIC 9(01).
+                               13  SPA-NAI-TKOHNUM PIC X(03).
+                               13  SPA-NAI-MONTHLYNUM-ONLY
+                                                   PIC 9(01).
+                               13  SPA-NAI-ONSHI-AIDLST-CNT
+                                                   PIC 9(01).
+      *            表示フラグ(1:全体、2:未入力分)
+                   07  SPA-NAI-HYOUJIFLG           PIC 9(01).
+      *           受給者検証番号チェック区分
+                   07  SPA-NAI-JKYSKENSNUMCHKKBN   PIC X(01).
+      *           受給者検証番号チェック区分（中国残留邦人等）
+                   07  SPA-NAI-025-JKYSKENSNUMCHKKBN
+                                                   PIC X(01).
+      *            生保等まとめ入力画面表示順
+                   07  SPA-NAI-200501-SEIHO-DSPKBN PIC X(01).
+      *            交付番号記載区分
+                   07  SPA-NAI-200501-KOFUNUM-KSIKBN
+                                                   PIC X(01).
+      *            医療扶助
+                   07  SPA-NAI-1051-FUJYO          PIC X(01).
+      *            交付番号の転記
+                   07  SPA-NAI-1051-KOFUTNK        PIC X(01).
+      *        入力項目名
+               05  SPA-MCP-WIDGET                  PIC X(64).
+      *
+      *    交付番号設定画面
+           03  SPA-R95-AREA.
+               05  SPA-GMN-R95-MAX                 PIC 9(04).
+               05  SPA-GMN-R95-PAGE                PIC 9(02).
+               05  SPA-GMN-R95-CUR                 PIC 9(02).
+               05  SPA-GMN-R95-AREA.
+                   07  SPA-GMN-R95-PTNUM           PIC X(20).
+                   07  SPA-GMN-R95-NAME            PIC X(30).
+                   07  SPA-GMN-R95-HFTNJANUM       PIC X(08).
+                   07  SPA-GMN-R95-HJKYSNUM         PIC X(20).
+                   07  SPA-GMN-R95-HKOFUNUM         PIC X(15).
+                   07  SPA-GMN-R95-TEKSTYMD        PIC X(09).
+                   07  SPA-GMN-R95-JKYSNUM         PIC X(20).
+                   07  SPA-GMN-R95-KOFUNUM         PIC X(15).
+                   07  SPA-GMN-R95-SELNUM          PIC 9(02).
+                   07  SPA-GMN-R95-TABLE.
+                       09  SPA-GMN-R95-TBL         OCCURS   20.
+                           11  SPA-GMN-R95-TRENNUM PIC 9(02).
+                           11  SPA-GMN-R95-TFTNJANUM
+                                                   PIC X(08).
+                           11  SPA-GMN-R95-TJKYSNUM
+                                                   PIC X(20).
+                           11  SPA-GMN-R95-TKOFUNUM
+                                                   PIC X(15).
+
+ 

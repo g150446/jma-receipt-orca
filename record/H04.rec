@@ -1,0 +1,49 @@
+H04 {
+  fixed6 {
+    SYORIYM {
+      textdata varchar(6);
+    };
+    TEISYUTUSAKI {
+      textdata varchar(12);
+    };
+    TEISYUTUSAKI2 {
+      textdata varchar(2);
+    };
+    CREYMD {
+      textdata varchar(9);
+    };
+    SELNUM {
+      numdata number(4);
+    };
+    scrolledwindow1 {
+      KANRI_LIST {
+        count int;
+        row int;
+          item {
+            column1 varchar(3);
+            column2 varchar(2);
+            column3 varchar(20);
+            column4 varchar(40);
+            column5 varchar(6);
+            column6 varchar(10);
+            column7 varchar(8);
+            column8 varchar(40);
+            column9 varchar(4);
+            column10 varchar(2);
+            column11 varchar(100);
+            column12 varchar(3);
+          }[100];
+          selectdata bool[100];
+          fgcolor varchar(16)[100];
+          bgcolor varchar(16)[100];
+      };
+    };
+    scrolledwindow2 {
+      hpos int;
+      vpos int;
+      HENREI_JIYU {
+        textdata varchar(2420);
+      };
+    };
+  };
+};

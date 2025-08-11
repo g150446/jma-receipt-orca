@@ -1,0 +1,28 @@
+P02T2 { #GtkWindow
+  title varchar(256);
+  popup_summary varchar(256);
+  popup_body varchar(256);
+  popup_icon varchar(256);
+  popup_timeout int;
+  fixed10 { #GtkFixed
+    B01 { #GtkButton
+      state int;
+    };
+    HKNMSG { #GtkLabel
+      textdata varchar(20);
+    };
+    scrolledwindow1 { #GtkScrolledWindow
+      ONSGENDOLST { #GtkPandaCList
+        count int;
+        row int;
+        selectdata bool[99];
+        fgcolor varchar(20)[99];
+        bgcolor varchar(20)[99];
+        item {
+          column1 varchar(3);
+          column2 varchar(10);
+        }[99];
+      };
+    };
+  };
+};

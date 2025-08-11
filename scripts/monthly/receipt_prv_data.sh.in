@@ -1,0 +1,104 @@
+#!/bin/bash
+
+if test -z "$JMARECEIPT_ENV" ; then
+    JMARECEIPT_ENV="@jma-receipt-env@"
+fi
+if ! test -f "$JMARECEIPT_ENV"; then
+    exit 0
+fi
+
+. $JMARECEIPT_ENV
+
+#-------------------------------------------#
+#    リアルタイムレセ電作成処理
+#
+#        $1  SRYYM TERID SYSYMD
+#        $2  SYOKBN
+#             2:個別作成
+#        $3  RECEKBN
+#            1:社保  2:国保 7:後期高齢
+#        $4  エラーファイル名 
+#        $5  JOBID 
+#        $6  SHELLID
+#        $7  県単用項目編集プログラム名（未使用）
+#        $8  処理年月
+#        $9  作成年月日
+#        $10 作成時間
+#        $11 県番号（個別作成のときは"00"）
+#        $12 SPA-RSI-HKNKBN
+#        $13 国保レセ電出力区分
+#        $14 県区分（個別作成のとき山形、福岡のみ設定
+#        $16 HOSPNUM 
+#        $17-$27 印刷ＤＢ用固定引数
+#        $18 レセプト作成区分
+#            1:提出用レセ、2:点検用レセ、3:点検用レセ（０点公費記載）
+#            4:点検用レセ（包括診療分記載）、5:点検用レセ（０点公費・包括診療分記載）
+#            8:ＥＦファイル作成、9:連携基盤用
+#        $19 請求データ削除区分
+#            0:削除しない、2:削除する
+#-------------------------------------------#
+
+#------> ${34} = HOSPNUM
+        
+           LOG_FILE="/var/log/jma-receipt/${34}recemain.log"
+        [ -e ${LOG_FILE} ] && rm ${LOG_FILE}
+
+    echo "arg3  =  [" ${3} "]"  
+    echo "arg4  =  [" ${4} "]"  
+    echo "arg36 =  [" ${36} "]"  
+    echo "arg32 =  [" ${32} "]"  
+    echo "arg40 =  [" ${40} "]"  
+
+##      エラーファイル削除
+	echo "errfile = [" ${MCP_TEMPDIR}/${4}  "]"
+    rm  -f ${MCP_TEMPDIR}/${4}
+
+    RECEFILE1="RECEIRTM_${40:2:20}_${9}"
+    echo "RECEFILE1=" RECEFILE1 "]"
+    RECEFILE2="RECEDES"
+    RECEFILE3="RECEDEK"
+
+#    if  [ ${36} -ne '1' ]; then
+#	RECEFILE1="TENKERTM"
+#	RECEFILE2="TENKENS"
+#	RECEFILE3="TENKENK"
+#	echo "file name change!"
+#   fi
+
+#   該当ファイル削除
+        
+	    echo 'start orcrmain' `date`
+	    $DBSTUB -dir "$LDDEFDIR"/directory -bd orcabt ORCRRECEMAIN -parameter $1,$2,$3,$5,$6,$7,$8,$9,${10},${11},${12},${13},${14},${15},${16},${17},${18},${19},${20},${21},${22},${23},${24},${25},${26},${27},${28},${29},${30},${31},${32},${33},${34},${35},${36},${37},${38},${39},${40:0:2},${4}
+        RECEMAIN_RC=$?
+	    echo "end orcrmain $(date) [${RECEMAIN_RC}]"
+
+#       医保のとき        
+        if  [ ${32} -eq '0' ]; then
+            if  test -s "${MCP_TEMPDIR}/${34}${RECEFILE2}01.txt"; then
+                echo "syaho=" ${34}${RECEFILE2}01.txt
+                #   漢字コード変換（ＥＵＣからシフトＪＩＳ）
+                nkf -s ${MCP_TEMPDIR}/${34}${RECEFILE2}01.txt > ${MCP_TEMPDIR}/${RECEFILE1}.UKE
+                FILENM="${RECEFILE1}.UKE"
+                $MONUPLOAD -s -t misc -f ${FILENM} ${MCP_TEMPDIR}/${RECEFILE1}.UKE
+            fi    
+            if  test -s "${MCP_TEMPDIR}/${34}${RECEFILE3}01.txt"; then
+                echo "kokuho=" ${34}${RECEFILE3}01.txt
+                #   漢字コード変換（ＥＵＣからシフトＪＩＳ）
+                nkf -s ${MCP_TEMPDIR}/${34}${RECEFILE3}01.txt > ${MCP_TEMPDIR}/${RECEFILE1}.UKE
+                FILENM="${RECEFILE1}.UKE"
+                $MONUPLOAD -s -t misc -f ${FILENM} ${MCP_TEMPDIR}/${RECEFILE1}.UKE
+            fi
+        fi
+	
+#------> ${30} = PTID
+        if  [ ${RECEMAIN_RC} -eq 0 ] ; then
+            rm  ${MCP_TEMPDIR}/${34}00RECE*${30}*
+            rm  ${MCP_TEMPDIR}/${34}RECEUPD*${30}
+            rm  ${MCP_TEMPDIR}/${RECEFILE1}.UKE
+            rm  ${MCP_TEMPDIR}/${34}${RECEFILE2}*.txt
+            rm  ${MCP_TEMPDIR}/${34}${RECEFILE3}*.txt
+        fi
+#
+#
+            exit 
+

@@ -1,0 +1,57 @@
+xml_onlineaidlstreq1 {
+	context	        int;
+	object		object;
+	mode		int;
+	recordname	varchar(128);
+	onlineaidlstreq1 {
+		MessageHeader  {
+#---   資格確認日
+			QualificationConfirmationDate	varchar(08);
+#---   扶助UID
+			Fujyo_Uuid			varchar(36);
+		};
+#---   メッセージボディ部
+		MessageBody   {
+#---   資格確認照会用情報
+#---   資格確認結果リスト
+			ResultList   {
+#---   資格確認結果
+				ResultOfQualificationConfirmation	{
+#---   保険者番号
+					InsurerNumber			varchar(08);
+#---   被保険者証番号
+					InsuredIdentificationNumber	varchar(80);
+#---   医療扶助資格確認結果リスト
+                PublicExpenseResultList   {
+                MedicalTicketInfo   {
+#---   医療券・調剤券別(01 :医療券 02 :調剤券)
+                TicketType                      varchar(02);
+#---   医療券・調剤券有効開始年月日
+                MedicalTicketValidDate          varchar(08);
+#---   医療券・調剤券有効終了年月日
+                MedicalTicketExpirationDate     varchar(08);
+#---   交付番号
+                IssueNumber                     varchar(30);
+#---   診療年月
+                MedicalTreatmentMonth           varchar(06);
+#---   指定医療機関コード
+                DesignatedMedicalInstitutionCode        varchar(10);
+#---   指定医療機関確認フラグ
+                DesignatedMedicalInstitutionFlag        varchar(01);
+#---   診療別(01: 入院 02:入院外　これ以外は捨て(03:歯科 etc))
+                MedicalTreatmentType    varchar(02);
+#---   本人支払額（自己負担額）
+                SelfPayAmount           varchar(06);
+                        } [10];
+                Image_file_status       varchar(1);
+                Image_Data              varchar(20000);
+                };
+				} [02] ;
+			};
+		};
+   	};
+};
+
+
+
+

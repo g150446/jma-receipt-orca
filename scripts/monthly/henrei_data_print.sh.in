@@ -1,0 +1,50 @@
+#!/bin/bash
+
+if test -z "$JMARECEIPT_ENV" ; then
+    JMARECEIPT_ENV="@jma-receipt-env@"
+fi
+if ! test -f "$JMARECEIPT_ENV"; then
+    exit 0
+fi
+
+. $JMARECEIPT_ENV
+
+
+RENNUM=0
+#-------------------------------------------#
+#    返戻一覧印刷処理
+#        $1-${11} 印刷ＤＢ用固定引数
+#        ${12} ジョブＩＤ
+#        ${13} シェルＩＤ
+#        ${14} HOSPNUM
+#        ${15} 処理年月
+#        ${16} 提出先
+#        ${17} 提出先１
+#        ${18} HOSPCD
+#        ${19} 取込日付
+#        ${20} エラーファイル名 
+#-------------------------------------------#
+
+        echo "arg12 = [" ${12} "]"  
+        echo "arg13 = [" ${13} "]" 
+        echo "arg14 = [" ${14} "]" 
+        echo "arg15 = [" ${15} "]" 
+        echo "arg16 = [" ${16} "]" 
+        echo "arg17 = [" ${17} "]" 
+        echo "arg18 = [" ${18} "]" 
+        echo "arg19 = [" ${19} "]" 
+
+##      エラーファイル削除
+        echo "errfile = [" ${MCP_TEMPDIR}/${20}  "]" 
+        rm  -f ${MCP_TEMPDIR}/${20}
+        
+##      返戻一覧印刷
+        RENNUM=$(expr $RENNUM + 1) 
+        $DBSTUB -dir $LDDIRECTORY -bd orcabt ORCBH001 -parameter $1,$2,$3,$RENNUM,$5,$6,$7,$8,$9,${10},${11},${12},${13},${14},${15},${16},${17},${18},${19},${20} 
+        if  [ -e ${MCP_TEMPDIR}/${20} ]; then
+            exit
+        fi
+       
+       $DBSTUB -dir $LDDIRECTORY -bd orcabt ORCBJOB -parameter JBE${12}${13},${14} 
+
+        exit 

@@ -1,0 +1,93 @@
+#--特定検診情報格納xml
+xml_onlinespecreq1 {
+	context	        int;
+	object		object;
+	mode		int;
+	recordname	varchar(128);
+	onlinespecreq1 {
+		MessageHeader  {
+#---   処理実行日時(YYYYMMDDHHmmss)
+			ProcessExecutionTime		varchar(14);
+#---   要求情報
+			RequestInfo   {
+#---   要求医療機関コード
+			ReqMedicalInstitutionCode	varchar(10);
+#---   要求保険者番号
+				ReqInsurerNumber	varchar(08);
+#---   要求被保険者証記号
+				ReqInsuranceCardSymbol	varchar(80);
+#---   要求被保険者証番号
+				ReqInsuredPersonIdentificationNumber	varchar(80);
+#---   要求枝番
+				ReqBranchNumber		varchar(02);
+#---   要求任意のファイル識別子(医療機関固有項目)
+				ReqArbitraryFileIdentifier	varchar(50);
+#---   要求ファイル種別
+				ReqFileCategory		varchar(01);
+			} ;
+#---   資格情報
+			QualificationsInfo   {
+#---   保険者番号
+				InsurerNumber		varchar(08);
+#---   被保険者証記号
+				InsuranceCardSymbol	varchar(80);
+#---   被保険者証番号
+				InsuredPersonIdentificationNumber	varchar(80);
+#---   被保険者証枝番
+				BranchNumber		varchar(02);
+#---   カナ氏名
+				KanaName		varchar(100);
+#---   カナ氏名(その他)
+				KanaName2		varchar(100);
+#---   氏名
+				Name			varchar(100);
+#---   氏名(その他)
+				Name2			varchar(100);
+#---   生年月日
+				Birthday		varchar(08);
+#---   年齢
+				Age			varchar(03);
+#---   男女区分1
+				AdministrativeGenderCode	varchar(01);
+#---   男女区分2
+				AdministrativeGenderCode2	varchar(01);
+#---   照会番号
+				ReferenceNumber			varchar(50);
+			} ;
+#---   処理結果区分(特定健診)
+			ResultCode			varchar(01);
+#---   メッセージID
+			MessageId			varchar(09);
+#---   メッセージ内容
+			MessageContents			varchar(120);
+#---   文字コード識別
+			CharacterCodeIdentifier		varchar(01);
+		} ;
+#---   メッセージボディ部
+		MessageBody   {
+#---   特定健診情報
+			SpecificHealthCheckupInfo	{
+#---   実施年月日
+				EffectiveTime	varchar(08);
+#---   健診結果・質問票情報群
+				HealthCheckupResultAndQuestionInfos	{
+#---   健診結果・質問票情報
+					HealthCheckupResultAndQuestionInfo	{
+#---   項目コード
+						ItemCode	varchar(17);
+#---   項目名
+						ItemName	varchar(80);
+#---   データ型
+						DataType	varchar(02);
+#---   データ値
+						DataValue	varchar(256);
+#---   単位
+						Unit		varchar(26);
+					}[200] ;
+				} ;
+			} [50];
+		};
+   	};
+};
+
+

@@ -1,0 +1,22 @@
+xml_onlinequaappreq1	{
+	context		int;
+	object		object;
+	mode		int;
+	recordname	varchar(128);
+	onlinequaappreq1	{
+#---   01:一括照会情報取得依頼  02:払い出し受付番号登録
+		Qualification_Mode		varchar(02);
+		Information_Date		varchar(10);
+		Information_Time		varchar(8);
+		Qualification_Date		varchar(10);
+		Qualification_Uuid		varchar(36);
+#---   受付番号
+		ReceptionNumber			varchar(38);
+#---   任意のファイル識別子(医療機関固有項目)
+		ArbitraryFileIdentifier		varchar(50);
+#---   最終予約番号(受け取った最後の予約カウント)
+		Last_AppointmentNumber		varchar(10);
+#---   プロセスクラス（訪問同意等の識別)
+		Process_Class			varchar(05);
+        };
+};

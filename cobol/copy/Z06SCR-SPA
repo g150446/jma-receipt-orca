@@ -1,0 +1,281 @@
+      *******************************************************************
+      * Project code name "ORCA"
+      * 日医標準レセプトソフト（JMA standard receipt software）
+      * Copyright(C) 2002 JMA (Japan Medical Association)
+      *
+      * This program is part of "JMA standard receipt software".
+      *
+      *     This program is distributed in the hope that it will be useful
+      * for further advancement in medical care, according to JMA Open
+      * Source License, but WITHOUT ANY WARRANTY.
+      *     Everyone is granted permission to use, copy, modify and
+      * redistribute this program, but only under the conditions described
+      * in the JMA Open Source License. You should have received a copy of
+      * this license along with this program. If not, stop using this
+      * program and contact JMA, 2-28-16 Honkomagome, Bunkyo-ku, Tokyo,
+      * 113-8621, Japan.
+      ********************************************************************
+      *****************************************************************
+      *
+      *    点数マスタ設定 画面ＳＰＡ     (SPA-FREE の内容)
+      *            Z06,Z061
+      *****************************************************************
+      *  コピー句修正履歴
+      * Maj/Min/Rev  修正者       日付      内容
+      *****************************************************************
+       01  SPA-Z06.
+      *    第二画面ＳＰＡエリア
+           03  SPA-GMN-CUR                     PIC 9(02).
+           03  SPA-GMN-AREA.
+               05  SPA-GMN-SRYCDH              PIC X(09).
+               05  SPA-GMN-NAMEH               PIC X(100).
+               05  SPA-GMN-YUKOSTYMDH          PIC X(09).
+               05  SPA-GMN-YUKOEDYMDH          PIC X(09).
+               05  SPA-GMN-YUKOSTYMD           PIC X(10).
+               05  SPA-GMN-YUKOEDYMD           PIC X(10).
+               05  SPA-GMN-KANANAME            PIC X(100).
+               05  SPA-GMN-NAME                PIC X(100).
+               05  SPA-GMN-FORMALNAME          PIC X(200).
+               05  SPA-GMN-JITEN1-G.
+                   07  SPA-GMN-JITEN1-X.
+                       09   SPA-GMN-JITEN1          PIC 9(01).
+                   07  SPA-GMN-H1              PIC X(01).
+                   07  SPA-GMN-JITEN1MEI       PIC X(10).
+               05  SPA-GMN-JITEN1-LST          OCCURS  2.
+                   07  SPA-GMN-JITEN1L         PIC X(01).
+                   07  SPA-GMN-H1L             PIC X(01).
+                   07  SPA-GMN-JITEN1MEIL      PIC X(10).
+      *
+               05  SPA-GMN-JITEN2-G.
+                   07  SPA-GMN-JITEN2          PIC 9(01).
+                   07  SPA-GMN-JITEN2-X        REDEFINES
+                       SPA-GMN-JITEN2          PIC X(01).
+                   07  SPA-GMN-H2              PIC X(01).
+                   07  SPA-GMN-JITEN2MEI       PIC X(10).
+               05  SPA-GMN-JITEN2-LST          OCCURS  2.
+                   07  SPA-GMN-JITEN2L         PIC X(01).
+                   07  SPA-GMN-H2L             PIC X(01).
+                   07  SPA-GMN-JITEN2MEIL      PIC X(10).
+      *
+               05  SPA-GMN-JITEN3-G.
+                   07  SPA-GMN-JITEN3          PIC 9(01).
+                   07  SPA-GMN-JITEN3-X        REDEFINES
+                       SPA-GMN-JITEN3          PIC X(01).
+                   07  SPA-GMN-H3              PIC X(01).
+                   07  SPA-GMN-JITEN3MEI       PIC X(10).
+               05  SPA-GMN-JITEN3-LST          OCCURS  2.
+                   07  SPA-GMN-JITEN3L         PIC X(01).
+                   07  SPA-GMN-H3L             PIC X(01).
+                   07  SPA-GMN-JITEN3MEIL      PIC X(10).
+      *
+               05  SPA-GMN-JITEN4-G.
+                   07  SPA-GMN-JITEN4          PIC 9(01).
+                   07  SPA-GMN-JITEN4-X        REDEFINES
+                       SPA-GMN-JITEN4          PIC X(01).
+                   07  SPA-GMN-H4              PIC X(01).
+                   07  SPA-GMN-JITEN4MEI       PIC X(10).
+               05  SPA-GMN-JITEN4-LST          OCCURS  2.
+                   07  SPA-GMN-JITEN4L         PIC X(01).
+                   07  SPA-GMN-H4L             PIC X(01).
+                   07  SPA-GMN-JITEN4MEIL      PIC X(10).
+      *
+      *----(04.01.00)--ADD-START-------------------------------------
+               05  SPA-GMN-JITEN5-G.
+                   07  SPA-GMN-JITEN5          PIC 9(01).
+                   07  SPA-GMN-JITEN5-X        REDEFINES
+                       SPA-GMN-JITEN5          PIC X(01).
+                   07  SPA-GMN-H5              PIC X(01).
+                   07  SPA-GMN-JITEN5MEI       PIC X(10).
+               05  SPA-GMN-JITEN5-LST          OCCURS  2.
+                   07  SPA-GMN-JITEN5L         PIC X(01).
+                   07  SPA-GMN-H5L             PIC X(01).
+                   07  SPA-GMN-JITEN5MEIL      PIC X(10).
+      *----(04.01.00)--ADD-END---------------------------------------
+      *
+      *        カラム位置
+               05  SPA-GMN-DIGIT-G.
+                   07  SPA-GMN-DIGIT           PIC 9(03)
+                                               OCCURS   5.
+      *        コメント区分
+               05  SPA-GMN-COMMENTKBN-G.
+                   07  SPA-GMN-COMMENTKBN      PIC X(01).
+                   07  SPA-GMN-COMMENTKBN-F    PIC X(01).
+                   07  SPA-GMN-COMMENTKBN-MEI  PIC X(28).
+               05  SPA-GMN-COMMENTKBN-LSTG.
+                   07  SPA-GMN-COMMENTKBN-LST  PIC X(30)
+                                               OCCURS   5.
+               05  SPA-GMN-COMKBN-MAX          PIC 9(02).
+      *
+      *        複写元コード
+               05  SPA-GMN-COPYCD              PIC X(09).
+      *
+      *R05.3
+      *     標準用法コード対応
+               05  SPA-GMN-YOUHOUCHG-FLG         PIC X(01).
+               05  SPA-GMN-YOUHOCD-AREA.
+                   07  SPA-MAE-YH-CODE         PIC X(16).
+                   07  SPA-GMN-YH-CODE         PIC X(16).
+                   07  SPA-GMN-YH-NAME         PIC X(200).
+                   07  SPA-GMN-YH-KANANAME     PIC X(480).
+                   07  SPA-GMN-YH-YUKOSTYMDH   PIC X(10).
+                   07  SPA-GMN-YH-YUKOEDYMDH   PIC X(10).
+      *            汎用コードを編集する
+                   07  SPA-GMN-YH-YOUFLG-G.
+                       09  SPA-GMN-YH-YOUFLG       PIC X(01).
+                       09  SPA-GMN-YH-Y1           PIC X(01).
+                       09  SPA-GMN-YH-YOUFLGMEI    PIC X(08).
+                   07  SPA-GMN-YH-YOUFLG-LSTG.
+                       09  SPA-GMN-YH-YOUFLG-LST   PIC X(10)
+                                               OCCURS  2.
+                   07  SPA-GMN-YH-YOUFLGMAX    PIC 9(02).
+      *
+      *            基本用法区分コード
+                   07  SPA-GMN-YH-BASIC-G.
+                       09  SPA-GMN-YH-BASIC        PIC X(01).
+                       09  SPA-GMN-YH-Y2           PIC X(01).
+                       09  SPA-GMN-YH-BASIC-NAME   PIC X(18).
+      *            用法詳細区分コード
+                   07  SPA-GMN-YH-DETAIL-G.
+                       09  SPA-GMN-YH-DETAIL        PIC X(01).
+                       09  SPA-GMN-YH-Y3             PIC X(01).
+                       09  SPA-GMN-YH-DETAIL-NAME   PIC X(30).
+                   07  SPA-GMN-YH-DETAIL-LSTG.
+                       09  SPA-GMN-YH-DETAIL-LST    PIC X(32)
+                                                    OCCURS  30.
+                   07  SPA-GMN-YH-DETAILMAX         PIC 9(02).
+      *            タイミング指定区分コード
+                   07  SPA-GMN-YH-TIMING-G.
+                       09  SPA-GMN-YH-TIMING        PIC X(01).
+                       09  SPA-GMN-YH-Y4            PIC X(01).
+                       09  SPA-GMN-YH-TIMING-NAME   PIC X(60).
+      *            用法コード区分
+                   07  SPA-GMN-YH-CODEC-G.
+                       09  SPA-GMN-YH-CODEC        PIC X(01).
+                       09  SPA-GMN-YH-Y5           PIC X(01).
+                       09  SPA-GMN-YH-CODEC-NAME   PIC X(28).
+                   07  SPA-GMN-YH-CODEC-LSTG.
+                       09  SPA-GMN-YH-CODEC-LST    PIC X(30)
+                                                    OCCURS  30.
+                   07  SPA-GMN-YH-CODECMAX         PIC 9(02).
+      *
+      *            用法置換え区分
+                   07  SPA-GMN-YH-YOUFLG3-G.
+                       09  SPA-GMN-YH-YOUFLG3        PIC X(01).
+                       09  SPA-GMN-YH-Y6             PIC X(01).
+                       09  SPA-GMN-YH-YOUFLG3-MEI   PIC X(28).
+                   07  SPA-GMN-YH-YOUFLG3-LSTG.
+                       09  SPA-GMN-YH-YOUFLG3-LST    PIC X(30)
+                                                    OCCURS  10.
+                   07  SPA-GMN-YH-YOUFLG3MAX         PIC 9(02).
+      *
+                   07  SPA-GMN-YH-REFER        PIC X(04).
+      *            頓服の用法
+                   07  SPA-GMN-YH-TONPUKU-G.
+                       09  SPA-GMN-YH-TONPUKU      PIC X(01).
+                       09  SPA-GMN-YH-Y6           PIC X(01).
+                       09  SPA-GMN-YH-TONPUKU-MEI  PIC X(28).
+                   07  SPA-GMN-YH-TONPUKU-LSTG.
+                       09  SPA-GMN-YH-TONPUKU-LST   PIC X(30)
+                                                    OCCURS  10.
+                   07  SPA-GMN-YH-TONPUKUMAX        PIC 9(02).
+      *            投与タイミング
+                   07  SPA-GMN-YH-TOYTIMNG-G.
+                       09  SPA-GMN-YH-TOYTIMNG      PIC X(01).
+                       09  SPA-GMN-YH-Y7            PIC X(01).
+                       09  SPA-GMN-YH-TOYTIMNG-MEI  PIC X(28).
+                   07  SPA-GMN-YH-TOYTIMNG-LSTG.
+                       09  SPA-GMN-YH-TOYTIMNG-LST  PIC X(30)
+                                                    OCCURS  10.
+                   07  SPA-GMN-YH-TOYTIMNGMAX       PIC 9(02).
+      *            投与時刻
+                   07  SPA-GMN-YH-TOYTIME-G.
+                       09  SPA-GMN-YH-TOYTIME      PIC X(01).
+                       09  SPA-GMN-YH-Y7           PIC X(01).
+                       09  SPA-GMN-YH-TOYTIME-MEI  PIC X(28).
+                   07  SPA-GMN-YH-TOYTIME-LSTG.
+                       09  SPA-GMN-YH-TOYTIME-LST   PIC X(30)
+                                                    OCCURS  10.
+                   07  SPA-GMN-YH-TOYTIMEMAX       PIC 9(02).
+      *            投与間隔
+                   07  SPA-GMN-YH-INTERVAL-G.
+                       09  SPA-GMN-YH-INTERVAL    PIC X(01).
+                       09  SPA-GMN-YH-Y9           PIC X(01).
+                       09  SPA-GMN-YH-INTERVAL-MEI  PIC X(28).
+                   07  SPA-GMN-YH-INTERVAL-LSTG.
+                       09  SPA-GMN-YH-INTERVAL-LST   PIC X(30)
+                                                    OCCURS  10.
+                   07  SPA-GMN-YH-INTERVALMAX       PIC 9(02).
+      *            部位
+                   07  SPA-GMN-YH-BUI-G.
+                       09  SPA-GMN-YH-BUI          PIC X(01).
+                       09  SPA-GMN-YH-Y10          PIC X(01).
+                       09  SPA-GMN-YH-BUI-MEI      PIC X(28).
+                   07  SPA-GMN-YH-BUI-LSTG.
+                       09  SPA-GMN-YH-BUI-LST      PIC X(30)
+                                                   OCCURS  10.
+                   07  SPA-GMN-YH-BUIMAX           PIC 9(02).
+      *
+      *            警告チェック区分
+                   07  SPA-YH-YOUFLG2-CHK        PIC 9(01).
+                   07  SPA-YH-CODE-CHK           PIC 9(01).
+      *
+      *        共通リスト領域
+               05  SPA-Z06-KYOUTU-G.
+      *            基本用法区分コード
+                   07  SPA-GMN-YH-YBASIC-LSTG.
+                       09  SPA-GMN-YH-BASIC-LST    PIC X(20)
+                                                   OCCURS  10.
+                   07  SPA-GMN-YH-BASICMAX         PIC 9(02).
+      *            タイミング指定区分コード
+                   07  SPA-GMN-YH-TIMING-LSTG.
+                       09  SPA-GMN-YH-TIMING-LST    PIC X(62)
+                                                    OCCURS  30.
+                   07  SPA-GMN-YH-TIMINGMAX         PIC 9(02).
+      *    Ｚ０６１
+           03  SPA-Z061-AREA.
+               05  SPA-Z061-INPUTCD            PIC X(40).
+               05  SPA-Z061-YHCODE             PIC X(16).
+               05  SPA-Z061-GMN-SELNUM         PIC X(03).
+               05  SPA-Z061-SELNUM             PIC 9(03).
+               05  SPA-Z061-GMN-INPUT          PIC X(40).
+               05  SPA-Z061-GMN-CUR            PIC 9(02).
+               05  SPA-Z061-PAGE               PIC 9(04).
+               05  SPA-Z061-NEXT               PIC 9(01).
+               05  SPA-Z061-LIST-G.
+                   07  SPA-Z061-LIST-OCC       OCCURS   200.
+                       09  SPA-Z061-LNUM           PIC 9(03).
+                       09  SPA-Z061-LYH-CODE       PIC X(16).
+                       09  SPA-Z061-LYH-NAME       PIC X(200).
+                       09  SPA-Z061-LBASIC-MEI     PIC X(08).
+                       09  SPA-Z061-LDETAIL-MEI    PIC X(60).
+                       09  SPA-Z061-LTIMING-MEI    PIC X(60).
+                       09  SPA-Z061-LREFER         PIC X(04).
+                   07  SPA-Z061-GMN-MAX            PIC 9(03).
+      *
+               05  SPA-Z061-COMB-G.
+      *            基本用法区分コード
+                   07  SPA-Z061-YH-BASIC-G.
+                       09  SPA-Z061-YH-BASIC        PIC X(01).
+                       09  SPA-Z061-YH-Y2           PIC X(01).
+                       09  SPA-Z061-YH-BASIC-NAME   PIC X(18).
+      *            用法詳細区分コード
+                   07  SPA-Z061-YH-DETAIL-G.
+                       09  SPA-Z061-YH-DETAIL        PIC X(01).
+                       09  SPA-Z061-YH-Y3            PIC X(01).
+                       09  SPA-Z061-YH-DETAIL-NAME   PIC X(60).
+                   07  SPA-Z061-YH-DETAIL-LSTG.
+                       09  SPA-Z061-YH-DETAIL-LST    PIC X(62)
+                                                    OCCURS  30.
+                   07  SPA-Z061-YH-DETAILMAX         PIC 9(02).
+      *            タイミング指定区分コード
+                   07  SPA-Z061-YH-TIMING-G.
+                       09  SPA-Z061-YH-TIMING        PIC X(01).
+                       09  SPA-Z061-YH-Y4            PIC X(01).
+                       09  SPA-Z061-YH-TIMING-NAME   PIC X(60).
+      *
+      *    第二画面内容
+           03  SPA-NAI-AREA.
+               05  SPA-NAI-YUKOSTYMD           PIC X(08).
+               05  SPA-NAI-YUKOEDYMD           PIC X(08).
+      *
+      *

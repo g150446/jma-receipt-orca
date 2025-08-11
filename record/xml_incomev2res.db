@@ -1,0 +1,23 @@
+xml_incomev2res {
+	context		int;
+	object		object;
+	mode		int;
+	recordname	varchar(128);
+	incomeres {
+	Information_Date	varchar(10);
+	Information_Time	varchar(8);
+	Api_Result			varchar(2);
+	Api_Result_Message	varchar(100);
+	Reskey				varchar(100);
+	Base_Date			varchar(10);
+	income_Information	{
+		Ic_Code						varchar(2);
+		Ic_Code_Name				varchar(30);
+		Ic_Code_Abbreviation_Name	varchar(10);
+		Ic_Code_Class				varchar(2);
+		Ic_Condition				varchar(1);
+		Ic_Discharge_Condition		varchar(1);
+		Ic_Recurring_Billing_Condition	varchar(1);
+    	} [100];
+	};
+};

@@ -1,0 +1,147 @@
+tbl_onshi_aidlst {
+	HOSPNUM				number(2,0);
+	TBL_UUID			varchar(36);
+	FUJYO_UUID			varchar(36);
+	PTID				number(10);
+	FTNJANUM			varchar(8);
+	JKYSNUM				varchar(20);
+	RENNUM				number(3);
+	TEKSTYMD			varchar(8);
+	TEKEDYMD			varchar(8);
+	MEDICAL_TYPE		varchar(2);
+	NYUGAIKBN			varchar(1);
+	SRYYM				varchar(6);
+	KOFUNUM				varchar(15);
+	FTNGAKU				number(7);
+	XML_IMAGE_FILE_STATUS	varchar(1);
+	AID_IMAGEDATA		varchar(20000);
+	TERMID  			varchar(64);
+	OPID    			varchar(16);
+	CREYMD  			varchar(8);
+	CREHMS				varchar(6);
+	UPYMD    			varchar(8);
+	UPHMS				varchar(6);
+};
+primary	{
+	HOSPNUM,TBL_UUID;
+};
+
+path	key		{
+	DBSELECT	{
+		DECLARE tbl_onshi_aidlst_key_csr CURSOR FOR
+		SELECT *
+		FROM tbl_onshi_aidlst
+			WHERE	HOSPNUM		=	:HOSPNUM
+			AND		TBL_UUID	=	:TBL_UUID
+		;
+	};
+};
+
+path	key1	{ 
+	DBSELECT	{
+		DECLARE tbl_onshi_aidlst_key1_csr CURSOR FOR
+		SELECT *
+		FROM tbl_onshi_aidlst
+			WHERE	HOSPNUM		=	:HOSPNUM
+			AND		PTID		=	:PTID
+			AND		FTNJANUM	=	:FTNJANUM
+			AND		JKYSNUM		=	:JKYSNUM
+					ORDER BY    SRYYM,
+								RENNUM
+		;
+	};
+};
+
+path	key2	{
+	DBSELECT	{
+		DECLARE tbl_onshi_aidlst_key2_csr CURSOR FOR
+		SELECT *
+		FROM tbl_onshi_aidlst
+			WHERE	HOSPNUM		=	:HOSPNUM
+			AND		FUJYO_UUID	=	:FUJYO_UUID
+			AND		FTNJANUM	=	:FTNJANUM
+			AND		JKYSNUM		=	:JKYSNUM
+					ORDER BY   	RENNUM
+		;
+	};
+};
+
+path	key3	{
+	DBSELECT	{
+		DECLARE tbl_onshi_aidlst_key3_csr CURSOR FOR
+		SELECT *
+		FROM tbl_onshi_aidlst
+			WHERE	HOSPNUM		=	:HOSPNUM
+			AND		FUJYO_UUID	=	:FUJYO_UUID
+		;
+	};
+};
+
+path	key4	{
+	DBSELECT	{
+		DECLARE tbl_onshi_aidlst_key4_csr CURSOR FOR
+		SELECT *
+		FROM tbl_onshi_aidlst
+			WHERE	HOSPNUM		=	:HOSPNUM
+			AND		PTID		=	:PTID
+			AND		NYUGAIKBN	=	:NYUGAIKBN
+			AND		SRYYM		=	:SRYYM
+			AND		FTNJANUM	=	:FTNJANUM
+			ORDER BY   	RENNUM
+		;
+	};
+};
+
+path	all 	{
+	DBSELECT	{
+		DECLARE tbl_onshi_aidlst_all_csr CURSOR FOR
+		SELECT *
+		FROM tbl_onshi_aidlst
+			WHERE   HOSPNUM    =   :HOSPNUM
+ 		;
+	};
+};
+
+path	del1 	{
+	DBDELETE	{
+		DELETE
+		FROM tbl_onshi_aidlst
+			WHERE	HOSPNUM		=	:HOSPNUM
+			AND		FUJYO_UUID	=	:FUJYO_UUID
+		;
+	};
+};
+
+path	del2 	{
+	DBDELETE	{
+		DELETE
+		FROM tbl_onshi_aidlst
+			WHERE	HOSPNUM		=	:HOSPNUM
+			AND		FTNJANUM	=	:FTNJANUM
+			AND		JKYSNUM		=	:JKYSNUM
+			AND		SRYYM	    =	:SRYYM
+ 		;
+	};
+};
+path	del3 	{
+	DBDELETE	{
+		DELETE
+		FROM tbl_onshi_aidlst
+			WHERE	HOSPNUM		=	:HOSPNUM
+			AND		FTNJANUM	=	:FTNJANUM
+			AND		JKYSNUM		=	:JKYSNUM
+			AND		SRYYM	    =	:SRYYM
+			AND		PTID	    =	:PTID
+ 		;
+	};
+};
+
+path	del4 	{
+	DBDELETE	{
+		DELETE
+		FROM tbl_onshi_aidlst
+			WHERE	HOSPNUM		=	:HOSPNUM
+			AND		PTID	    =	:PTID
+ 		;
+	};
+};

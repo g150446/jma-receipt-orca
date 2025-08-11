@@ -1,0 +1,128 @@
+tbl_onshi_houmon {
+	HOSPNUM				number(2,0);
+	TBL_UUID			varchar(36);
+	PTID				number(10);
+#---> 診療区分(2:訪問診療 3:オンライン診療)
+	ONSHINRYO_KBN		varchar(1);
+#---> 照会区分(1:顔認証 2:保険証)
+#---> 同意情報タグの値により設定予定
+	SHOKAI_KBN			varchar(1);
+	HKNJANUM			varchar(8);
+	KIGO     			varchar(80);
+	NUM     			varchar(80);
+	EDABAN    			varchar(2);
+	FTNJANUM			varchar(8);
+	JKYSNUM     		varchar(7);
+#---> 同意年月日（自）
+	DOUI_STARTYMD		varchar(8);
+#---> 同意年月日（至）
+	DOUI_ENDYMD			varchar(8);
+#---> 同意取消(1:取消)
+	DOUI_TORIKESI		varchar(1);
+#---> 同意取消日
+	DOUI_TORIKESI_YMD	varchar(8);
+#---> 特定健診同意フラグ
+	KENSHIN_DOUIFLG		varchar(1);
+#---> 薬剤同意フラグ
+	YAKUZAI_DOUIFLG		varchar(1);
+#---> 診療情報同意フラグ
+	SHINRYO_DOUIFLG		varchar(1);
+#---> 手術情報同意フラグ
+	OPE_DOUIFLG			varchar(1);
+#---> 限度額適用認定証取得フラグ
+	GENDO_SHUTOKUFLG	varchar(1);
+#---> 特定疾病療養受療証取得フラグ
+	SIKKAN_SHUTOKUFLG	varchar(1);
+#---> 確認依頼日
+	KAKU_KAKUNINYMD		varchar(8);
+#---> 確認時間
+	KAKU_KAKUNINHMS		varchar(6);
+#---> 資格確認返却済みフラグ
+	KAKU_KAKUNINFLG		varchar(1);
+#---> 施設ID
+	SHISETU_ID			varchar(2);
+#---> ターゲットUID
+	TARGET_UUID			varchar(36);
+	TERMID   			varchar(64);
+	OPID     			varchar(16);
+	CREYMD   			char(8);
+	CREHMS				char(6);
+	UPYMD    			char(8);
+	UPHMS				char(6);
+};
+
+primary	{
+	HOSPNUM,TBL_UUID;
+};
+
+path	key 	{
+	DBSELECT	{
+		DECLARE tbl_onshi_houmon_key_csr CURSOR FOR
+		SELECT *
+		FROM tbl_onshi_houmon
+			WHERE   HOSPNUM    =   :HOSPNUM
+			AND   TBL_UUID        =   :TBL_UUID
+		;
+	};
+};
+
+path	key2 	{
+	DBSELECT	{
+		DECLARE tbl_onshi_houmon_key2_csr CURSOR FOR
+		SELECT *
+		FROM tbl_onshi_houmon
+			WHERE	HOSPNUM	=	:HOSPNUM
+			AND		PTID	=	:PTID
+			ORDER	BY	KAKU_KAKUNINYMD DESC,KAKU_KAKUNINHMS DESC
+		;
+	};
+};
+
+path	key3 	{
+	DBSELECT	{
+		DECLARE tbl_onshi_houmon_key3_csr CURSOR FOR
+		SELECT *
+		FROM tbl_onshi_houmon
+			WHERE	HOSPNUM		=	:HOSPNUM
+			AND		HKNJANUM	=	:HKNJANUM
+			AND		KIGO		=	:KIGO
+			AND		NUM			=	:NUM
+			AND		EDABAN		=	:EDABAN
+			ORDER	BY	KAKU_KAKUNINYMD DESC,KAKU_KAKUNINHMS DESC
+		;
+	};
+};
+
+path	key4 	{
+	DBSELECT	{
+		DECLARE tbl_onshi_houmon_key4_csr CURSOR FOR
+		SELECT *
+		FROM tbl_onshi_houmon
+			WHERE	HOSPNUM	=	:HOSPNUM
+			AND		PTID	=	:PTID
+			AND		ONSHINRYO_KBN	=	:ONSHINRYO_KBN
+			ORDER	BY	KAKU_KAKUNINYMD DESC,KAKU_KAKUNINHMS DESC
+		;
+	};
+};
+
+path	all 	{
+	DBSELECT	{
+		DECLARE tbl_onshi_houmon_all_csr CURSOR FOR
+		SELECT *
+		FROM tbl_onshi_houmon
+			WHERE   HOSPNUM    =   :HOSPNUM
+ 		;
+	};
+};
+
+path	del1 	{
+	DBDELETE	{
+		DELETE
+		FROM tbl_onshi_houmon
+			WHERE   HOSPNUM    	=   	:HOSPNUM
+			AND	PTID		=	:PTID
+		;
+	};
+};
+

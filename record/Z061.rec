@@ -1,0 +1,81 @@
+Z061 { #GtkWindow
+  title varchar(56);
+  popup_summary varchar(56);
+  popup_body varchar(56);
+  popup_icon varchar(56);
+  popup_timeout int;
+  fixed32 { #GtkFixed
+    B01 { #GtkButton
+      state int;
+    };
+    INPUT { #GtkPandaEntry
+      textdata varchar(40);
+    };
+    B02 { #GtkButton
+      state int;
+    };
+    B09 { #GtkButton
+      state int;
+    };
+    B10 { #GtkButton
+      state int;
+    };
+    B11 { #GtkButton
+      state int;
+    };
+    SELNUM1 { #GtkPandaEntry
+      textdata varchar(3);
+    };
+    B07 { #GtkButton
+      state int;
+    };
+    B12 { #GtkButton
+      state int;
+    };
+    B07S { #GtkButton
+      state int;
+    };
+    BASIC_COB { #GtkPandaCombo
+      count int;
+      item varchar(30)[10];
+      BASIC { #GtkPandaEntry
+        textdata varchar(30);
+      };
+    };
+    scrolledwindow26 { #GtkScrolledWindow
+      LIST { #GtkPandaCList
+        count int;
+        row int;
+        selectdata bool[200];
+        fgcolor varchar(56)[200];
+        bgcolor varchar(56)[200];
+        item {
+          column1 varchar(4);
+          column2 varchar(200);
+          column3 varchar(08);
+          column4 varchar(60);
+          column5 varchar(60);
+          column6 varchar(4);
+        }[200];
+      };
+    };
+    NEXT { #GtkLabel
+      style varchar(20);
+      textdata varchar(30);
+    };
+    DETAIL_COB { #GtkPandaCombo
+      count int;
+      item varchar(62)[30];
+      DETAIL { #GtkPandaEntry
+        textdata varchar(62);
+      };
+    };
+    TIMING_COB { #GtkPandaCombo
+      count int;
+      item varchar(62)[30];
+      TIMING { #GtkPandaEntry
+        textdata varchar(62);
+      };
+    };
+  };
+};

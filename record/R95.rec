@@ -1,0 +1,52 @@
+R95 {
+  fixed6 {
+    SRYYMH {
+      textdata varchar(26);
+    };
+    RENNUM {
+      textdata varchar(5);
+    };
+    PTNUM {
+      textdata varchar(21);
+    };
+    NAME {
+      textdata varchar(30);
+    };
+    HFTNJANUM {
+      textdata varchar(8);
+    };
+    HJKYSNUM {
+      textdata varchar(7);
+    };
+    HKOFUNUM {
+      textdata varchar(15);
+    };
+    TEKSTYMD {
+      textdata varchar(9);
+    };
+    JKYSNUM {
+     style varchar(20);
+     textdata varchar(7);
+    };
+    KOFUNUM {
+      style varchar(20);
+      textdata varchar(15);
+    };
+    SELNUM {
+      numdata number(2);
+    };
+    scrolledwindow1 {
+      BODY_LIST {
+        count int;
+        row int;
+          item {
+            column1 varchar(2);
+            column2 varchar(8);
+            column3 varchar(7);
+            column4 varchar(15);
+           }[20];
+          selectdata bool[20];
+      };
+    };
+  };
+};

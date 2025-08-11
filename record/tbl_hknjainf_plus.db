@@ -1,0 +1,60 @@
+tbl_hknjainf_plus {
+	HOSPNUM		number(2,0);
+	HKNJANUM	varchar(8);
+	KIGOOFF  	varchar(1);
+	KIGO    	varchar(80);
+	TERMID   	varchar(32);
+	OPID     	varchar(16);
+	CREYMD   	varchar(8);
+	UPYMD    	varchar(8);
+	UPHMS		varchar(6);
+};
+
+primary	{
+	HOSPNUM,HKNJANUM;
+};
+
+path	key		{ 	
+	DBSELECT	{
+		DECLARE tbl_hknjainf_plus_key_csr CURSOR FOR
+		SELECT *
+		FROM tbl_hknjainf_plus
+		WHERE	HOSPNUM  = :HOSPNUM  AND
+			HKNJANUM = :HKNJANUM
+		;
+	};
+
+	DBINSERT	{
+		INSERT INTO 	tbl_hknjainf_plus
+			VALUES(
+				:HOSPNUM,
+				:HKNJANUM,
+				:KIGOOFF,
+				:KIGO,
+				:TERMID,
+				:OPID,
+				:CREYMD,
+				:UPYMD,
+				:UPHMS
+			)
+		;
+	};
+
+	DBDELETE	{
+		DELETE FROM	tbl_hknjainf_plus
+		WHERE	HOSPNUM  = :HOSPNUM  AND
+			HKNJANUM = :HKNJANUM
+		;
+	};
+};
+
+path	all	{ 	
+	DBSELECT	{
+		DECLARE tbl_hknjainf_plus_all_csr CURSOR FOR
+		SELECT *
+		FROM tbl_hknjainf_plus
+		WHERE	HOSPNUM = :HOSPNUM
+                ORDER BY HKNJANUM
+ 		;
+	};
+};

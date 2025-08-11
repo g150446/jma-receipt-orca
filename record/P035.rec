@@ -1,0 +1,72 @@
+P035 { #GtkWindow
+  title varchar(256);
+  popup_summary varchar(256);
+  popup_body varchar(256);
+  popup_icon varchar(256);
+  popup_timeout int;
+  fixed1 { #GtkFixed
+    B01 { #GtkButton
+      state int;
+    };
+    HKNJANUM { #GtkPandaEntry
+      textdata varchar(8);
+    };
+    BIRTHDAY { #GtkPandaEntry
+      textdata varchar(10);
+    };
+    NENREI { #GtkLabel
+      textdata varchar(10);
+    };
+    B12 { #GtkButton
+      state int;
+    };
+    B02 { #GtkButton
+      state int;
+    };
+    HKNJANAME { #GtkLabel
+      textdata varchar(50);
+    };
+    KIGO { #GtkPandaEntry
+      textdata varchar(100);
+    };
+    NUM { #GtkPandaEntry
+      textdata varchar(100);
+    };
+    EDABAN { #GtkPandaEntry
+      textdata varchar(2);
+    };
+    MIDASHI { #GtkLabel
+      textdata varchar(50);
+    };
+    IMGAREA { #GtkPandaPixmap
+      objectdata object;
+    };
+    PTNUM { #GtkPandaEntry
+      textdata varchar(20);
+    };
+    KANANAME { #GtkPandaEntry
+      textdata varchar(100);
+    };
+    NAME { #GtkPandaEntry
+      textdata varchar(100);
+    };
+    B04 { #GtkButton
+      state int;
+    };
+    SEX { #GtkPandaEntry
+      textdata varchar(4);
+    };
+    YUKO_MSG { #GtkLabel
+      style varchar(20);
+      textdata varchar(50);
+    };
+    CHUIMSG1 { #GtkLabel
+      style varchar(20);
+      textdata varchar(100);
+    };
+    CHUIMSG2 { #GtkLabel
+      style varchar(20);
+      textdata varchar(100);
+    };
+  };
+};

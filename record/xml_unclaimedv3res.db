@@ -1,0 +1,62 @@
+xml_unclaimedv3res {
+	context	int;
+	object	object;
+	mode	int;
+	recordname	varchar(128);
+	unclaimedv3res {
+		Request_Number		varchar(02);
+		Response_Number		varchar(02);
+		Karte_Uid		varchar(36);
+		Orca_Uid		varchar(36);
+		Information_Date	varchar(10);
+		Information_Time	varchar(8);
+		Api_Result		varchar(3);
+		Api_Result_Message	varchar(100);
+		Api_Result_Warning      varchar(3);
+		Api_Result_Warning_Message	varchar(100);
+		Reskey			varchar(100);
+		Perform_Month		varchar(7);
+		InOut			varchar(1);
+#---     未請求設定患者一覧
+		Unclaimed_Patient_Information_Overflow	varchar(4);
+		Unclaimed_Patient_Information {
+			Patient_ID		varchar(20);
+			WholeName		varchar(30);
+			Patient_Perform_Month	varchar(7);
+			Patient_Error_Code	varchar(3);
+			Patient_Error_Message	varchar(100);
+			Patient_Warning_Code	varchar(3);
+			Patient_Warning_Message	varchar(100);
+#---                   レセプト一覧
+			Patient_Detail_Information {
+				Patient_Detail_Submission_Mode			varchar(4);
+#---                            レセプト種別コード
+				Patient_Detail_Code				varchar(10);
+#---                            保険者番号
+				Patient_Detail_InsuranceProvider_Number		varchar(8);
+#---                            職務上の事由
+				Patient_Detail_HealthInsuredPerson_Assistance	varchar(12);
+			} [10];
+			Patient_Add		varchar(4);
+		} [500];
+#---     未請求解除設定患者一覧
+		Claimed_Patient_Information {
+			Patient_ID		varchar(20);
+			WholeName		varchar(30);
+			Patient_Perform_Month	varchar(7);
+			Patient_Error_Code	varchar(3);
+			Patient_Error_Message	varchar(100);
+#---                   レセプト一覧
+			Patient_Detail_Information {
+				Patient_Detail_Submission_Mode			varchar(4);
+#---                            レセプト種別コード
+				Patient_Detail_Code				varchar(10);
+#---                            保険者番号
+				Patient_Detail_InsuranceProvider_Number		varchar(8);
+#---                            職務上の事由
+				Patient_Detail_HealthInsuredPerson_Assistance	varchar(12);
+			} [10];
+			Patient_Add		varchar(4);
+		} [500];
+	};
+};

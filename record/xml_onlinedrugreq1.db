@@ -1,0 +1,137 @@
+xml_onlinedrugreq1 {
+	context	        int;
+	object		object;
+	mode		int;
+	recordname	varchar(128);
+	onlinedrugreq1 {
+		MessageHeader  {
+#---   処理実行日時(YYYYMMDDHHmmss)
+			ProcessExecutionTime		varchar(14);
+#---   要求情報
+			RequestInfo   {
+#---   要求医療機関(薬局)コード
+			ReqMedicalInstitutionCode	varchar(10);
+#---   要求保険者番号
+				ReqInsurerNumber	varchar(08);
+#---   要求被保険者証記号
+				ReqInsuranceCardSymbol	varchar(80);
+#---   要求被保険者証番号
+				ReqInsuredPersonIdentificationNumber	varchar(80);
+#---   要求枝番
+				ReqBranchNumber		varchar(02);
+#---   要求任意のファイル識別子(医療機関固有項目)
+				ReqArbitraryFileIdentifier	varchar(50);
+#---   要求開始年月
+				ReqStartDate		varchar(06);
+#---   要求終了年月
+				ReqEndDate		varchar(06);
+#---   要求前回取得日
+				ReqLastDate		varchar(06);
+#---   要求ファイル種別
+				ReqFileCategory		varchar(01);
+			};
+#---   資格情報
+			QuaInf   {
+#---   保険者番号
+				InsNum			varchar(08);
+#---   被保険者証記号
+				InsCdSym		varchar(80);
+#---   被保険者証番号
+				InsCdNum		varchar(80);
+#---   被保険者証枝番
+				BrancNum		varchar(02);
+#---   カナ氏名
+				KanaName		varchar(100);
+#---   カナ氏名(その他)
+				KanaName2		varchar(100);
+#---   氏名
+				Name			varchar(100);
+#---   氏名(その他)
+				Name2			varchar(100);
+#---   生年月日
+				Birth			varchar(08);
+#---   年齢
+				Age			varchar(03);
+#---   男女区分1
+				AdmGendCode		varchar(01);
+#---   男女区分2
+				AdmGendCode2		varchar(01);
+#---   照会番号
+				RefNum			varchar(50);
+			} ;
+#---   処理結果区分(薬剤)
+			ResultCode			varchar(01);
+#---   メッセージID
+			MessageId			varchar(09);
+#---   メッセージ内容
+			MessageContents			varchar(120);
+#---   文字コード識別
+			CharacterCodeIdentifier		varchar(01);
+		};
+#---   メッセージボディ部
+		MessageBody   {
+#---   診療年月別情報
+			MeTrMonthInf    {
+#---   診療年月
+				MeTrMonth	varchar(06);
+#---   入外等の別
+				InOut		varchar(01);
+#---   調剤機関毎連番
+				GrpNum1		varchar(03);
+#---   調剤機関区分
+				DiOrg		varchar(01);
+#---   処方機関毎連番
+				GrpNum2		varchar(03);
+#---   処方箋発行機関区分
+				PrIsOrg		varchar(01);
+#---   医療機関・薬局コード(2022/7 追加)
+				MeTrDiHCd	varchar(10);
+#---   医療機関・薬局名(2022/7 追加)
+				MeTrDiHNm	varchar(80);
+#---   処方箋発行医療機関コード(2022/7 追加)
+				PrlsHCd		varchar(10);
+#---   処方箋発行医療機関名(2022/7 追加)
+				PrlsHNm		varchar(80);
+#---   調剤日別情報群
+  				DiDateInfs 	{
+#---   調剤日別情報
+					DiDateInf       {
+#---   調剤日
+						DiDate		varchar(08);
+#---   処方箋発行日
+						PrDate		varchar(08);
+#---   薬剤情報群
+  						DrugInfs	{
+#---   薬剤情報
+							DrugInf	{
+#---   診療識別等区分
+								MeTrIdCl	varchar(02);
+#---   用法コード
+								UsageC		varchar(03);
+#---   用法名称
+								UsageN		varchar(30);
+#---   特別指示
+								SpInst		varchar(80);
+#---   医薬品コード
+								DrugC		varchar(09);
+#---   薬剤名
+								DrugN		varchar(64);
+#---   成分名
+								IngreN		varchar(200);
+#---   単位
+								Unit		varchar(12);
+#---   使用量
+								Qua1		varchar(11);
+#---   1回用量
+								OnDose		varchar(11);
+#---   回数
+								Times		varchar(03);
+							}[100];
+  						};
+					}[31];
+   				};
+			}[6];
+		};
+   	};
+};
+

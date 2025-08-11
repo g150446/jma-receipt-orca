@@ -1,0 +1,30 @@
+H98 {
+  fixed6 {
+    MSG {
+      textdata varchar(80);
+    };
+    scrolledwindow28 {
+      JOBKANRILST {
+        count int;
+        row int;
+        rowattr int;
+          item {
+            column1 varchar(7);
+            column2 varchar(26);
+            column3 varchar(8);
+            column4 varchar(8);
+            column5 varchar(10);
+            column6 varchar(100);
+          }[2];
+          selectdata bool[2];
+      };
+    };
+    B12 {
+      state int;
+      label varchar(14);
+    };
+    pandatimer1 {
+      duration int;
+    };
+  };
+};

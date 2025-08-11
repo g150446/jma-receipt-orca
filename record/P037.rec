@@ -1,0 +1,102 @@
+P037 { #GtkWindow
+  title varchar(256);
+  popup_summary varchar(256);
+  popup_body varchar(256);
+  popup_icon varchar(256);
+  popup_timeout int;
+  fixed1 { #GtkFixed
+    B01 { #GtkButton
+      state int;
+    };
+    FTNJANUM { #GtkPandaEntry
+      textdata varchar(8);
+    };
+    BIRTHDAY { #GtkPandaEntry
+      textdata varchar(10);
+    };
+    NENREI { #GtkLabel
+      textdata varchar(6);
+    };
+    B12 { #GtkButton
+      state int;
+    };
+    B02 { #GtkButton
+      state int;
+    };
+    JKYSNUM { #GtkPandaEntry
+      textdata varchar(20);
+    };
+    TEKSTYMD1 { #GtkPandaEntry
+      textdata varchar(10);
+    };
+    MIDASHI { #GtkLabel
+      textdata varchar(50);
+    };
+    IMGAREA { #GtkPandaPixmap
+      objectdata object;
+    };
+    PTNUM { #GtkPandaEntry
+      textdata varchar(20);
+    };
+    KANANAME { #GtkPandaEntry
+      textdata varchar(100);
+    };
+    NAME { #GtkPandaEntry
+      textdata varchar(100);
+    };
+    B05 { #GtkButton
+      state int;
+    };
+    SEX { #GtkPandaEntry
+      textdata varchar(4);
+    };
+    B10 { #GtkButton
+      state int;
+      label varchar(20);
+    };
+    HBIRTHDAY { #GtkPandaEntry
+      textdata varchar(10);
+    };
+    TEKEDYMD1 { #GtkPandaEntry
+      textdata varchar(10);
+    };
+    SELNUM { #GtkNumberEntry
+      numdata number(2);
+    };
+    TEKSTYMD2 { #GtkPandaEntry
+      textdata varchar(10);
+    };
+    TEKEDYMD2 { #GtkPandaEntry
+      textdata varchar(10);
+    };
+    B09 { #GtkButton
+      state int;
+      label varchar(20);
+    };
+    B06 { #GtkButton
+      state int;
+    };
+    scrolledwindow1 { #GtkScrolledWindow
+      KOHLIST { #GtkPandaCList
+        count int;
+        row int;
+        selectdata bool[10];
+        fgcolor varchar(25)[10];
+        bgcolor varchar(25)[10];
+        item {
+          column1 varchar(2);
+          column2 varchar(10);
+          column3 varchar(8);
+          column4 varchar(20);
+          column5 varchar(26);
+          column6 varchar(26);
+          column7 varchar(6);
+        }[10];
+      };
+    };
+    KOHMSG { #GtkLabel
+      style varchar(20);
+      textdata varchar(40);
+    };
+  };
+};

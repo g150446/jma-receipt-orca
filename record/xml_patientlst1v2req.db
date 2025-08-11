@@ -1,0 +1,12 @@
+xml_patientlst1v2req {
+	context	        int;
+	object		object;
+	mode		int;
+	recordname	varchar(128);
+	patientlst1req {
+		Base_StartDate		varchar(10);
+		Base_StartTime		varchar(8);
+		Base_EndDate		varchar(10);
+		Contain_TestPatient_Flag	varchar(01);
+   	};
+};

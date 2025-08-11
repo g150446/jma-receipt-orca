@@ -1,0 +1,21 @@
+xml_onshicondreq {
+	context	        int;
+	object		object;
+	mode		int;
+	recordname	varchar(128);
+	onshicondreq {
+		Request_Number		varchar(2);
+#---   障害発生日(YYYYMMDD)
+		Failure_Date		varchar(8);
+#---   障害発生時間(HHMISSSS)
+		Failure_Time		varchar(8);
+#---   端末番号
+		Terminal_No		varchar(2);
+#---   端末名称
+		Terminal_Name		varchar(100);
+#---   エラーコード
+		ErrorCode		varchar(9);
+#---   エラーメッセージ
+		ErrorMessage		varchar(120);
+   	};
+};

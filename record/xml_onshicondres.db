@@ -1,0 +1,10 @@
+xml_onshicondres	{
+	context	        int;
+	object		object;
+	mode		int;
+	recordname	varchar(128);
+	onshicondres {
+		Api_Result				varchar(3);
+		Api_Result_Message			varchar(100);
+   	};
+};

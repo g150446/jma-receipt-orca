@@ -1,0 +1,32 @@
+xml_ptconditionv2res {
+	context		int;
+	object		object;
+	mode		int;
+	recordname	varchar(128);
+	ptconditionres {
+	Information_Date	varchar(10);
+	Information_Time	varchar(8);
+	Api_Result			varchar(2);
+	Api_Result_Message	varchar(100);
+	Reskey				varchar(100);
+	Base_Date			varchar(10);
+	Condition1_Information	{
+		Condition1  			varchar(2);
+		Condition1_Name	        varchar(40);
+		Condition1_Word	        varchar(04);
+		Condition1_Icon       	varchar(100);
+    	} [100];
+	Condition2_Information	{
+		Condition2  			varchar(2);
+		Condition2_Name	        varchar(40);
+		Condition2_Word	        varchar(04);
+		Condition2_Icon       	varchar(100);
+    	} [100];
+	Condition3_Information	{
+		Condition3  			varchar(2);
+		Condition3_Name	        varchar(40);
+		Condition3_Word	        varchar(04);
+		Condition3_Icon       	varchar(100);
+    	} [100];
+	};
+};

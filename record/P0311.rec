@@ -1,0 +1,51 @@
+P0311 { #GtkWindow
+  title varchar(256);
+  popup_summary varchar(256);
+  popup_body varchar(256);
+  popup_icon varchar(256);
+  popup_timeout int;
+  fixed1 { #GtkFixed
+    B01 { #GtkButton
+      state int;
+    };
+    B12 { #GtkButton
+      state int;
+    };
+    B02 { #GtkButton
+      state int;
+    };
+    STRYMD { #GtkPandaEntry
+      textdata varchar(10);
+    };
+    ENDYMD { #GtkPandaEntry
+      textdata varchar(10);
+    };
+    SYUTOKUKBN_COMB { #GtkPandaCombo
+      count int;
+      item varchar(30)[4];
+      SYUTOKUKBN { #GtkPandaEntry
+        textdata varchar(30);
+      };
+    };
+    scrolledwindow1 { #GtkScrolledWindow
+      DOUILST { #GtkPandaCList
+        count int;
+        row int;
+        selectdata bool[10];
+        fgcolor varchar(256)[10];
+        bgcolor varchar(256)[10];
+        item {
+          column1 varchar(2);
+          column2 varchar(30);
+          column3 varchar(10);
+          column4 varchar(10);
+          column5 varchar(10);
+        }[10];
+      };
+    };
+    SYORIMSG { #GtkLabel
+      style varchar(20);
+      textdata varchar(100);
+    };
+  };
+};

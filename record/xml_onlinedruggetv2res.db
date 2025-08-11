@@ -1,0 +1,100 @@
+xml_onlinedruggetv2res	{
+    context	        int;
+    object		object;
+    mode		int;
+    recordname		varchar(128);
+    onlinedruggetres {
+	Information_Date			varchar(10);
+	Information_Time			varchar(8);
+	Api_Result				varchar(3);
+	Api_Result_Message			varchar(100);
+	Reskey					varchar(100);
+#---    患者情報
+	Patient_Information {
+		Patient_ID			varchar(20);
+        	WholeName			varchar(100);
+        	WholeName_inKana		varchar(100);
+        	BirthDate			varchar(10);
+        	Sex				varchar(1);
+		};
+#---    診療年月
+    	MeTrMonth		varchar(07);
+#---    資格薬剤登録年月情報
+	MeTrMonth_Information {
+    		MeTrMonth		varchar(07);
+			MeTrD_Inf {
+#---   医療機関・薬局コード(2022/7 追加)
+				MeTrDiHCd	varchar(10);
+#---   医療機関・薬局名(2022/7 追加)
+				MeTrDiHNm	varchar(80);
+#---   処方箋発行医療機関コード(2022/7 追加)
+				PrlsHCd		varchar(10);
+#---   処方箋発行医療機関名(2022/7 追加)
+				PrlsHNm		varchar(80);
+			}[20];
+		}[12];
+#-
+#---    資格確認情報
+	QuaInf   {
+#---   保険者番号
+		InsNum			varchar(08);
+#---   被保険者証記号
+		InsCdSym		varchar(80);
+#---   被保険者証番号
+		InsCdNum		varchar(80);
+#---   被保険者証枝番
+		BrancNum		varchar(02);
+		};
+	MeTrMonthInf    {
+#---   入外等の別
+		InOut		varchar(01);
+#---   調剤日別情報群
+  		DiDateInfs 	{
+#---   調剤日別情報群
+			DiDateInf  	{
+#---   調剤日
+				DiDay		varchar(2);
+#---   処方箋発行日
+				PrDate		varchar(10);
+#---   医療機関・薬局コード(2022/7 追加)
+				MeTrDiHCd	varchar(10);
+#---   医療機関・薬局名(2022/7 追加)
+				MeTrDiHNm	varchar(80);
+#---   処方箋発行医療機関コード(2022/7 追加)
+				PrlsHCd		varchar(10);
+#---   処方箋発行医療機関名(2022/7 追加)
+				PrlsHNm		varchar(80);
+#---   薬剤情報群
+  				DrugInfs	{
+#---   薬剤情報
+					DrugInf	{
+#---   診療識別等区分
+						MeTrIdCl	varchar(02);
+#---   用法コード
+						UsageC		varchar(03);
+#---   用法名称
+						UsageN		varchar(30);
+#---   特別指示
+						SpInst		varchar(80);
+#---   医薬品コード
+						DrugC		varchar(09);
+#---   薬剤名
+						DrugN		varchar(64);
+#---   成分名
+						IngreN		varchar(200);
+#---   単位
+						Unit		varchar(12);
+#---   使用量
+						Qua1		varchar(11);
+#---   1回用量
+						OnDose		varchar(11);
+#---   回数
+						Times		varchar(03);
+						}[60];
+  					};
+				}[100];
+			};
+		}[3];
+   	};
+};
+

@@ -1,0 +1,128 @@
+tbl_shoho_kanri {
+	HOSPNUM				number(2,0);
+	TBL_UUID			varchar(36);
+	RENNUM  			number(1);
+	SRYYMD   			varchar(8);
+	PTID				number(10);
+	HAKKOKBN   			varchar(1);
+	NYUGAIKBN			varchar(1);
+	SRYKA				varchar(2);
+	HKNCOMBI			varchar(4);
+	DENPNUM     		number(7);
+	SHOHO_KEITAI		varchar(1);
+	PRESCRIPTIONID 		varchar(36);
+	ACCESSCODE   		varchar(16);
+	REFILL_NUM			number(1);
+	REFILL_ZAIKAISU		number(3);
+	CANCEL_TIME   		varchar(14);
+	CANCEL_UNDO_TIME	varchar(14);
+	CHANGE_TIME   		varchar(14);
+	CHANGE_UNDO_TIME	varchar(14);
+	TERMID   			varchar(32);
+	OPID     			varchar(16);
+	CREYMD   			char(8);
+	CREHMS				char(6);
+	UPYMD    			char(8);
+	UPHMS				char(6);
+};
+primary	{
+	HOSPNUM,TBL_UUID,RENNUM;
+};
+
+path	key 	{
+	DBSELECT	{
+		DECLARE tbl_shoho_kanri_key_csr CURSOR FOR
+		SELECT *
+		FROM tbl_shoho_kanri
+		WHERE 	HOSPNUM	= :HOSPNUM
+			AND   TBL_UUID  =   :TBL_UUID
+			AND   RENNUM    =   :RENNUM
+		;
+	};
+};
+
+path	key2 	{
+	DBSELECT	{
+		DECLARE tbl_shoho_kanri_key2_csr CURSOR FOR
+		SELECT *
+		FROM tbl_shoho_kanri
+		WHERE 	HOSPNUM	= :HOSPNUM
+			AND   TBL_UUID  =   :TBL_UUID
+				ORDER BY RENNUM
+		;
+	};
+};
+
+path	key3 	{
+	DBSELECT	{
+		DECLARE tbl_shoho_kanri_key3_csr CURSOR FOR
+		SELECT *
+		FROM tbl_shoho_kanri
+		WHERE 	HOSPNUM	= :HOSPNUM
+			AND   PTID     =   :PTID
+            AND   SRYYMD   =   :SRYYMD
+            ORDER BY DENPNUM
+		;
+	};
+};
+
+path	key4 	{
+	DBSELECT	{
+		DECLARE tbl_shoho_kanri_key4_csr CURSOR FOR
+		SELECT *
+		FROM tbl_shoho_kanri
+		WHERE 	HOSPNUM	= :HOSPNUM
+			AND   PTID     =   :PTID
+			AND   SRYYMD   =   :SRYYMD
+			AND   DENPNUM  =   :DENPNUM
+				ORDER BY RENNUM
+		;
+	};
+};
+
+path	key5 	{
+	DBSELECT	{
+		DECLARE tbl_shoho_kanri_key5_csr CURSOR FOR
+		SELECT *
+		FROM tbl_shoho_kanri
+		WHERE 	HOSPNUM	= :HOSPNUM
+			AND   PTID     =   :PTID
+			AND   SRYYMD   =   :SRYYMD
+			AND   NYUGAIKBN =   :NYUGAIKBN
+			AND   SRYKA     =   :SRYKA
+			AND   HKNCOMBI  =   :HKNCOMBI
+				ORDER BY RENNUM
+		;
+	};
+};
+
+path	del1 	{
+	DBDELETE	{
+		DELETE
+		FROM tbl_shoho_kanri
+			WHERE   HOSPNUM    =   :HOSPNUM
+			AND     PTID       =   :PTID
+			AND     TBL_UUID   =   :TBL_UUID
+		;
+	};
+};
+
+path	del2 	{
+	DBDELETE	{
+		DELETE
+		FROM tbl_shoho_kanri
+			WHERE   HOSPNUM    =   :HOSPNUM
+			AND     PTID       =   :PTID
+		;
+	};
+};
+
+path	all	{
+	DBSELECT	{
+		DECLARE tbl_shoho_kanri_all_csr CURSOR FOR
+		SELECT *
+		FROM tbl_shoho_kanri
+		WHERE 	HOSPNUM	= :HOSPNUM
+ 		;
+	};
+};

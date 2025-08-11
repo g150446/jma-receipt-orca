@@ -1,0 +1,236 @@
+P033 { #GtkWindow
+  title varchar(256);
+  popup_summary varchar(256);
+  popup_body varchar(256);
+  popup_icon varchar(256);
+  popup_timeout int;
+  fixed1 { #GtkFixed
+    B01 { #GtkButton
+      state int;
+    };
+    SELNUM { #GtkNumberEntry
+      numdata number(3);
+    };
+    B08 { #GtkButton
+      state int;
+    };
+    NAME { #GtkPandaEntry
+      style varchar(20);
+      textdata varchar(100);
+    };
+    SEX { #GtkPandaEntry
+      style varchar(20);
+      textdata varchar(2);
+    };
+    BIRTHDAY { #GtkPandaEntry
+      textdata varchar(10);
+    };
+    ADRS { #GtkPandaEntry
+      style varchar(20);
+      textdata varchar(200);
+    };
+    HKNJANUM { #GtkPandaEntry
+      style varchar(20);
+      textdata varchar(8);
+    };
+    KIGO    { #GtkPandaEntry
+      style varchar(20);
+      textdata varchar(80);
+    };
+    PTNUM { #GtkPandaEntry
+      textdata varchar(20);
+    };
+    KIKAN { #GtkPandaEntry
+      textdata varchar(20);
+    };
+    ON_HKNJANUM { #GtkPandaEntry
+      style varchar(20);
+      textdata varchar(8);
+    };
+    ON_KIGO { #GtkPandaEntry
+      style varchar(20);
+      textdata varchar(100);
+    };
+    ON_BIRTHDAY { #GtkPandaEntry
+      textdata varchar(10);
+    };
+    ON_SEX { #GtkPandaEntry
+      style varchar(20);
+      textdata varchar(2);
+    };
+    ON_NENREI { #GtkPandaEntry
+      textdata varchar(6);
+    };
+    ON_KANANAME { #GtkPandaEntry
+      style varchar(20);
+      textdata varchar(100);
+    };
+    ON_NAME { #GtkPandaEntry
+      style varchar(20);
+      textdata varchar(100);
+    };
+    B10 { #GtkButton
+      state int;
+    };
+    B12 { #GtkButton
+      state int;
+    };
+    HONKZKKBN { #GtkPandaEntry
+      style varchar(20);
+      textdata varchar(4);
+    };
+    ON_HONKZKKBN { #GtkPandaEntry
+      style varchar(20);
+      textdata varchar(4);
+    };
+    B02 { #GtkButton
+      state int;
+    };
+    HKNNUMMEI { #GtkPandaEntry
+      style varchar(20);
+      textdata varchar(16);
+    };
+    ON_HKNNUMMEI { #GtkPandaEntry
+      style varchar(20);
+      textdata varchar(16);
+    };
+    HKNJANAME { #GtkLabel
+      textdata varchar(100);
+    };
+    ON_HKNJANAME { #GtkLabel
+      textdata varchar(100);
+    };
+    scrolledwindow1 { #GtkScrolledWindow
+      DUALLIST { #GtkPandaCList
+        count int;
+        row int;
+        selectdata bool[99];
+        fgcolor varchar(20)[99];
+        bgcolor varchar(20)[99];
+        item {
+          column1 varchar(3);
+          column2 varchar(20);
+          column3 varchar(100);
+          column4 varchar(10);
+          column5 varchar(2);
+          column6 varchar(8);
+          column7 varchar(200);
+        }[99];
+      };
+    };
+    ON_EDABAN { #GtkPandaEntry
+      style varchar(20);
+      textdata varchar(2);
+    };
+    ON_HOJOKBN { #GtkPandaEntry
+      style varchar(20);
+      textdata varchar(6);
+    };
+    ON_ADRS { #GtkPandaEntry
+      style varchar(20);
+      textdata varchar(200);
+    };
+    ON_POST { #GtkPandaEntry
+      style varchar(20);
+      textdata varchar(8);
+    };
+    ON_SKKGETYMD { #GtkPandaEntry
+      style varchar(20);
+      textdata varchar(10);
+    };
+    ON_NUM { #GtkPandaEntry
+      style varchar(20);
+      textdata varchar(100);
+    };
+    ON_HIHKNJANAME { #GtkPandaEntry
+      style varchar(20);
+      textdata varchar(100);
+    };
+    POST { #GtkPandaEntry
+      style varchar(20);
+      textdata varchar(8);
+    };
+    NUM { #GtkPandaEntry
+      style varchar(20);
+      textdata varchar(80);
+    };
+    EDABAN { #GtkPandaEntry
+      style varchar(20);
+      textdata varchar(2);
+    };
+    SKKGETYMD { #GtkPandaEntry
+      style varchar(20);
+      textdata varchar(10);
+    };
+    HIHKNJANAME { #GtkPandaEntry
+      style varchar(20);
+      textdata varchar(100);
+    };
+    HOJOKBN { #GtkPandaEntry
+      style varchar(20);
+      textdata varchar(6);
+    };
+    KANANAME { #GtkPandaEntry
+      style varchar(20);
+      textdata varchar(100);
+    };
+    ON_KIKAN { #GtkPandaEntry
+      style varchar(20);
+      textdata varchar(20);
+    };
+    ON_SIKAKUYUKO { #GtkLabel
+      style varchar(20);
+      textdata varchar(40);
+    };
+    ON_MIDASHI { #GtkLabel
+      textdata varchar(100);
+    };
+    CHK_KANANAME { #GtkCheckButton
+      isactive bool;
+       label varchar(2);
+    };
+    CHK_NAME { #GtkCheckButton
+      isactive bool;
+       label varchar(2);
+    };
+    CHK_ADRS { #GtkCheckButton
+      isactive bool;
+      label varchar(2);
+    };
+    B09 { #GtkButton
+      state int;
+    };
+    LABEL01 { #GtkLabel
+      style varchar(20);
+      textdata varchar(20);
+    };
+    LABEL02 { #GtkLabel
+      style varchar(20);
+      textdata varchar(20);
+    };
+    GENDO_MSG { #GtkLabel
+      textdata varchar(200);
+    };
+    SIKKAN_MSG1 { #GtkLabel
+      textdata varchar(200);
+    };
+    SIKKAN_MSG2 { #GtkLabel
+      textdata varchar(200);
+    };
+    SIKKAN_MSG3 { #GtkLabel
+      textdata varchar(200);
+    };
+    ON_MIDASHI2 { #GtkLabel
+      style varchar(20);
+      textdata varchar(50);
+    };
+    KOHSYOMSG { #GtkLabel
+      style varchar(20);
+      textdata varchar(200);
+    };
+    CHK_SEX { #GtkCheckButton
+      isactive bool;
+       label varchar(2);
+    };
+  };
+};

@@ -1,0 +1,49 @@
+xml_statistics_datav3res {
+    context	int;
+    object	object;
+	mode	int;
+	recordname	varchar(128);
+	statistics_datav3res {
+		Request_Number		varchar(2);
+		Response_Number		varchar(2);
+		Karte_Uid		varchar(36);
+		Orca_Uid		varchar(36);
+		Information_Date	varchar(10);
+		Information_Time	varchar(8);
+		Api_Result		varchar(3);
+		Api_Result_Message	varchar(100);
+		Reskey			varchar(100);
+		Statistics_Mode		varchar(7);
+		Statistics_Data_Format	varchar(10);
+		Statistics_Data_Information {
+			Statistics_Group_No		varchar(14);
+			Statistics_Processing_Number	varchar(4);
+			Statistics_Serial_Number	varchar(4);
+			Statistics_Character_Code	varchar(10);
+			Statistics_Data_Title		varchar(100);
+			Statistics_File_Name		varchar(200);
+		};
+		Statistics_Data_List_Overflow	varchar(4);
+		Statistics_Data_List_Information {
+			Statistics_Group_No		varchar(14);
+			Statistics_Processing_Number	varchar(4);
+			Statistics_Serial_Number	varchar(4);
+			Statistics_Character_Code	varchar(10);
+			Statistics_File_Name		varchar(200);
+			Statistics_Output_Count		varchar(5);
+			Statistics_Perform_Month	varchar(7);
+			Statistics_Perform_Date		varchar(10);
+			Statistics_InOut			varchar(1);
+			Statistics_Data_Title		varchar(100);
+			Statistics_Create_Date		varchar(10);
+			Statistics_Create_Still		varchar(4);
+		} [100];
+		Statistics_Items_Overflow	varchar(4);
+		Statistics_Length_Overflow	varchar(4);
+		Output_Count			varchar(10);
+		Data_Id_Information {
+			Data_Id		varchar(37);
+			Print_Id	varchar(37);
+		} [10];
+	};
+};
