@@ -127,3 +127,6 @@ coverage/
 # Don't ignore important template files
 !**/Makefile.in
 !**/configure.ac
+
+# Handoff and progress files
+!HANDOFF.md
