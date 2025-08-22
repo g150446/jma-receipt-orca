@@ -43,12 +43,105 @@ ORCA (Online Receipt Computer Advantage) is a comprehensive medical practice man
 
 ## 📦 Installation
 
-### Quick Start (Ubuntu 22.04)
+### Option 1: Official WebORCA (Recommended for Production)
+```bash
+# Add ORCA repository
+wget https://ftp.orca.med.or.jp/pub/ubuntu/archive.key -O /etc/apt/keyrings/jma.asc
+
+# Add repository to sources
+echo "deb [signed-by=/etc/apt/keyrings/jma.asc] https://ftp.orca.med.or.jp/pub/ubuntu jammy jma" | sudo tee /etc/apt/sources.list.d/jma.list
+
+# Update and install WebORCA
+sudo apt update
+sudo apt install -y jma-receipt-weborca
+
+# Setup WebORCA
+sudo weborca-install
+sudo /opt/jma/weborca/app/bin/jma-setup
+
+# Start service
+sudo systemctl restart jma-receipt-weborca
+```
+
+### Option 2: Build from Source (For Customization)
+
+#### Prerequisites
+```bash
+# Core build tools
+sudo apt update
+sudo apt install -y build-essential autotools-dev autoreconf
+sudo apt install -y pkg-config make wget ruby ruby-dev
+
+# Database
+sudo apt install -y postgresql postgresql-client postgresql-server-dev-all
+
+# COBOL compiler (Required - WebORCA core logic is in COBOL)
+sudo apt install -y open-cobol
+
+# Required libraries
+sudo apt install -y libxml2-dev libpng-dev libqrencode-dev uuid-dev libcrypt-dev
+
+# MONTSUQI/Panda middleware (Critical for WebORCA web interface)
+# Note: This is the most challenging dependency - not in standard repos
+# You may need to build from source or find compatible packages
+```
+
+#### Build Process
 ```bash
 # Clone the repository
 git clone https://github.com/YOUR_USERNAME/jma-receipt-orca.git
 cd jma-receipt-orca
+
+# Prepare autotools
+autoreconf -fiv
+
+# Configure build
+./configure \
+    --prefix=/opt/jma-receipt-custom \
+    --libdir=/opt/jma-receipt-custom/lib \
+    --sysconfdir=/opt/jma-receipt-custom/etc \
+    --with-sitedir=/opt/jma-receipt-custom/site \
+    --with-sitesrcdir=/opt/jma-receipt-custom/site-src \
+    --with-sitelibdir=/opt/jma-receipt-custom/lib
+
+# Compile (this will compile 1,700+ COBOL files)
+make
+
+# Install (requires root privileges)
+sudo make install
 ```
+
+#### Post-Installation Setup
+```bash
+# Create ORCA user and database
+sudo -u postgres createuser -s orca
+sudo -u postgres createdb orca
+
+# Initialize database
+cd /opt/jma-receipt-custom
+sudo ./init/orca-db-create.sh
+sudo ./init/orca-db-init.sh
+
+# Create system user
+sudo useradd -m -s /bin/bash orcauser
+
+# Set permissions
+sudo chown -R orcauser:orcauser /opt/jma-receipt-custom
+```
+
+#### Key Customization Areas
+- **COBOL Business Logic**: `cobol/` - Core medical processing (1,700+ files)
+- **Screen Definitions**: `screen/` - UI layouts (.glade files)
+- **Forms**: `form/` - Print templates (.red files)
+- **Database Records**: `record/` - Database schemas (.rec files)
+- **Scripts**: `scripts/` - System utilities and workflows
+- **Site Extensions**: Use `--with-sitedir` for custom additions
+
+#### Important Notes for Source Build
+- ⚠️ **MONTSUQI/Panda Required**: WebORCA's web interface depends on this middleware
+- 🔧 **COBOL Compiler Essential**: All medical logic is implemented in COBOL
+- 🐧 **Ubuntu 22.04 Recommended**: Best compatibility for dependencies
+- 📋 **Consider Official Packages**: For production, official packages are more stable
 
 For detailed installation instructions, see [INSTALL.md](INSTALL.md).
 
