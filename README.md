@@ -48,9 +48,6 @@ ORCA (Online Receipt Computer Advantage) is a comprehensive medical practice man
 # Clone the repository
 git clone https://github.com/YOUR_USERNAME/jma-receipt-orca.git
 cd jma-receipt-orca
-
-# Run installation script
-sudo ./scripts/install.sh
 ```
 
 For detailed installation instructions, see [INSTALL.md](INSTALL.md).
